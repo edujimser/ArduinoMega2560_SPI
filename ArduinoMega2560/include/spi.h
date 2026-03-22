@@ -3,18 +3,15 @@
 
 #include <Arduino.h>
 #include "msg.h"
+#include "configSpi.h"
 #include <avr/io.h>
-
-//Code de error para transferencias SPI
-#define SPI_ERROR_TIMEOUT 0xFFFF
-#define SPI_ERROR_NO_INIT_SPE 0xFFFE 
-#define SPI_ERROR_NO_INIT_SS 0xFFFD
-#define SPI_ERROR_WCOL 0xFFFC
-#define SPI_ERROR_NO_REQUEST_SLAVE 0xFFFB
 
 void spi_init_master();
 void spi_init_slave();
 uint16_t spi_master_transfer(uint8_t data, uint32_t delay_ms);
+void spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms);
+void spi_master_print_error(uint16_t error_code);
+void spi_master_print_tx_rx(uint8_t enviado, uint8_t recibido);
 char spi_master_Valid_Init_SPE();
 char spi_master_Valid_Init_SS();
 char spi_master_Valid_Init_WCOL();
