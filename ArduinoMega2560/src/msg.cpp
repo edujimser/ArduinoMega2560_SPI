@@ -194,17 +194,20 @@ void mostrar_configuracion_SPCR() {
   // Mostrar velocidad SPI resultante
   uint8_t spr1 = (SPCR & (1 << SPR1)) ? 1 : 0;
   uint8_t spr0 = (SPCR & (1 << SPR0)) ? 1 : 0;
-  uint8_t spi2x = (SPSR & (1 << SPI2X)) ? 1 : 0;
+
 
   Serial.print(F(" Velocidad SPI: "));
 
-  if (spr1 == 0 && spr0 == 0) Serial.print(F("Fosc/4"));
-  if (spr1 == 0 && spr0 == 1) Serial.print(F("Fosc/16"));
-  if (spr1 == 1 && spr0 == 0) Serial.print(F("Fosc/64"));
-  if (spr1 == 1 && spr0 == 1) Serial.print(F("Fosc/128"));
-
-  if (spi2x) Serial.print(F(" (x2 por SPI2X)"));
+  if (!(SPCR & (1 << MSTR))) {
+    Serial.println(F("Controlada por el maestro (modo esclavo)"));
+  } else {
+    if (spr1 == 0 && spr0 == 0) Serial.print(F("Fosc/4"));
+    if (spr1 == 0 && spr0 == 1) Serial.print(F("Fosc/16"));
+    if (spr1 == 1 && spr0 == 0) Serial.print(F("Fosc/64"));
+    if (spr1 == 1 && spr0 == 1) Serial.print(F("Fosc/128"));
+}
 
   Serial.println();
   Serial.println(F("====================================================\n"));
 }
+

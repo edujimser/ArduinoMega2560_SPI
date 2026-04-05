@@ -29,6 +29,8 @@ void spi_init_master() {
 
     if (!verificar_configuracion_spi_PIN_Master()) return;
 
+    SPCR = 0; /*< Limpia SPCR antes de configurar */
+
     /**
      * Configuración del registro SPCR:
      *  SPE  = 1 → SPI habilitado
@@ -39,6 +41,8 @@ void spi_init_master() {
      *  DORD = 0 → MSB primero
      */
     SPCR = (1 << SPE) | (1 << MSTR) | (1 << SPR0);
+    SPCR &= ~(1 << CPOL);
+    SPCR &= ~(1 << CPHA);
 
     /**
      *  SPI2X = 0 → velocidad normal (sin multiplicar por 2)
@@ -72,11 +76,13 @@ void spi_init_slave() {
     pinMode(PIN_MOSI, INPUT);   /*< MOSI: el esclavo recibe datos */
     pinMode(PIN_MISO, OUTPUT);  /*< MISO: el esclavo envía datos */
     pinMode(PIN_SCK, INPUT);   /*< SCK: reloj recibido del maestro */
-    pinMode(PIN_SS, INPUT);   /*< SS: activado por el maestro */
+    pinMode(PIN_SS, INPUT_PULLUP);   /*< SS: activado por el maestro */
 
     digitalWrite(PIN_SS, HIGH); /*< SS en HIGH → esclavo desactivado */
 
     if (!verificar_configuracion_spi_PIN_Slave()) return;
+
+    SPCR = 0; /*< Limpia SPCR antes de configurar */
 
     /**
      * Configuración del registro SPCR:
@@ -90,6 +96,8 @@ void spi_init_slave() {
      * SPR1 y SPR0 NO afectan al esclavo.
      */
     SPCR = (1 << SPE) | (1 << SPIE);
+    SPCR &= ~(1 << CPOL);
+    SPCR &= ~(1 << CPHA);
 
     /**
      * SPSR:
@@ -116,15 +124,15 @@ void spi_init_slave() {
  * @param data Byte a enviar al esclavo SPI.
  * @return uint8_t Byte recibido desde el esclavo. Devuelve 0xFF en caso de error.
  */
-uint16_t spi_master_transfer(uint8_t data, uint32_t delay_ms) {
+uint8_t spi_master_transfer(uint8_t data, uint32_t delay_ms) {
     /* Variables */
     uint32_t timeout = micros();
    
 
     /* Interrupcion */
     clean_SPIF();                                                           /*< Asegura que SPIF esté limpio antes de iniciar la transferencia */
-    uint8_t sreg = SREG;                                                    /*< Guarda el estado de interrupciones */
-    cli();                                                                  /*< Desactiva interrupciones para proteger la transferencia */
+    //uint8_t REG = sreg;                                                    /*< Guarda el estado de interrupciones */
+    //cli();                                                                  /*< Desactiva interrupciones para proteger la transferencia */
 
     /* Iniciar transferencia */
     digitalWrite(PIN_SS, LOW);                                                  /*< Activar esclavo */
@@ -135,7 +143,7 @@ uint16_t spi_master_transfer(uint8_t data, uint32_t delay_ms) {
         if (micros() - timeout > 10000) {                                   /* Timeout de 10 ms */
             Serial.println(F("Error: Timeout en transferencia SPI"));
             clean_SPIF();                                                   /* Limpia SPIF para evitar estados inconsistentes */
-            SREG = sreg;                                                    /* Restaura interrupciones */
+            //REG = sreg;                                                    /* Restaura interrupciones */
             digitalWrite(53, HIGH);                                         /* Desactivar esclavo */
             return SPI_ERROR_TIMEOUT;
         }
@@ -146,7 +154,7 @@ uint16_t spi_master_transfer(uint8_t data, uint32_t delay_ms) {
     if (!spi_master_Valid_Init_SPE()) {
         Serial.println(F("Error: SPI no está correctamente inicializado"));
         clean_SPIF();                                                       /* Limpia SPIF para evitar estados inconsistentes */
-        SREG = sreg;                                                       /* Restaura el estado original de interrupciones */
+        //REG = sreg;                                                       /* Restaura el estado original de interrupciones */
         digitalWrite(53, HIGH);                                            /* Desactivar esclavo */
         delay(delay_ms);                                                   /* Retardo opcional después de la transferencia */
         return SPI_ERROR_NO_INIT_SPE;
@@ -156,7 +164,7 @@ uint16_t spi_master_transfer(uint8_t data, uint32_t delay_ms) {
     if (!spi_master_Valid_Init_SS()) {
         Serial.println(F("Error: Pin SS no está en LOW, esclavo no activo"));
         clean_SPIF();                                                      /* Limpia SPIF para evitar estados inconsistentes */
-        SREG = sreg;                                                       /* Restaura el estado original de interrupciones */
+        //REG = sreg;                                                       /* Restaura el estado original de interrupciones */
         digitalWrite(53, HIGH);                                            /* Desactivar esclavo */
         delay(delay_ms);                                                   /* Retardo opcional después de la transferencia */
         return SPI_ERROR_NO_INIT_SS;
@@ -166,7 +174,7 @@ uint16_t spi_master_transfer(uint8_t data, uint32_t delay_ms) {
     if (!spi_master_Valid_Init_WCOL()) {
         Serial.println(F("Error: Colisión de escritura detectada"));
         clean_SPIF();                                                     /* Limpia SPIF para evitar estados inconsistentes */
-        SREG = sreg;                                                      /* Restaura el estado original de interrupciones */
+        //REG = sreg;                                                      /* Restaura el estado original de interrupciones */
         digitalWrite(53, HIGH);                                           /* Desactivar esclavo */
         delay(delay_ms);                                                  /* Retardo opcional después de la transferencia */
         return SPI_ERROR_WCOL;
@@ -174,7 +182,7 @@ uint16_t spi_master_transfer(uint8_t data, uint32_t delay_ms) {
 
     /* Recepcion */
     uint8_t recibido = SPDR;                                              /* Lee el byte recibido del esclavo */
-    SREG = sreg;                                                          /* Restaura el estado original de interrupciones */
+    //REG = sreg;                                                          /* Restaura el estado original de interrupciones */
     clean_SPIF();                                                         /* Limpia SPIF para evitar estados inconsistentes */
     digitalWrite(53, HIGH);                                               /* Desactivar esclavo */
 
@@ -194,11 +202,12 @@ uint16_t spi_master_transfer(uint8_t data, uint32_t delay_ms) {
 void spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms) {
 
     clean_SPIF();               
-    uint8_t sreg = SREG;        
-    cli();                      
+    //uint8_t REG = sreg; 
+    digitalWrite(PIN_SS, LOW);
+    delayMicroseconds(100);         
+    //cli();                      
 
-    digitalWrite(PIN_SS, LOW);  
-
+   
     for (size_t i = 0; i < len; i++) {
 
         clean_SPIF();           
@@ -209,17 +218,23 @@ void spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms) {
             if (micros() - t0 > 10000) {
                 spi_master_print_error(SPI_ERROR_TIMEOUT);
                 clean_SPIF();
-                SREG = sreg;
                 digitalWrite(PIN_SS, HIGH);
                 return;
             }
+
+            if (digitalRead(PIN_SS) == HIGH) {
+                spi_master_print_error(SPI_ERROR_PIN_SS_HIGH);
+                clean_SPIF();
+                digitalWrite(PIN_SS, HIGH);
+                return;
+             }
+            
         }
 
         if (!spi_master_Valid_Init_SPE()) {
             delay(delay_ms);
             spi_master_print_error(SPI_ERROR_NO_INIT_SPE);
             clean_SPIF();
-            SREG = sreg;
             digitalWrite(PIN_SS, HIGH);
             return;
         }
@@ -228,7 +243,6 @@ void spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms) {
             delay(delay_ms);
             spi_master_print_error(SPI_ERROR_NO_INIT_SS);
             clean_SPIF();
-            SREG = sreg;
             digitalWrite(PIN_SS, HIGH);
             return;
         }
@@ -237,7 +251,6 @@ void spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms) {
             delay(delay_ms);
             spi_master_print_error(SPI_ERROR_WCOL);
             clean_SPIF();
-            SREG = sreg;
             digitalWrite(PIN_SS, HIGH);
             return;
         }
@@ -245,12 +258,10 @@ void spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms) {
         uint8_t recibido = SPDR;
         spi_master_print_tx_rx(data[i], recibido);
     }
-
-    SREG = sreg;                                                             
+                                                             
     clean_SPIF();                                                            
     digitalWrite(PIN_SS, HIGH);                                              
 }
-
 
 /**
  * @brief Verifica si el módulo SPI está habilitado (bit SPE en SPCR).
@@ -303,7 +314,7 @@ char spi_master_Valid_Init_WCOL() {
  * Esta función ejecuta ese procedimiento para dejar el estado SPI limpio.
  */
 void clean_SPIF() {
-    volatile uint8_t dummy;
+    volatile uint8_t dummy __attribute__((unused));
     dummy = SPSR; /*< Lectura obligatoria de SPSR */
     dummy = SPDR; /*< Lectura obligatoria de SPDR para limpiar SPIF */
 }
@@ -314,7 +325,7 @@ void clean_SPIF() {
  *
  * @param error_code Código de error SPI_ERROR_XXXX.
  */
-void spi_master_print_error(uint16_t error_code) {
+void spi_master_print_error(uint8_t error_code) {
 
 
     Serial.println(F("========================================"));
@@ -352,7 +363,12 @@ void spi_master_print_error(uint16_t error_code) {
             Serial.println(F("Descripción: El esclavo devolvió 0x00 o 0xFF."));
             Serial.println(F("Causa posible: El esclavo no está conectado, no está inicializado o no tiene datos preparados."));
             break;
-
+        case SPI_ERROR_PIN_SS_HIGH:
+            Serial.println(F("Tipo: PIN SS EN HIGH"));
+            Serial.println(F("Descripción: El pin SS se detectó en HIGH durante la transferencia."));
+            Serial.println(F("Causa posible: El maestro no está manteniendo SS en LOW, o hay ruido/interferencia en la línea SS."));
+            break;
+            
         default:
             Serial.println(F("Tipo: ERROR DESCONOCIDO"));
             Serial.println(F("Descripción: Código no reconocido."));

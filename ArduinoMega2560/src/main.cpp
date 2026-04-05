@@ -1,76 +1,176 @@
 #include "main.h"
 
 
+bool receiving = false;                               /** Estado de recepción del esclavo. */
+bool packet_ready = false;                            /** Indica que el paquete recibido está listo para ser procesar. */
+uint8_t rx_index = 0;                                 /** Índice de escritura en el buffer de recepción del esclavo. */
+uint8_t rx_buffer[11];                                /** Buffer para almacenar un paquete SPI (11 bytes). */
 
+/**
+ * @brief Inicializa el sistema según el modo SPI seleccionado.
+ *
+ * Configura:
+ * - Serial
+ * - Validación de modo (MASTER/SLAVE/PRUEBA)
+ * - Inicialización SPI
+ * - Interrupciones (solo esclavo)
+ */
 void setup() {
     Serial.begin(115200);
-    Serial.println("Setup iniciado");
+    delay(200); /**< Espera a que Serial esté listo. */
 
-    if (MASTER == true)spi_init_master();
-    if (SLAVE == true)spi_init_slave();
+    /* Validación de modo único */
+    #if (MASTER + SLAVE + SLAVE_PRUEBA) != 1
+        #error "Debes seleccionar exactamente un modo: MASTER, SLAVE o SLAVE_PRUEBA"
+    #endif
 
-    sei();
+     /* Modo maestro */
+    #if MASTER
+        spi_init_master();
+    #endif
+
+    /* Modo esclavo */
+    #if SLAVE
+        spi_init_slave();
+        PCICR  |= (1 << PCIE0);  /**< Habilita PCINT0..7 */
+        PCMSK0 |= (1 << PCINT0); /**< Interrupción en PB0 (SS) */
+    #endif
+
+    /* Modo esclavo de prueba */
+    #if SLAVE_PRUEBA
+        spi_init_slave();
+    #endif
+
+    sei(); /**< Activa interrupciones globales. */
+
+    /* Mensaje de diagnóstico */
+    Serial.println(F("Sistema SPI iniciado. Modo: "
+        #if MASTER
+            "MAESTRO"
+        #elif SLAVE
+            "ESCLAVO"
+        #elif SLAVE_PRUEBA
+            "ESCLAVO_PRUEBA"
+        #endif
+    ));
 }
 
 
 void loop() {
-    /* Ejemplo de transferencia SPI maestro-esclavo:
-     * El maestro envía 0xA6 y espera una respuesta del esclavo.
-     * El esclavo, al recibir un byte, responde con el valor recibido + 1.
-     * Se valida la respuesta y se imprimen los resultados por consola.
-     */
-    /**
-    if (MASTER == true) {
-        uint16_t respuesta = spi_master_transfer(0xA6, 4000);
-        Serial.print("Respuesta válida: 0x"); Serial.println(respuesta, HEX);
-    }
-    */
+
+    #if MASTER
+        pkt0.ID = 0x01;
+        pkt0.payload_0 = 0xAA;
+        pkt0.payload_1 = 0xBB;
+        pkt0.payload_2 = 0xCC;
+        pkt0.payload_3 = 0xDD;
+        pkt0.payload_4 = 0xEE;
+        pkt0.payload_5 = 0xFF;
+        pkt0.payload_6 = 0x11;
+        pkt0.payload_7 = 0x22;
+
+        build_packet(&pkt0, true, 4000);
+        spi_master_send_block((uint8_t*)&pkt0, 11, 1000);
+    #endif
 
 
-     if (MASTER == true) {
-        // -------------------------
-        // 1) Datos a enviar
-        // -------------------------
+    #if SLAVE
+        if (packet_ready)
+        {
+            
+            Packet received_pkt = {
+                .ID = rx_buffer[0],
+                .LEN = rx_buffer[1],
+                .payload_0 = rx_buffer[2],
+                .payload_1 = rx_buffer[3],
+                .payload_2 = rx_buffer[4],
+                .payload_3 = rx_buffer[5],
+                .payload_4 = rx_buffer[6],
+                .payload_5 = rx_buffer[7],
+                .payload_6 = rx_buffer[8],
+                .payload_7 = rx_buffer[9],
+                .CRC = rx_buffer[10]
+            };
+            
+            crc8_valido(&received_pkt);
+            mostrar_packet_recibido(&received_pkt);
+            
+            switch (received_pkt.ID){
+                case 0x01:
+                    Serial.println(F("Comando 0x01 recibido:"));
+                    Serial.print(F("Payload: "));
 
-        uint8_t id = 0x10;                 // ID del comando
-        uint8_t dato = 0x42;               // Dato a enviar
-        uint8_t dato2 = 0x37;              // Dato a enviar
-        uint8_t dato3 = 0x99;              // Dato a enviar
-        uint8_t dato4 = 0xAB;              // Dato a enviar
+                    for (uint8_t i = 0; i < PAYLOAD_SIZE; i++) {
+                        Serial.print(F("0x"));
+                        uint8_t val = ((uint8_t*)&received_pkt.payload_0)[i];
+                        if (val < 0x10) Serial.print('0');
+                        Serial.print(val, HEX);
+                        Serial.print(' ');
+                    }
+                    Serial.println();
+                    break;
 
-        // -------------------------
-        // 2) Construir paquete
-        // -------------------------
+                case 0x02:
+                    Serial.println(F("Comando 0x02 recibido (pendiente de implementar)."));
+                    break;
 
-        uint8_t paquete[7];
-        size_t pos = 0;
+                case 0x03:
+                    Serial.println(F("Comando 0x03 recibido (pendiente de implementar)."));
+                    break;
 
-         
-        // -------------------------
-        // 3) construir paquete dato
-        // -------------------------
-        paquete[pos++] = id;    // byte 0: ID del comando
-        paquete[pos++] = dato;  // byte 1: dato
-        paquete[pos++] = dato2;  // byte 2: dato2
-        paquete[pos++] = dato3;  // byte 3: dato3
-        paquete[pos++] = dato4;  // byte 4: dato4
-        
-        // -------------------------
-        // 4) Enviar paquete
-        // -------------------------
-
-        Serial.println(F("\n--- Enviando paquete SPI ---"));
-        spi_master_send_block(paquete, pos, 2);
-        Serial.println(F("--- Fin de envío SPI ---\n"));
-
-        delay(3000);
-
-     }
-
+                default:
+                    Serial.print(F("ID desconocido: 0x"));
+                    if (received_pkt.ID < 0x10) Serial.print('0');
+                    Serial.println(received_pkt.ID, HEX);
+                    break;
+        }
+            packet_ready = false;
+   
+        }
+    #endif
 } 
 
 /* ------------------ ISR DEL ESCLAVO ------------------ */
-ISR(SPI_STC_vect) {
-    uint8_t recibido = SPDR;   // lo que mandó el maestro
-    SPDR = recibido + 1;       // preparar respuesta para el SIGUIENTE byte
+
+ISR(PCINT0_vect)
+{   
+    if (SLAVE == true && SLAVE_PRUEBA == false)
+    {
+         bool ss_state = PINB & (1 << PB0);
+
+        if (!ss_state) {
+            // SS BAJO → INICIO DE PAQUETE
+            Serial.println("SS BAJO → INICIO PAQUETE");
+            rx_index = 0;
+            receiving = true;
+            packet_ready = false;   // ← CORRECTO
+        } else {
+            // SS ALTO → FIN DE PAQUETE
+            Serial.print("SS ALTO → FIN PAQUETE. Bytes recibidos: ");
+            Serial.println(rx_index);
+            receiving = false;
+            packet_ready = true;    // ← CORRECTO
+        
+        }
+    }
 }
+
+
+ISR(SPI_STC_vect)
+{   
+    if (SLAVE == true && SLAVE_PRUEBA == true)
+    {
+        uint8_t recibido = SPDR;   // lo que mandó el maestro
+        SPDR = recibido + 1;       // preparar respuesta para el SIGUIENTE byte
+    }
+
+    if (SLAVE == true && SLAVE_PRUEBA == false)
+    {
+         if (receiving && rx_index < 11) {
+            rx_buffer[rx_index++] = SPDR;
+        }
+    }
+    
+}
+
+
