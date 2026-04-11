@@ -7,7 +7,7 @@
 extern bool receiving;
 extern bool packet_ready;
 extern uint8_t rx_index;
-extern uint8_t rx_buffer[11]; 
+extern uint8_t rx_buffer[PACKET_SIZE]; 
 
 
 #endif  // MAIN_H

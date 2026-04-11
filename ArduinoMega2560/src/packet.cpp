@@ -59,6 +59,9 @@ void build_packet(Packet *pkt, bool msg, uint32_t delay_ms) {
 
     PacketStatus st = validate_payload(pkt);
 
+    // Calcular el checksum de 16 bits a partir del payload y almacenarlo en el paquete
+    checksum8_calculo(pkt); 
+
     if (st != PKT_OK) {
         if (msg) mostrar_packet_tabla(pkt);
         memset(pkt, 0x00, sizeof(Packet));   // Reset completo del paquete
@@ -66,12 +69,18 @@ void build_packet(Packet *pkt, bool msg, uint32_t delay_ms) {
     }
 
     // Construir un buffer temporal con los campos que se usarán para el CRC
-    uint8_t *raw = (uint8_t *)pkt;
-    uint8_t buffer[PACKET_SIZE - 1];
-    for (uint8_t i = 0; i < PACKET_SIZE - 1; i++) {
-        buffer[i] = raw[i];
-    }
+    uint8_t buffer[PAYLOAD_SIZE];
 
+    buffer[0] = pkt->payload_0;
+    buffer[1] = pkt->payload_1;
+    buffer[2] = pkt->payload_2;
+    buffer[3] = pkt->payload_3;
+    buffer[4] = pkt->payload_4;
+    buffer[5] = pkt->payload_5;
+    buffer[6] = pkt->payload_6;
+    buffer[7] = pkt->payload_7;
+
+  
     // Cálculo del CRC8 sobre el buffer construido
     pkt->CRC = crc8(buffer, sizeof(buffer));
    
@@ -166,17 +175,19 @@ void crc8_valido(Packet *pkt) {
     Packet temp_pkt = *pkt;
     temp_pkt.CRC = 0x00;
 
-    // 3. Obtener puntero crudo a la copia (vista byte a byte)
-    uint8_t *raw = (uint8_t *)&temp_pkt;
+    // 3. Convertir la estructura a un arreglo de bytes
+   uint8_t buffer[8];
 
-    // 4. Construir buffer sin el último byte (CRC)
-    uint8_t buffer[PACKET_SIZE - 1];
+    buffer[0] = pkt->payload_0;
+    buffer[1] = pkt->payload_1;
+    buffer[2] = pkt->payload_2;
+    buffer[3] = pkt->payload_3;
+    buffer[4] = pkt->payload_4;
+    buffer[5] = pkt->payload_5;
+    buffer[6] = pkt->payload_6;
+    buffer[7] = pkt->payload_7;
 
-    for (uint8_t i = 0; i < PACKET_SIZE - 1; i++) {
-        buffer[i] = raw[i];
-    }
-
-    // 5. Calcular CRC8 usando polinomio 0x07
+    // 4. Calcular CRC8 usando polinomio 0x07
     uint8_t crc = 0x00;
 
     for (size_t i = 0; i < sizeof(buffer); ++i) {
@@ -199,59 +210,173 @@ void crc8_valido(Packet *pkt) {
 
 
 
+/**
+ * @brief Calcula el checksum de 16 bits correspondiente al payload del paquete.
+ *
+ * Esta función recorre secuencialmente los bytes del payload del paquete,
+ * comenzando en POSITION_PAYLOAD_BYTE y procesando exactamente PAYLOAD_SIZE
+ * bytes consecutivos. Cada byte se acumula en la variable interna `sum`,
+ * cuyo tamaño de 16 bits permite almacenar el resultado completo de la suma.
+ *
+ * Una vez finalizado el cálculo, el valor de 16 bits se divide en dos partes:
+ *   - chechSumByte_0 : Byte menos significativo (LSB).
+ *   - chechSumByte_1 : Byte más significativo (MSB).
+ *
+ * Ambos bytes se almacenan en la estructura Packet siguiendo el formato
+ * little-endian, habitual en microcontroladores AVR/ARM, lo que garantiza
+ * compatibilidad con protocolos binarios que transmiten valores de 16 bits
+ * descompuestos en dos octetos.
+ *
+ * @note La función no valida el contenido del payload ni comprueba límites.
+ *       Se asume que POSITION_PAYLOAD_BYTE y PAYLOAD_SIZE describen un rango
+ *       de memoria válido dentro de la estructura Packet.
+ *
+ * @param pkt Puntero al paquete sobre el que se calcula y almacena el checksum.
+ *
+ * @pre  `pkt` debe apuntar a una estructura Packet correctamente inicializada.
+ * @post Los campos `chechSumByte_0` y `chechSumByte_1` contendrán el checksum
+ *       de 16 bits generado a partir del payload.
+ */
+void checksum8_calculo(Packet *pkt) {
+    int16_t sum = 0;
+
+    const uint8_t *raw = (const uint8_t *)pkt;
+
+   for (size_t i = POSITION_PAYLOAD_BYTE; i < POSITION_PAYLOAD_BYTE + PAYLOAD_SIZE; i++) {
+    sum += raw[i];
+    }
+
+    // Guardar el checksum en dos bytes dentro del paquete
+    pkt->chechSumByte_0  = (uint8_t)(sum & 0xFF);        // LSB
+    pkt->chechSumByte_1 = (uint8_t)((sum >> 8) & 0xFF);  // MSB
+}
+
+
+
 
 /**
- * @brief Muestra en formato tabular el contenido completo de un paquete SPI.
+ * @brief Calcula el checksum de 16 bits del payload y valida el recibido.
  *
- * Esta función imprime una tabla estructurada en el monitor serie con todos
- * los campos del paquete: ID, LEN, los 8 payloads y el CRC final. Cada campo
- * se muestra tanto en formato decimal como hexadecimal para facilitar la
- * depuración y el análisis del protocolo.
+ * Recorre los bytes del payload del paquete recibido y acumula su suma
+ * en un entero de 16 bits. Luego extrae el LSB y MSB de dicha suma y los
+ * compara con los valores almacenados en el paquete (`chechSumByte_0` y
+ * `chechSumByte_1`). Finalmente, muestra el resultado de la validación.
  *
- * @param pkt Puntero al paquete cuyos campos se desean visualizar.
+ * @param pkt Puntero al paquete recibido que contiene el payload y los
+ *            bytes de checksum enviados por el maestro.
  *
- * @note Esta función está pensada exclusivamente para depuración y utiliza
- *       salida por Serial, por lo que no debe llamarse dentro de interrupciones.
+ * @note Esta función no modifica el contenido del paquete; únicamente
+ *       calcula y verifica el checksum.
+ */
+void checksum8_calculo_slave(Packet *pkt) {
+    int16_t sum = 0;
+    int8_t  sum_Byte_0 = 0;
+    int8_t  sum_Byte_1 = 0;
+    bool checksum_valido = false;
+    
+    const uint8_t *raw = (const uint8_t *)pkt;
+
+   for (size_t i = POSITION_PAYLOAD_BYTE; i < POSITION_PAYLOAD_BYTE + PAYLOAD_SIZE; i++) {
+    sum += raw[i];
+    }
+
+    // Datos del checksum de 16 bits almacenados en el paquete
+    sum_Byte_0  = (uint8_t)(sum & 0xFF);        // LSB
+    sum_Byte_1 = (uint8_t)((sum >> 8) & 0xFF);  // MSB
+
+    if (pkt->chechSumByte_0 == sum_Byte_0 && pkt->chechSumByte_1 == sum_Byte_1)
+    {
+        checksum_valido = true;
+    }
+    
+    mostrar_datos_checksum_slave(pkt, sum_Byte_0, sum_Byte_1, checksum_valido);
+}
+
+
+
+
+/**
+ * @brief Imprime en el monitor serie una tabla detallada con el contenido del paquete.
+ *
+ * Esta implementación recorre la estructura Packet siguiendo estrictamente el
+ * orden real de sus campos en memoria. La salida se organiza en una tabla
+ * legible que incluye:
+ *
+ *   - ID y LEN (cabecera del paquete)
+ *   - chechSumByte_0 y chechSumByte_1 (checksum de 16 bits, LSB → MSB)
+ *   - payload_0 ... payload_7 (contenido del mensaje)
+ *   - CRC final del paquete
+ *
+ * Cada campo se muestra en formato decimal y hexadecimal para facilitar la
+ * inspección del protocolo durante la depuración. La tabla mantiene separadores
+ * consistentes y alineación fija para mejorar la legibilidad.
+ *
+ * @param pkt Puntero a la estructura Packet que se desea visualizar.
+ *
+ * @pre  `pkt` debe apuntar a una estructura Packet válida.
+ * @post Se envía al monitor serie una tabla completa con todos los campos del paquete.
+ *
+ * @warning Esta función utiliza Serial.println() y no debe ejecutarse dentro
+ *          de interrupciones (ISR) ni en contextos donde la salida por UART
+ *          pueda bloquear la ejecución.
  */
 void mostrar_packet_tabla(Packet *pkt) {
+
     Serial.println(F("\n========================================="));
     Serial.println(F("              PACKET TABLE"));
     Serial.println(F("========================================="));
-    Serial.println(F("| FIELD     |   DEC   |   HEX           |"));
+    Serial.println(F("| FIELD          |   DEC   |   HEX       |"));
     Serial.println(F("-----------------------------------------"));
 
-    Serial.print(F("| ID        | "));
+    // ---- CAMPOS PRINCIPALES ----
+    Serial.print(F("| ID             | "));
     Serial.print(pkt->ID);
     Serial.print(F("      | 0x"));
     Serial.println(pkt->ID, HEX);
 
-    Serial.print(F("| LEN       | "));
+    Serial.print(F("| LEN            | "));
     Serial.print(pkt->LEN);
     Serial.print(F("      | 0x"));
     Serial.println(pkt->LEN, HEX);
 
     Serial.println(F("-----------------------------------------"));
-    Serial.println(F("| PAYLOADS  |   DEC   |   HEX           |"));
+    Serial.println(F("| CHECKSUM 16b   |   DEC   |   HEX       |"));
     Serial.println(F("-----------------------------------------"));
 
-    Serial.print(F("| P0        | ")); Serial.print(pkt->payload_0); Serial.print(F("      | 0x")); Serial.println(pkt->payload_0, HEX);
-    Serial.print(F("| P1        | ")); Serial.print(pkt->payload_1); Serial.print(F("      | 0x")); Serial.println(pkt->payload_1, HEX);
-    Serial.print(F("| P2        | ")); Serial.print(pkt->payload_2); Serial.print(F("      | 0x")); Serial.println(pkt->payload_2, HEX);
-    Serial.print(F("| P3        | ")); Serial.print(pkt->payload_3); Serial.print(F("      | 0x")); Serial.println(pkt->payload_3, HEX);
-    Serial.print(F("| P4        | ")); Serial.print(pkt->payload_4); Serial.print(F("      | 0x")); Serial.println(pkt->payload_4, HEX);
-    Serial.print(F("| P5        | ")); Serial.print(pkt->payload_5); Serial.print(F("      | 0x")); Serial.println(pkt->payload_5, HEX);
-    Serial.print(F("| P6        | ")); Serial.print(pkt->payload_6); Serial.print(F("      | 0x")); Serial.println(pkt->payload_6, HEX);
-    Serial.print(F("| P7        | ")); Serial.print(pkt->payload_7); Serial.print(F("      | 0x")); Serial.println(pkt->payload_7, HEX);
+    Serial.print(F("| CHK LSB (0)    | "));
+    Serial.print(pkt->chechSumByte_0);
+    Serial.print(F("      | 0x"));
+    Serial.println(pkt->chechSumByte_0, HEX);
+
+    Serial.print(F("| CHK MSB (1)    | "));
+    Serial.print(pkt->chechSumByte_1);
+    Serial.print(F("      | 0x"));
+    Serial.println(pkt->chechSumByte_1, HEX);
+
+    Serial.println(F("-----------------------------------------"));
+    Serial.println(F("| PAYLOAD        |   DEC   |   HEX       |"));
+    Serial.println(F("-----------------------------------------"));
+
+    Serial.print(F("| P0             | ")); Serial.print(pkt->payload_0); Serial.print(F("      | 0x")); Serial.println(pkt->payload_0, HEX);
+    Serial.print(F("| P1             | ")); Serial.print(pkt->payload_1); Serial.print(F("      | 0x")); Serial.println(pkt->payload_1, HEX);
+    Serial.print(F("| P2             | ")); Serial.print(pkt->payload_2); Serial.print(F("      | 0x")); Serial.println(pkt->payload_2, HEX);
+    Serial.print(F("| P3             | ")); Serial.print(pkt->payload_3); Serial.print(F("      | 0x")); Serial.println(pkt->payload_3, HEX);
+    Serial.print(F("| P4             | ")); Serial.print(pkt->payload_4); Serial.print(F("      | 0x")); Serial.println(pkt->payload_4, HEX);
+    Serial.print(F("| P5             | ")); Serial.print(pkt->payload_5); Serial.print(F("      | 0x")); Serial.println(pkt->payload_5, HEX);
+    Serial.print(F("| P6             | ")); Serial.print(pkt->payload_6); Serial.print(F("      | 0x")); Serial.println(pkt->payload_6, HEX);
+    Serial.print(F("| P7             | ")); Serial.print(pkt->payload_7); Serial.print(F("      | 0x")); Serial.println(pkt->payload_7, HEX);
 
     Serial.println(F("-----------------------------------------"));
 
-    Serial.print(F("| CRC       | "));
+    // ---- CRC ----
+    Serial.print(F("| CRC            | "));
     Serial.print(pkt->CRC);
     Serial.print(F("      | 0x"));
     Serial.println(pkt->CRC, HEX);
 
     Serial.println(F("=========================================\n"));
 }
+
 
 
 
@@ -294,7 +419,7 @@ PacketStatus validate_payload(Packet *pkt) {
     };
 
     // Validar cada payload individualmente
-    for (uint8_t i = 0; i < 8; i++) {
+    for (uint8_t i = 0; i < PAYLOAD_SIZE; i++) {
 
         // Si el valor excede el rango permitido (0–255), reportar el error
         if (*payloads[i] > 0xFF) {
@@ -401,14 +526,28 @@ void mostrar_packet_recibido(const Packet *pkt) {
     Serial.println(F("        PAQUETE RECIBIDO (Contenido Detallado)"));
     Serial.println(F("========================================="));
 
+    // --- ID ---
     Serial.print(F("ID:   0x"));
     if (pkt->ID < 0x10) Serial.print('0');
     Serial.println(pkt->ID, HEX);
 
+    // --- LEN ---
     Serial.print(F("LEN:  "));
     Serial.println(pkt->LEN);
 
-    Serial.println(F("PAYLOAD (posición : valor):"));
+    // --- CHECKSUM 16 bits ---
+    Serial.println(F("CHECKSUM 16 bits:"));
+
+    Serial.print(F("  LSB (chechSumByte_0): 0x"));
+    if (pkt->chechSumByte_0 < 0x10) Serial.print('0');
+    Serial.println(pkt->chechSumByte_0, HEX);
+
+    Serial.print(F("  MSB (chechSumByte_1): 0x"));
+    if (pkt->chechSumByte_1 < 0x10) Serial.print('0');
+    Serial.println(pkt->chechSumByte_1, HEX);
+
+    // --- PAYLOAD ---
+    Serial.println(F("\nPAYLOAD (posición : valor):"));
 
     const uint8_t *payload = &pkt->payload_0;
 
@@ -420,12 +559,14 @@ void mostrar_packet_recibido(const Packet *pkt) {
         Serial.println(payload[i], HEX);
     }
 
-    Serial.print(F("CRC:  0x"));
+    // --- CRC ---
+    Serial.print(F("\nCRC:  0x"));
     if (pkt->CRC < 0x10) Serial.print('0');
     Serial.println(pkt->CRC, HEX);
 
-    Serial.println(F("============================\n"));
+    Serial.println(F("=========================================\n"));
 }
+
 
 
 
@@ -448,10 +589,10 @@ void mostrar_validacion_crc(uint8_t crc_recibido, uint8_t crc_calculado)
     Serial.println(F("        VALIDACIÓN DE CRC DEL PAQUETE"));
     Serial.println(F("========================================="));
 
-    Serial.print(F("CRC recibido:   0x"));
+    Serial.print(F("CRC recibido Maestro:   0x"));
     Serial.println(crc_recibido, HEX);
 
-    Serial.print(F("CRC calculado:  0x"));
+    Serial.print(F("CRC calculado Esclavo:  0x"));
     Serial.println(crc_calculado, HEX);
 
     Serial.println();
@@ -460,6 +601,55 @@ void mostrar_validacion_crc(uint8_t crc_recibido, uint8_t crc_calculado)
         Serial.println(F("✔ CRC válido. El paquete es coherente."));
     } else {
         Serial.println(F("✘ CRC inválido. El paquete puede estar corrupto."));
+    }
+
+    Serial.println(F("=========================================\n"));
+}
+
+
+
+
+
+/**
+ * @brief Muestra el resultado de la validación del checksum de 16 bits.
+ *
+ * Esta función imprime:
+ *   - Los bytes de checksum recibidos en el paquete (LSB y MSB).
+ *   - Los bytes de checksum calculados por el esclavo.
+ *   - El resultado de la comparación.
+ *
+ * @param pkt            Puntero al paquete recibido.
+ * @param sum_Byte_0     Byte LSB del checksum calculado.
+ * @param sum_Byte_1     Byte MSB del checksum calculado.
+ * @param valido         true si el checksum coincide, false en caso contrario.
+ */
+void mostrar_datos_checksum_slave(const Packet *pkt,
+                                  uint8_t sum_Byte_0,
+                                  uint8_t sum_Byte_1,
+                                  bool valido)
+{
+    Serial.println(F("\n========================================="));
+    Serial.println(F("        VALIDACIÓN DE CHECKSUM 16b"));
+    Serial.println(F("========================================="));
+
+    Serial.print(F("Checksum recibido (LSB): 0x"));
+    Serial.println(pkt->chechSumByte_0, HEX);
+
+    Serial.print(F("Checksum recibido (MSB): 0x"));
+    Serial.println(pkt->chechSumByte_1, HEX);
+
+    Serial.print(F("Checksum calculado (LSB): 0x"));
+    Serial.println(sum_Byte_0, HEX);
+
+    Serial.print(F("Checksum calculado (MSB): 0x"));
+    Serial.println(sum_Byte_1, HEX);
+
+    Serial.println();
+
+    if (valido) {
+        Serial.println(F("✔ Checksum válido. El paquete es coherente."));
+    } else {
+        Serial.println(F("✘ Checksum inválido. El paquete puede estar corrupto."));
     }
 
     Serial.println(F("=========================================\n"));

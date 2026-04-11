@@ -208,7 +208,7 @@ void spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms) {
     //cli();                      
 
    
-    for (size_t i = 0; i < len; i++) {
+    for (size_t i = 0; i <= len; i++) {
 
         clean_SPIF();           
         SPDR = data[i];         

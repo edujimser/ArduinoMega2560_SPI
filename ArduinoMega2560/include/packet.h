@@ -20,9 +20,18 @@
 
 /**
  * @def PACKET_SIZE
- * @brief Tamaño total del paquete SPI (ID + LEN + PAYLOAD + CRC).
+ * @brief Tamaño total del paquete SPI (ID + LEN + CHECKSUM + PAYLOAD + CRC) = 11.
  */
-#define PACKET_SIZE (1 + 1 + PAYLOAD_SIZE + 1)
+#define PACKET_SIZE (1 + 1 + 2 + PAYLOAD_SIZE + 1)
+
+/** @brief Tamaño del paquete sin el byte de CRC. */
+#define PACKET_SIZE_WITHOUT_CRC (PACKET_SIZE - 1)  
+
+/**
+ * @def POSITION_PAYLOAD_BYTE
+ * @brief Posición del primer byte del payload en el paquete SPI.
+ */
+#define POSITION_PAYLOAD_BYTE 4
 
 /**
  * @enum PacketStatus
@@ -47,6 +56,8 @@ typedef enum {
 typedef struct {
     uint8_t ID;                        /**< Identificador del comando. */
     uint8_t LEN = PACKET_SIZE;         /**< Longitud del payload (0–8). */
+    uint8_t chechSumByte_0;            /**< Byte reservado para checksum (no utilizado en este protocolo). */
+    uint8_t chechSumByte_1;            /**< Byte reservado para checksum (no utilizado en este protocolo). */
     uint8_t payload_0;                 /**< Byte 0 del payload. */
     uint8_t payload_1;                 /**< Byte 1 del payload. */
     uint8_t payload_2;                 /**< Byte 2 del payload. */
@@ -97,6 +108,38 @@ uint8_t crc8(const uint8_t *data, size_t len);
  * @param pkt Puntero al paquete recibido.
  */
 void crc8_valido(Packet *pkt);
+
+/**
+ * @brief Calcula el checksum de 16 bits del payload del paquete.
+ *
+ * Esta función recorre los bytes del payload definidos por
+ * POSITION_PAYLOAD_BYTE y PAYLOAD_SIZE, acumulando su valor en un
+ * registro de 16 bits. El resultado final se almacena en los campos
+ * chechSumByte_0 (LSB) y chechSumByte_1 (MSB) de la estructura Packet,
+ * siguiendo el formato little-endian.
+ *
+ * @param pkt Puntero a la estructura Packet sobre la que se generará
+ *            y almacenará el checksum.
+ *
+ * @pre  `pkt` debe apuntar a una estructura Packet válida y con el
+ *       payload correctamente inicializado.
+ *
+ * @post Los campos `chechSumByte_0` y `chechSumByte_1` contendrán el
+ *       checksum de 16 bits correspondiente al payload del paquete.
+ */
+void checksum8_calculo(Packet *pkt);
+
+/**
+ * @brief Calcula y verifica el checksum de 16 bits del payload recibido.
+ *
+ * Esta función suma los bytes del payload del paquete recibido por SPI
+ * y compara el resultado con los valores de checksum almacenados en los
+ * campos `chechSumByte_0` y `chechSumByte_1` del paquete.
+ *
+ * @param pkt Puntero a la estructura Packet que contiene los datos recibidos.
+ */
+void checksum8_calculo_slave(Packet *pkt);
+
 
 /**
  * @brief Muestra el contenido del paquete en formato tabla.
@@ -152,5 +195,22 @@ void mostrar_packet_recibido(const Packet *pkt);
  */
 void mostrar_validacion_crc(uint8_t crc_recibido, uint8_t crc_calculado);
 
+/**
+ * @brief Muestra el resultado de la validación del checksum de 16 bits.
+ *
+ * Esta función imprime:
+ *   - Los bytes de checksum recibidos en el paquete (LSB y MSB).
+ *   - Los bytes de checksum calculados por el esclavo.
+ *   - El resultado de la comparación.
+ *
+ * @param pkt        Puntero al paquete recibido.
+ * @param sum_Byte_0 Byte LSB del checksum calculado.
+ * @param sum_Byte_1 Byte MSB del checksum calculado.
+ * @param valido     true si el checksum coincide, false en caso contrario.
+ */
+void mostrar_datos_checksum_slave(const Packet *pkt,
+                                  uint8_t sum_Byte_0,
+                                  uint8_t sum_Byte_1,
+                                  bool valido);
 
 #endif  // PACKET_H

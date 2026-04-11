@@ -1,8 +1,37 @@
-/* ----------------------------------------------------
- * @section CONFIGURACION_SPI Configuración del sistema SPI
- * ----------------------------------------------------
+/**
+ * @file spi_config.h
+ * @brief Definiciones, constantes y parámetros de configuración del sistema SPI.
+ *
+ * Este archivo contiene la configuración principal del módulo SPI utilizada
+ * tanto por el maestro como por el esclavo. Incluye:
+ *
+ *  - Selección del modo de operación (MASTER, SLAVE, SLAVE_PRUEBA)
+ *  - Definición de los pines hardware del bus SPI (SS, MOSI, MISO, SCK)
+ *  - Códigos de error asociados a fallos en la comunicación SPI
+ *
+ * Su propósito es centralizar todos los parámetros críticos del sistema SPI
+ * para garantizar coherencia entre módulos, facilitar la depuración y permitir
+ * una configuración flexible del entorno de comunicación.
+ *
+ * @section CONFIGURACION_SPI Selección del modo SPI
+ * Se definen macros para compilar el firmware en modo maestro, esclavo o
+ * esclavo de prueba. Solo uno de ellos debe estar activo simultáneamente.
+ *
+ * @section PINES_SPI Pines hardware del bus SPI
+ * Se especifican los pines utilizados por el microcontrolador para la interfaz
+ * SPI estándar (SS, MOSI, MISO, SCK). Estos valores deben corresponder a los
+ * pines físicos del hardware utilizado.
+ *
+ * @section CODIGOS_ERROR_SPI Códigos de error del sistema SPI
+ * Se definen códigos de error de 8 bits que permiten identificar fallos
+ * específicos durante la transferencia SPI, tales como timeouts, colisiones
+ * de escritura, falta de inicialización o estados incorrectos del pin SS.
+ *
+ * @note Este archivo debe incluirse en todos los módulos que utilicen SPI
+ *       para asegurar una configuración consistente del sistema.
  */
 
+ 
 /**
  * @def MASTER
  * @brief Activa el modo maestro SPI.

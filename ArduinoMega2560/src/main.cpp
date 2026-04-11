@@ -4,7 +4,7 @@
 bool receiving = false;                               /** Estado de recepción del esclavo. */
 bool packet_ready = false;                            /** Indica que el paquete recibido está listo para ser procesar. */
 uint8_t rx_index = 0;                                 /** Índice de escritura en el buffer de recepción del esclavo. */
-uint8_t rx_buffer[11];                                /** Buffer para almacenar un paquete SPI (11 bytes). */
+uint8_t rx_buffer[PACKET_SIZE];                       /** Buffer para almacenar un paquete SPI (13 bytes). */
 
 /**
  * @brief Inicializa el sistema según el modo SPI seleccionado.
@@ -70,7 +70,7 @@ void loop() {
         pkt0.payload_7 = 0x22;
 
         build_packet(&pkt0, true, 4000);
-        spi_master_send_block((uint8_t*)&pkt0, 11, 1000);
+        spi_master_send_block((uint8_t*)&pkt0, PACKET_SIZE, 1000);
     #endif
 
 
@@ -81,18 +81,21 @@ void loop() {
             Packet received_pkt = {
                 .ID = rx_buffer[0],
                 .LEN = rx_buffer[1],
-                .payload_0 = rx_buffer[2],
-                .payload_1 = rx_buffer[3],
-                .payload_2 = rx_buffer[4],
-                .payload_3 = rx_buffer[5],
-                .payload_4 = rx_buffer[6],
-                .payload_5 = rx_buffer[7],
-                .payload_6 = rx_buffer[8],
-                .payload_7 = rx_buffer[9],
-                .CRC = rx_buffer[10]
+                .chechSumByte_0 = rx_buffer[2],  
+                .chechSumByte_1 = rx_buffer[3],  
+                .payload_0 = rx_buffer[4],
+                .payload_1 = rx_buffer[5],
+                .payload_2 = rx_buffer[6],
+                .payload_3 = rx_buffer[7],
+                .payload_4 = rx_buffer[8],
+                .payload_5 = rx_buffer[9],
+                .payload_6 = rx_buffer[10],
+                .payload_7 = rx_buffer[11],
+                .CRC = rx_buffer[12]
             };
             
             crc8_valido(&received_pkt);
+            checksum8_calculo_slave(&received_pkt);
             mostrar_packet_recibido(&received_pkt);
             
             switch (received_pkt.ID){
@@ -166,7 +169,7 @@ ISR(SPI_STC_vect)
 
     if (SLAVE == true && SLAVE_PRUEBA == false)
     {
-         if (receiving && rx_index < 11) {
+         if (receiving && rx_index < PACKET_SIZE) {
             rx_buffer[rx_index++] = SPDR;
         }
     }
