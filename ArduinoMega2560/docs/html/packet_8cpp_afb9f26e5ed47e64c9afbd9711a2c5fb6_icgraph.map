@@ -1,0 +1,5 @@
+<map id="build_packet" name="build_packet">
+<area shape="rect" id="Node000001" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="100,5,195,31"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="spi_master_Valid_Init_SS" name="spi_master_Valid_Init_SS">
+<area shape="rect" id="Node000001" title="Verifica si el pin SS está en LOW (esclavo activo)." alt="" coords="307,31,477,56"/>
+<area shape="rect" id="Node000002" href="$spi_8cpp.html#ab954ffe1bc471b86e3b8b21cc6478f8f" title="Envía un bloque completo de bytes mediante SPI maestro." alt="" coords="100,5,259,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,34,258,30,259,25,293,29"/>
+<area shape="rect" id="Node000004" href="$spi_8cpp.html#a3759b640dd5424fa5ecb5f1967a481b4" title="Envía un byte por SPI como maestro y recibe simultáneamente otro." alt="" coords="111,55,247,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="293,57,248,62,247,57,293,52"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>

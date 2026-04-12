@@ -1,0 +1,7 @@
+<map id="verificar_configuracion_spi_PIN_Slave" name="verificar_configuracion_spi_PIN_Slave">
+<area shape="rect" id="Node000001" title="Verifica la configuración de los pines SPI cuando el Arduino actúa como Esclavo." alt="" coords="255,5,403,45"/>
+<area shape="rect" id="Node000002" href="$spi_8cpp.html#a7d026fae245411026c3b69a989728fca" title="Inicializa el módulo SPI en modo esclavo." alt="" coords="108,13,207,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,28,207,28,207,23,241,23"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Inicializa el sistema según el modo SPI seleccionado." alt="" coords="5,13,60,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="spi_master_send_block" name="spi_master_send_block">
+<area shape="rect" id="Node000001" title="Envía un bloque completo de bytes mediante SPI maestro." alt="" coords="5,129,164,155"/>
+<area shape="rect" id="Node000002" href="$spi_8cpp.html#adbf78dc06b1fe5efdad098c291b6536b" title="Limpia el flag SPIF leyendo SPSR y luego SPDR." alt="" coords="263,5,353,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,127,144,84,176,60,211,40,249,26,251,31,213,44,179,65,147,88,100,131"/>
+<area shape="rect" id="Node000003" href="$spi_8cpp.html#a92397ce65ed5070e3878f56b58defde9" title="Imprime por consola el tipo de error SPI y su explicación." alt="" coords="233,55,383,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,127,211,89,238,81,239,86,213,94,116,132"/>
+<area shape="rect" id="Node000004" href="$spi_8cpp.html#a5ebc63ccefe04139a3682209475877cd" title="Muestra por consola el byte enviado y recibido durante la transferencia SPI." alt="" coords="231,104,385,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,130,216,124,217,130,165,136"/>
+<area shape="rect" id="Node000005" href="$spi_8cpp.html#a2d78e391dc5a197d4f2850b78863b545" title="Verifica si el módulo SPI está habilitado (bit SPE en SPCR)." alt="" coords="218,153,398,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="165,148,205,152,204,158,164,153"/>
+<area shape="rect" id="Node000006" href="$spi_8cpp.html#a3faecf73158e3f4435c8fc5b7fe1102e" title="Verifica si el pin SS (Slave Select) está en LOW." alt="" coords="223,203,393,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="118,152,213,187,243,196,241,202,211,193,116,157"/>
+<area shape="rect" id="Node000007" href="$spi_8cpp.html#a0dbbbbe01a3d74c6444dfb47f5ed4cd7" title="Verifica si ocurrió una colisión de escritura (WCOL)." alt="" coords="212,252,404,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="101,153,148,194,179,217,213,237,233,245,231,250,211,242,176,222,145,198,97,157"/>
+</map>

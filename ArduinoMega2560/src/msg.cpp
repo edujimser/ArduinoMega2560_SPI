@@ -1,5 +1,28 @@
+/**
+ * @file msg.cpp
+ * @brief Funciones de diagnóstico para verificar la configuración SPI del Arduino Mega 2560.
+ *
+ * Este archivo implementa herramientas de depuración que permiten comprobar si los pines
+ * SPI están configurados correctamente tanto en modo Maestro como en modo Esclavo.
+ * También incluye una función para mostrar el estado del registro SPCR.
+ *
+ * @note Estas funciones no afectan la comunicación SPI; solo muestran información útil
+ *       para validar wiring, modos y configuración del hardware.
+ */
+
 #include "msg.h"
 
+/**
+ * @brief Verifica la configuración de los pines SPI cuando el Arduino actúa como Maestro.
+ *
+ * Comprueba:
+ * - MOSI (51) → OUTPUT  
+ * - MISO (50) → INPUT  
+ * - SCK  (52) → OUTPUT  
+ * - SS   (53) → OUTPUT y en HIGH  
+ *
+ * @return true si todos los pines están configurados correctamente, false si se detecta algún error.
+ */
 bool verificar_configuracion_spi_PIN_Master() {
   bool ok = true;
 
@@ -58,6 +81,17 @@ bool verificar_configuracion_spi_PIN_Master() {
   return ok;
 }
 
+/**
+ * @brief Verifica la configuración de los pines SPI cuando el Arduino actúa como Esclavo.
+ *
+ * Comprueba:
+ * - MOSI (51) → INPUT  
+ * - MISO (50) → OUTPUT  
+ * - SCK  (52) → INPUT  
+ * - SS   (53) → INPUT (controlado por el maestro)  
+ *
+ * @return true si todos los pines están configurados correctamente, false si se detecta algún error.
+ */
 bool verificar_configuracion_spi_PIN_Slave() {
   bool ok = true;
 
@@ -96,7 +130,7 @@ bool verificar_configuracion_spi_PIN_Slave() {
   }
   pinMode(52, INPUT); // restaurar
 
-  // SS (53) → INPUT (controlado por el maestro)
+  // SS (53) → INPUT
   pinMode(53, INPUT_PULLUP); // test temporal
   if (digitalRead(53) == HIGH || digitalRead(53) == LOW) {
     Serial.println(F(" 53  | SS    | INPUT              | OK"));
@@ -121,6 +155,20 @@ bool verificar_configuracion_spi_PIN_Slave() {
   return ok;
 }
 
+/**
+ * @brief Muestra el estado del registro SPCR (SPI Control Register).
+ *
+ * Desglosa cada bit del registro SPCR e imprime su significado:
+ * - SPIE: interrupción SPI habilitada/deshabilitada  
+ * - SPE: SPI habilitado/deshabilitado  
+ * - DORD: orden de bits (LSB/MSB)  
+ * - MSTR: modo maestro/esclavo  
+ * - CPOL: polaridad del reloj  
+ * - CPHA: fase del reloj  
+ * - SPR1/SPR0: divisor de frecuencia  
+ *
+ * También calcula y muestra la velocidad SPI resultante.
+ */
 void mostrar_configuracion_SPCR() {
 
   Serial.println(F("\n===================================================="));
@@ -195,7 +243,6 @@ void mostrar_configuracion_SPCR() {
   uint8_t spr1 = (SPCR & (1 << SPR1)) ? 1 : 0;
   uint8_t spr0 = (SPCR & (1 << SPR0)) ? 1 : 0;
 
-
   Serial.print(F(" Velocidad SPI: "));
 
   if (!(SPCR & (1 << MSTR))) {
@@ -205,9 +252,8 @@ void mostrar_configuracion_SPCR() {
     if (spr1 == 0 && spr0 == 1) Serial.print(F("Fosc/16"));
     if (spr1 == 1 && spr0 == 0) Serial.print(F("Fosc/64"));
     if (spr1 == 1 && spr0 == 1) Serial.print(F("Fosc/128"));
-}
+  }
 
   Serial.println();
   Serial.println(F("====================================================\n"));
 }
-

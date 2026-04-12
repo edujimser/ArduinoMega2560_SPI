@@ -1,0 +1,279 @@
+\chapter{Arduino\+Mega2560 }
+\hypertarget{index}{}\label{index}\index{ArduinoMega2560@{ArduinoMega2560}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+
+
+This repository contains code templates, configurations, and documentation designed for projects based on the Arduino Mega 2560 microcontroller (ATmega2560). ~\newline
+ It serves as a starting point or foundation for developers who want to build modular, optimized, and well‑structured applications on the Mega2560 platform.
+
+The goal of this repository is to provide a ready‑to‑use base project that simplifies the setup of new developments. ~\newline
+ Instead of starting from scratch, you can clone this repository and immediately have:\+
+\begin{DoxyItemize}
+\item A clean project structure compatible with Platform\+IO and Arduino IDE.
+\item Preconfigured build flags for memory optimization and performance.
+\item Example modules for diagnostics, GPIO, PWM, UART, and EEPROM.
+\item Documentation templates (README, diagrams, configuration notes) to keep your project organized.
+\end{DoxyItemize}\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{index_autotoc_md1}
+
+\begin{DoxyItemize}
+\item Introduction
+\item Getting Started
+\begin{DoxyItemize}
+\item Prerequisites
+\item Installation
+\end{DoxyItemize}
+\item Project Structure
+\item Usage
+\item Debug
+\item Functions
+\item Arduino Mega 2560 Pinout
+\item Platform\+IO Configuration
+\item License
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_autotoc_md2}
+This project serves as a foundation for various Arduino Mega 2560-\/based applications. It leverages the Platform\+IO IDE for streamlined development, building, and deployment.\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Getting Started}{Getting Started}}\label{index_autotoc_md3}
+These instructions will guide you through setting up the project on your local machine for development and deployment.\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{index_autotoc_md4}
+Before you begin, ensure you have the following installed:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://platformio.org/platformio-ide}{\texttt{Platform\+IO IDE}} (Installation guide available on the Platform\+IO website)
+\end{DoxyItemize}\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{index_autotoc_md5}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Clone the repository:\+}}
+
+{\ttfamily bash git clone \href{https://github.com/edujimser/ArduinoMega2560.git}{\texttt{https:\+/\+/\+github.\+com/\+edujimser/\+\+Arduino\+Mega2560.\+git}} cd Arduino\+Mega2560 }
+\item {\bfseries{Open the project in Platform\+IO IDE:\+}}
+\begin{DoxyItemize}
+\item Launch Platform\+IO IDE.
+\item Click "{}\+Open Project"{} and select the cloned {\ttfamily Arduino\+Mega2560} directory.
+\end{DoxyItemize}
+\item {\bfseries{Build the project:\+}}
+\begin{DoxyItemize}
+\item In the Platform\+IO IDE, click the "{}\+Platform\+IO"{} icon in the bottom toolbar.
+\item Select "{}\+Build"{} to compile the code.
+\end{DoxyItemize}
+\item {\bfseries{Upload the code to your Arduino Mega 2560:\+}}
+\begin{DoxyItemize}
+\item Connect your Arduino Mega 2560 to your computer via USB.
+\item In the Platform\+IO IDE, select "{}\+Upload"{} to flash the compiled code to your board.
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Project Structure}{Project Structure}}\label{index_autotoc_md6}
+The project structure is organized as follows:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ArduinoMega2560/}
+\DoxyCodeLine{├──\ .gitignore\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Specifies\ intentionally\ untracked\ files\ that\ Git\ should\ ignore}
+\DoxyCodeLine{├──\ .vscode/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Contains\ VS\ Code\ specific\ settings}
+\DoxyCodeLine{├──\ include/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Header\ files\ for\ the\ project}
+\DoxyCodeLine{├──\ lib/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Libraries\ used\ in\ the\ project}
+\DoxyCodeLine{│\ \ \ └──\ avr-\/debugger/\ \ \ \ \ \ \ \#\ Example\ library\ (if\ applicable)}
+\DoxyCodeLine{├──\ platformio.ini\ \ \ \ \ \ \ \ \ \ \#\ PlatformIO\ configuration\ file}
+\DoxyCodeLine{├──\ src/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Source\ code\ files}
+\DoxyCodeLine{│\ \ \ ├──\ main.cpp\ \ \ \ \ \ \ \ \ \ \ \ \#\ Main\ application\ file}
+\DoxyCodeLine{│\ \ \ └──\ system/\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ System-\/related\ source\ files\ (if\ applicable)}
+\DoxyCodeLine{└──\ README.md\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Project\ documentation}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md7}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{index_autotoc_md7}
+The {\ttfamily \doxylink{main_8cpp}{src/\+main.\+cpp}} file contains the main application logic. You can modify this file to implement your desired functionality. Refer to the comments within {\ttfamily \doxylink{main_8cpp}{main.\+cpp}} for guidance on how to use the code.
+
+Example (from {\ttfamily \doxylink{main_8cpp}{src/\+main.\+cpp}}):\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}}()\ \{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ put\ your\ setup\ code\ here,\ to\ run\ once:}}
+\DoxyCodeLine{\ \ Serial.begin(9600);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}()\ \{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ put\ your\ main\ code\ here,\ to\ run\ repeatedly:}}
+\DoxyCodeLine{\ \ Serial.println(\textcolor{stringliteral}{"{}Hello,\ Arduino!"{}});}
+\DoxyCodeLine{\ \ delay(1000);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Debug}{Debug}}\label{index_autotoc_md8}
+This project includes a full debugging system for the Arduino Mega 2560 using {\bfseries{avr-\/stub}}, {\bfseries{GDB}}, and an {\bfseries{FT232\+BL}} USB–\+Serial adapter. ~\newline
+ This enables professional-\/level firmware debugging on a microcontroller that does not support hardware debugging natively.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{Requirements}{Requirements}}\label{index_autotoc_md10}
+To use the debug mode, you will need:\+
+
+
+\begin{DoxyItemize}
+\item Arduino {\bfseries{Mega 2560}}
+\item {\bfseries{FT232\+BL}} USB–\+Serial adapter
+\item {\bfseries{Platform\+IO}} (VSCode)
+\item The {\ttfamily avr-\/stub} library (already included in the project)
+\item Basic wiring between the FT232\+BL and the Mega
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md12}{}\doxysubsection{\texorpdfstring{FT232\+BL Wiring}{FT232\+BL Wiring}}\label{index_autotoc_md12}
+Connect the FT232\+BL to the Mega 2560 as follows:\+
+
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}FT232\+BL  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Mega 2560  \\
+TXD  &RX0 (0)  \\
+RXD  &TX0 (1)  \\
+GND  &GND  \\
+\end{DoxyTable}
+
+
+\begin{quote}
+The FT232\+BL is used by GDB to communicate with the microcontroller. \end{quote}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{Platform\+IO Configuration}{Platform\+IO Configuration}}\label{index_autotoc_md14}
+The debug environment is already defined in {\ttfamily platformio.\+ini}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[env:debug]}
+\DoxyCodeLine{build\_type\ =\ debug}
+\DoxyCodeLine{debug\_tool\ =\ custom}
+\DoxyCodeLine{debug\_port\ =\ /dev/ttyUSB0}
+\DoxyCodeLine{}
+\DoxyCodeLine{build\_flags\ =}
+\DoxyCodeLine{\ \ \ \ -\/DDEBUG\_MODE}
+\DoxyCodeLine{\ \ \ \ -\/Og}
+\DoxyCodeLine{\ \ \ \ -\/g}
+\DoxyCodeLine{}
+\DoxyCodeLine{lib\_deps\ =}
+\DoxyCodeLine{\ \ \ \ jdolinay/avr-\/debugger}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md15}{}\doxysection{\texorpdfstring{Functions}{Functions}}\label{index_autotoc_md15}
+Here\textquotesingle{}s a description of the key functions used in the {\ttfamily \doxylink{main_8cpp}{src/\+main.\+cpp}} file:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily void \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}}}:\+ This function is called once at the beginning of the program. It is typically used to initialize variables, set pin modes, start serial communication, and perform other setup tasks.
+\begin{DoxyItemize}
+\item {\ttfamily Serial.\+begin(9600)}:\+ Initializes serial communication at a baud rate of 9600. This allows the Arduino to send data to the serial monitor for debugging and monitoring.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily void \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}}}:\+ This function is called repeatedly in an infinite loop. It contains the main logic of the program, such as reading sensor data, controlling actuators, and responding to user input.
+\begin{DoxyItemize}
+\item {\ttfamily Serial.\+println("{}Hello, Arduino!"{})}:\+ Prints the text "{}\+Hello, Arduino!"{} to the serial monitor.
+\item {\ttfamily delay(1000)}:\+ Pauses the program for 1000 milliseconds (1 second).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysection{\texorpdfstring{Arduino Mega 2560 Pinout}{Arduino Mega 2560 Pinout}}\label{index_autotoc_md16}
+The Arduino Mega 2560 has a variety of pins that can be used for different purposes:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Digital Pins (0-\/53):\+}} These pins can be configured as either inputs or outputs. Some digital pins have special functions, such as PWM (Pulse Width Modulation) for controlling the brightness of LEDs or the speed of motors.
+\item {\bfseries{Analog Input Pins (A0-\/\+A15):\+}} These pins can read analog signals from sensors, such as potentiometers or temperature sensors.
+\item {\bfseries{PWM Pins:\+}} Marked with a "{}\texorpdfstring{$\sim$}{\string~}"{} symbol, these pins can be used for PWM output.
+\item {\bfseries{Serial Communication Pins (TX, RX):\+}} Used for serial communication with other devices.
+\item {\bfseries{SPI Pins:\+}} Used for SPI (Serial Peripheral Interface) communication.
+\item {\bfseries{I2C Pins (SDA, SCL):\+}} Used for I2C (Inter-\/\+Integrated Circuit) communication.
+\item {\bfseries{AREF:\+}} Analog Reference pin for analog inputs.
+\item {\bfseries{GND:\+}} Ground pins.
+\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysection{\texorpdfstring{Platform\+IO Configuration}{Platform\+IO Configuration}}\label{index_autotoc_md17}
+The {\ttfamily platformio.\+ini} file configures the Platform\+IO build environment for this project. Here\textquotesingle{}s a breakdown of the key settings:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{;\ PlatformIO\ Project\ Configuration\ File}
+\DoxyCodeLine{;}
+\DoxyCodeLine{;\ \ \ Build\ options:\ build\ flags,\ source\ filter}
+\DoxyCodeLine{;\ \ \ Upload\ options:\ custom\ upload\ port,\ speed,\ and\ extra\ flags}
+\DoxyCodeLine{;\ \ \ Library\ options:\ dependencies,\ extra\ library\ storages}
+\DoxyCodeLine{;\ \ \ Advanced\ options:\ extra\ scripting}
+\DoxyCodeLine{;}
+\DoxyCodeLine{;\ Please\ visit\ the\ documentation\ for\ other\ options\ and\ examples:}
+\DoxyCodeLine{;\ https://docs.platformio.org/page/projectconf.html}
+\DoxyCodeLine{}
+\DoxyCodeLine{;-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{;-\/-\/-\/-\/-\/-\/\ Project\ Configuration\ -\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{[env:megaatmega2560]}
+\DoxyCodeLine{platform\ =\ atmelavr\ \ \ \ \ \ \ \ \ \ \ ;\ Specifies\ the\ development\ platform\ (Atmel\ AVR)}
+\DoxyCodeLine{board\ =\ megaatmega2560\ \ \ \ \ \ \ ;\ Specifies\ the\ board\ (Arduino\ Mega\ 2560)}
+\DoxyCodeLine{framework\ =\ arduino\ \ \ \ \ \ \ \ \ \ \ \ ;\ Specifies\ the\ framework\ (Arduino)}
+\DoxyCodeLine{upload\_port\ =\ COM3\ \ \ \ \ \ \ \ \ \ \ \ \ ;\ Port\ where\ your\ board\ is\ connected\ (e.g.,\ COM3\ on\ Windows,\ /dev/ttyUSB0\ on\ Linux/Mac)}
+\DoxyCodeLine{monitor\_port\ =\ COM3\ \ \ \ \ \ \ \ \ \ ;\ Must\ match\ the\ physical\ port\ of\ your\ board\ (same\ as\ debug\_port\ normally)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ To\ check\ the\ port\ in\ CMD:\ connect\ and\ disconnect\ the\ board,\ then\ run\ \`{}mode`\ in\ CMD}
+\DoxyCodeLine{;-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{;-\/-\/-\/-\/-\/-\/\ Standard\ dependencies\ and\ extra\ configurations\ -\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{;\ Adapting\ the\ C++\ version\ for\ the\ project:\ removing\ GNU++11\ standard\ to\ insert\ GNU++17}
+\DoxyCodeLine{;\ https://docs.platformio.org/en/latest/projectconf/advanced\_scripting.html\#build-\/unflags-\/and-\/build-\/flags}
+\DoxyCodeLine{build\_unflags\ =\ }
+\DoxyCodeLine{\ \ \ \ -\/std=gnu++11\ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ Remove\ the\ C++11\ standard\ to\ avoid\ conflicts\ with\ the\ C++17\ standard}
+\DoxyCodeLine{build\_flags\ =\ }
+\DoxyCodeLine{\ \ \ \ -\/std=gnu++17\ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ Use\ the\ C++17\ standard\ with\ GNU\ extensions\ (more\ flexible\ than\ the\ pure\ standard)}
+\DoxyCodeLine{\ \ \ \ -\/DAVR8\_UART\_NUMBER=3\ \ \ \ \ \ ;\ Define\ a\ macro\ to\ indicate\ that\ UART\ number\ 3\ will\ be\ used\ on\ AVR\ microcontrollers}
+\DoxyCodeLine{\ \ \ \ -\/DEBUG\_MODE=0\ \ \ \ \ \ \ \ \ \ \ \ \ ;\ Activate\ debug\ mode\ to\ include\ debugging\ code}
+\DoxyCodeLine{\ \ \ \ -\/Os\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ Change\ the\ optimization\ level\ here:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ -\/O0\ \ →\ no\ optimization\ (debugging)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ -\/O1\ \ →\ light\ optimization}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ -\/O2\ \ →\ balanced\ optimization}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ -\/O3\ \ →\ maximum\ speed}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ -\/Os\ \ →\ optimize\ for\ size}
+\DoxyCodeLine{\ \ \ \ -\/flto\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ Enable\ Link\ Time\ Optimization\ (LTO)\ for\ better\ optimization\ across\ files}
+\DoxyCodeLine{\ \ \ \ -\/fno-\/exceptions\ \ \ \ \ \ \ \ \ \ \ ;\ Disable\ exceptions\ to\ reduce\ code\ size\ and\ improve\ performance}
+\DoxyCodeLine{}
+\DoxyCodeLine{;-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{;-\/-\/-\/-\/-\/-\/\ Artificial\ Debugging\ Dependencies\ -\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{;\ Notes:}
+\DoxyCodeLine{;\ \ \ -\/\ Configure\ build\_flags\ (DAVR8\_UART\_NUMBER,\ DEBUG\_MODE)\ to\ activate\ debug\ mode}
+\DoxyCodeLine{;\ Activate\ simulated\ debugging\ system\ with\ avr-\/stub}
+\DoxyCodeLine{debug\_tool\ =\ avr-\/stub\ \ \ \ \ \ \ \ \ ;\ Uses\ the\ 'avr-\/debugger'\ library\ to\ simulate\ debugging\ on\ AVR\ chips}
+\DoxyCodeLine{;\ Virtual\ serial\ port\ for\ debugging}
+\DoxyCodeLine{debug\_port\ =\ COM6\ \ \ \ \ \ \ \ \ \ \ \ \ ;\ Port\ where\ your\ board\ is\ connected\ (e.g.,\ COM3\ on\ Windows,\ /dev/ttyUSB0\ on\ Linux/Mac)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ To\ check\ the\ port\ in\ CMD:\ connect\ and\ disconnect\ the\ board,\ then\ run\ \`{}mode`\ in\ CMD}
+\DoxyCodeLine{;\ Serial\ monitor\ communication\ speed}
+\DoxyCodeLine{monitor\_speed\ =\ 57600\ \ \ \ \ \ \ \ \ ;\ Baud\ rate.\ Must\ match\ the\ one\ used\ in\ Serial.begin()\ in\ your\ code}
+\DoxyCodeLine{}
+\DoxyCodeLine{;-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{;-\/-\/-\/-\/-\/-\/\ RFID-\/RC522\ Dependencies\ -\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{;\ The\ following\ line\ tells\ PlatformIO\ to\ automatically\ download\ and\ include\ }
+\DoxyCodeLine{;\ the\ MFRC522\ library\ by\ Miguel\ Balboa\ from\ PlatformIO's\ official\ registry.}
+\DoxyCodeLine{;\ This\ library\ allows\ controlling\ the\ RFID\ RC522\ reader\ module\ for\ reading/writing\ tags\ and\ cards.}
+\DoxyCodeLine{;\ lib\_deps\ =\ /lib/Ard\ -\/\ opcional\ descomentar\ si\ se\ quiere\ usar\ la\ librería\ de\ Arduino\ por\ descarga}
+\DoxyCodeLine{}
+\DoxyCodeLine{[platformio]}
+\DoxyCodeLine{description\ =\ Sensors}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md18}{}\doxysubsection{\texorpdfstring{Explanation of Settings:\+}{Explanation of Settings:\+}}\label{index_autotoc_md18}
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily \+[env:\+megaatmega2560]\+}}}:\+ This section defines the environment for the Arduino Mega 2560 board. {\ttfamily env} stands for environment. You can have multiple environments for different boards or configurations.
+\begin{DoxyItemize}
+\item {\ttfamily platform = atmelavr}:\+ Specifies that the Atmel AVR platform will be used.
+\item {\ttfamily board = megaatmega2560}:\+ Specifies that the target board is the Arduino Mega 2560.
+\item {\ttfamily framework = arduino}:\+ Specifies that the Arduino framework will be used.
+\item {\ttfamily upload\+\_\+port = COM3}:\+ Defines the serial port used for uploading the compiled code to the board. {\bfseries{Important:\+}} You need to change this to the correct port for your system (e.\+g., {\ttfamily /\+dev/\+tty\+USB0} on Linux, {\ttfamily COM3} or similar on Windows).
+\item {\ttfamily monitor\+\_\+port = COM3}:\+ Defines the serial port used for the serial monitor. This should typically match the {\ttfamily upload\+\_\+port}.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily build\+\_\+unflags}}}:\+ These settings remove default compiler flags.
+\begin{DoxyItemize}
+\item {\ttfamily -\/std=gnu++11}:\+ Removes the default C++11 standard flag. This is done to allow the use of C++17.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily build\+\_\+flags}}}:\+ These settings add custom compiler flags.
+\begin{DoxyItemize}
+\item {\ttfamily -\/std=gnu++17}:\+ Specifies that the C++17 standard should be used for compilation. C++17 provides more modern language features.
+\item {\ttfamily -\/DAVR8\+\_\+\+UART\+\_\+\+NUMBER=3}:\+ Defines a macro that might be used in the code to specify
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_autotoc_md19}{}\doxysubsection{\texorpdfstring{License}{License}}\label{index_autotoc_md19}
+This project is licensed under the MIT License -\/ see the \+[LICENSE]\+(LICENSE) file for details.
+
+\`{}\`{}\`{} MIT License
+
+Copyright (c) \+[Año]\+ \+[Nombre del titular del copyright]\+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "{}\+Software"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/\+or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\+
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "{}\+AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. \`{}\`{}\`{} 

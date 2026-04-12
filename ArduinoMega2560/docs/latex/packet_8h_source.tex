@@ -1,0 +1,222 @@
+\doxysection{packet.\+h}
+\hypertarget{packet_8h_source}{}\label{packet_8h_source}\index{packet.h@{packet.h}}
+\doxymbox{\hyperlink{packet_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ packet.h}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Definición\ del\ protocolo\ SPI,\ estructura\ Packet\ y\ funciones\ asociadas.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Este\ archivo\ contiene\ la\ definición\ del\ paquete\ SPI\ utilizado\ en\ el\ sistema,}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00006}00006\ \textcolor{comment}{\ *\ así\ como\ los\ códigos\ de\ estado,\ constantes\ del\ protocolo\ y\ prototipos\ de}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00007}00007\ \textcolor{comment}{\ *\ funciones\ para\ construir,\ validar\ y\ visualizar\ paquetes.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00008}00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00010}00010\ \textcolor{preprocessor}{\#ifndef\ PACKET\_H}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00011}00011\ \textcolor{preprocessor}{\#define\ PACKET\_H}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00014}00014\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00015}00015\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00016}00016\ \textcolor{comment}{\ *\ @def\ PAYLOAD\_SIZE}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00017}00017\ \textcolor{comment}{\ *\ @brief\ Número\ de\ bytes\ disponibles\ en\ el\ payload\ del\ paquete\ SPI.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00018}00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00019}\doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{00019}}\ \textcolor{preprocessor}{\#define\ PAYLOAD\_SIZE\ 8}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00020}00020\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00021}00021\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00022}00022\ \textcolor{comment}{\ *\ @def\ PACKET\_SIZE}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00023}00023\ \textcolor{comment}{\ *\ @brief\ Tamaño\ total\ del\ paquete\ SPI\ (ID\ +\ LEN\ +\ CHECKSUM\ +\ PAYLOAD\ +\ CRC)\ =\ 11.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00024}00024\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00025}\doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{00025}}\ \textcolor{preprocessor}{\#define\ PACKET\_SIZE\ (1\ +\ 1\ +\ 2\ +\ PAYLOAD\_SIZE\ +\ 1)}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00026}00026\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00027}00027\ \textcolor{comment}{/**\ @brief\ Tamaño\ del\ paquete\ sin\ el\ byte\ de\ CRC.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00028}\doxymbox{\hyperlink{packet_8h_aa47a722f20125405f90819c2b9a3c1b2}{00028}}\ \textcolor{preprocessor}{\#define\ PACKET\_SIZE\_WITHOUT\_CRC\ (PACKET\_SIZE\ -\/\ 1)\ \ }}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00029}00029\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00030}00030\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00031}00031\ \textcolor{comment}{\ *\ @def\ POSITION\_PAYLOAD\_BYTE}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00032}00032\ \textcolor{comment}{\ *\ @brief\ Posición\ del\ primer\ byte\ del\ payload\ en\ el\ paquete\ SPI.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00033}00033\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00034}\doxymbox{\hyperlink{packet_8h_aa9014c0323292997ecf2e930bb21ea8d}{00034}}\ \textcolor{preprocessor}{\#define\ POSITION\_PAYLOAD\_BYTE\ 4}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00035}00035\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00036}00036\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00037}00037\ \textcolor{comment}{\ *\ @enum\ PacketStatus}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00038}00038\ \textcolor{comment}{\ *\ @brief\ Códigos\ de\ estado\ para\ validación\ y\ diagnóstico\ de\ paquetes\ SPI.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00039}00039\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00040}\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{00040}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00041}\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{00041}}\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{PKT\_VALUE\_NONE}}\ =\ -\/2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ No\ se\ proporciona\ un\ valor\ asociado.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00042}\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{00042}}\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{PKT\_PAYLOAD\_NONE}}\ =\ -\/1,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ No\ se\ especifica\ un\ índice\ de\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00043}\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{00043}}\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{PKT\_OK}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ El\ paquete\ es\ válido.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00044}\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}{00044}}\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}{PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE}}\ =\ 1,\ \ \textcolor{comment}{/**<\ Algún\ payload\ excede\ el\ rango\ permitido.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00045}\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}{00045}}\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}{PKT\_ERR\_NULL\_PTR}}\ =\ 2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ El\ puntero\ al\ paquete\ es\ NULL.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00046}\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c}{00046}}\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c}{PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED}}\ =\ 3\ \ \textcolor{comment}{/**<\ El\ tamaño\ del\ struct\ no\ coincide\ con\ PACKET\_SIZE.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00047}00047\ \}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{PacketStatus}};}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00048}00048\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00049}00049\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00050}00050\ \textcolor{comment}{\ *\ @struct\ Packet}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00051}00051\ \textcolor{comment}{\ *\ @brief\ Representa\ un\ paquete\ SPI\ completo.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00052}00052\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00053}00053\ \textcolor{comment}{\ *\ Esta\ estructura\ contiene\ todos\ los\ campos\ necesarios\ para\ transmitir}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00054}00054\ \textcolor{comment}{\ *\ un\ mensaje\ SPI\ según\ el\ protocolo\ definido.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00055}00055\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00056}\doxymbox{\hyperlink{struct_packet}{00056}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00057}\doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{00057}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Identificador\ del\ comando.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00058}\doxymbox{\hyperlink{struct_packet_aedb268d2c2f44bb48457277fb57421d7}{00058}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_aedb268d2c2f44bb48457277fb57421d7}{LEN}}\ =\ \doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\_SIZE}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Longitud\ del\ payload\ (0–8).\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00059}\doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{00059}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chechSumByte\_0}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ reservado\ para\ checksum\ (no\ utilizado\ en\ este\ protocolo).\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00060}\doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{00060}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chechSumByte\_1}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ reservado\ para\ checksum\ (no\ utilizado\ en\ este\ protocolo).\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00061}\doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{00061}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\_0}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ 0\ del\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00062}\doxymbox{\hyperlink{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}{00062}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}{payload\_1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ 1\ del\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00063}\doxymbox{\hyperlink{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}{00063}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}{payload\_2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ 2\ del\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00064}\doxymbox{\hyperlink{struct_packet_afed0be2706ac18e39fe488aa49f80e31}{00064}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_afed0be2706ac18e39fe488aa49f80e31}{payload\_3}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ 3\ del\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00065}\doxymbox{\hyperlink{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}{00065}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}{payload\_4}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ 4\ del\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00066}\doxymbox{\hyperlink{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}{00066}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}{payload\_5}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ 5\ del\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00067}\doxymbox{\hyperlink{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}{00067}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}{payload\_6}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ 6\ del\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00068}\doxymbox{\hyperlink{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}{00068}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}{payload\_7}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Byte\ 7\ del\ payload.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00069}\doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{00069}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ CRC-\/8\ del\ paquete.\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00070}00070\ \}\ \doxymbox{\hyperlink{struct_packet}{Packet}};}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00071}00071\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00072}00072\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00073}00073\ \textcolor{comment}{\ *\ @brief\ Verificación\ en\ tiempo\ de\ compilación\ del\ tamaño\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00074}00074\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00075}00075\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{struct_packet}{Packet}})\ ==\ \doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\_SIZE}},}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Tamaño\ del\ struct\ Packet\ no\ coincide\ con\ PACKET\_SIZE.\ Revisa\ la\ definición."{}});}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00077}00077\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00078}00078\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00079}00079\ \textcolor{comment}{\ *\ @brief\ Instancia\ global\ del\ paquete\ (opcional).}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00080}00080\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00081}00081\ \textcolor{keyword}{extern}\ \doxymbox{\hyperlink{struct_packet}{Packet}}\ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}};}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00082}00082\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00083}00083\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00084}00084\ \textcolor{comment}{\ *\ @brief\ Construye\ un\ paquete\ SPI\ válido\ y\ calcula\ su\ CRC.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00085}00085\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00086}00086\ \textcolor{comment}{\ *\ @param\ pkt\ Puntero\ al\ paquete\ a\ construir.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00087}00087\ \textcolor{comment}{\ *\ @param\ msg\ Si\ es\ true,\ muestra\ el\ paquete\ por\ Serial.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00088}00088\ \textcolor{comment}{\ *\ @param\ delay\_ms\ Retardo\ opcional\ tras\ mostrar\ el\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00089}00089\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00090}00090\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_afb9f26e5ed47e64c9afbd9711a2c5fb6}{build\_packet}}(\doxymbox{\hyperlink{struct_packet}{Packet}}\ *pkt,\ \textcolor{keywordtype}{bool}\ msg,\ uint32\_t\ delay\_ms);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00091}00091\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00092}00092\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00093}00093\ \textcolor{comment}{\ *\ @brief\ Calcula\ el\ CRC-\/8\ de\ un\ buffer.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00094}00094\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00095}00095\ \textcolor{comment}{\ *\ @param\ data\ Puntero\ al\ buffer.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00096}00096\ \textcolor{comment}{\ *\ @param\ len\ Longitud\ del\ buffer.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00097}00097\ \textcolor{comment}{\ *\ @return\ Valor\ CRC-\/8\ calculado.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00098}00098\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00099}00099\ uint8\_t\ \doxymbox{\hyperlink{packet_8h_a520b2a685995c323d0bac7d1f79b7459}{crc8}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00100}00100\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00101}00101\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00102}00102\ \textcolor{comment}{\ *\ @brief\ Verifica\ la\ coherencia\ de\ un\ paquete\ mediante\ CRC8.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00103}00103\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00104}00104\ \textcolor{comment}{\ *\ Esta\ función\ recalcula\ el\ CRC8\ del\ paquete\ recibido\ (excluyendo\ el\ byte}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00105}00105\ \textcolor{comment}{\ *\ de\ CRC\ original)\ y\ permite\ validar\ si\ el\ contenido\ es\ íntegro\ o\ si\ ha}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00106}00106\ \textcolor{comment}{\ *\ sufrido\ corrupción\ durante\ la\ transmisión.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00107}00107\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00108}00108\ \textcolor{comment}{\ *\ @param\ pkt\ Puntero\ al\ paquete\ recibido.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00109}00109\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00110}00110\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_ada6bc2cff356ad505d96e2888b32a40a}{crc8\_valido}}(\doxymbox{\hyperlink{struct_packet}{Packet}}\ *pkt);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00111}00111\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00112}00112\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00113}00113\ \textcolor{comment}{\ *\ @brief\ Calcula\ el\ checksum\ de\ 16\ bits\ del\ payload\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00114}00114\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00115}00115\ \textcolor{comment}{\ *\ Esta\ función\ recorre\ los\ bytes\ del\ payload\ definidos\ por}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00116}00116\ \textcolor{comment}{\ *\ POSITION\_PAYLOAD\_BYTE\ y\ PAYLOAD\_SIZE,\ acumulando\ su\ valor\ en\ un}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00117}00117\ \textcolor{comment}{\ *\ registro\ de\ 16\ bits.\ El\ resultado\ final\ se\ almacena\ en\ los\ campos}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00118}00118\ \textcolor{comment}{\ *\ chechSumByte\_0\ (LSB)\ y\ chechSumByte\_1\ (MSB)\ de\ la\ estructura\ Packet,}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00119}00119\ \textcolor{comment}{\ *\ siguiendo\ el\ formato\ little-\/endian.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00120}00120\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00121}00121\ \textcolor{comment}{\ *\ @param\ pkt\ Puntero\ a\ la\ estructura\ Packet\ sobre\ la\ que\ se\ generará}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00122}00122\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ y\ almacenará\ el\ checksum.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00123}00123\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00124}00124\ \textcolor{comment}{\ *\ @pre\ \ \`{}pkt`\ debe\ apuntar\ a\ una\ estructura\ Packet\ válida\ y\ con\ el}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00125}00125\ \textcolor{comment}{\ *\ \ \ \ \ \ \ payload\ correctamente\ inicializado.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00126}00126\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00127}00127\ \textcolor{comment}{\ *\ @post\ Los\ campos\ \`{}chechSumByte\_0`\ y\ \`{}chechSumByte\_1`\ contendrán\ el}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00128}00128\ \textcolor{comment}{\ *\ \ \ \ \ \ \ checksum\ de\ 16\ bits\ correspondiente\ al\ payload\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00129}00129\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00130}00130\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_ac216a312b1db78dfde3a43cd2733d2de}{checksum8\_calculo}}(\doxymbox{\hyperlink{struct_packet}{Packet}}\ *pkt);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00131}00131\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00132}00132\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00133}00133\ \textcolor{comment}{\ *\ @brief\ Calcula\ y\ verifica\ el\ checksum\ de\ 16\ bits\ del\ payload\ recibido.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00134}00134\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00135}00135\ \textcolor{comment}{\ *\ Esta\ función\ suma\ los\ bytes\ del\ payload\ del\ paquete\ recibido\ por\ SPI}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00136}00136\ \textcolor{comment}{\ *\ y\ compara\ el\ resultado\ con\ los\ valores\ de\ checksum\ almacenados\ en\ los}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00137}00137\ \textcolor{comment}{\ *\ campos\ \`{}chechSumByte\_0`\ y\ \`{}chechSumByte\_1`\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00138}00138\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00139}00139\ \textcolor{comment}{\ *\ @param\ pkt\ Puntero\ a\ la\ estructura\ Packet\ que\ contiene\ los\ datos\ recibidos.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00140}00140\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00141}00141\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_ab8fd857fb6319b1b97f299ad59fac634}{checksum8\_calculo\_slave}}(\doxymbox{\hyperlink{struct_packet}{Packet}}\ *pkt);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00143}00143\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00144}00144\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00145}00145\ \textcolor{comment}{\ *\ @brief\ Muestra\ el\ contenido\ del\ paquete\ en\ formato\ tabla.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00146}00146\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00147}00147\ \textcolor{comment}{\ *\ @param\ pkt\ Puntero\ al\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00148}00148\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00149}00149\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_a9fc3c27519b5ba7891fc640a3eed6259}{mostrar\_packet\_tabla}}(\doxymbox{\hyperlink{struct_packet}{Packet}}\ *pkt);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00150}00150\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00151}00151\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00152}00152\ \textcolor{comment}{\ *\ @brief\ Valida\ los\ campos\ del\ payload\ y\ la\ coherencia\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00153}00153\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00154}00154\ \textcolor{comment}{\ *\ @param\ pkt\ Puntero\ al\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00155}00155\ \textcolor{comment}{\ *\ @return\ Código\ de\ estado\ PacketStatus.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00156}00156\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00157}00157\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{PacketStatus}}\ \doxymbox{\hyperlink{packet_8h_a3ca3bca1ec695199fd56913813acddf3}{validate\_payload}}(\doxymbox{\hyperlink{struct_packet}{Packet}}\ *pkt);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00158}00158\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00159}00159\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00160}00160\ \textcolor{comment}{\ *\ @brief\ Muestra\ información\ detallada\ del\ estado\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00161}00161\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00162}00162\ \textcolor{comment}{\ *\ @param\ st\ Código\ de\ estado.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00163}00163\ \textcolor{comment}{\ *\ @param\ payload\_index\ Índice\ del\ payload\ afectado\ (si\ aplica).}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00164}00164\ \textcolor{comment}{\ *\ @param\ value\ Valor\ asociado\ al\ error\ (si\ aplica).}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00165}00165\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00166}00166\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_abb58e666a4ac9bd96a52c43369150cee}{mostrar\_estado\_completo}}(\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{PacketStatus}}\ st,\ int8\_t\ payload\_index,\ uint16\_t\ value);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00167}00167\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00168}00168\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00169}00169\ \textcolor{comment}{\ *\ @brief\ Muestra\ por\ Serial\ el\ contenido\ de\ un\ paquete\ SPI\ recibido.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00170}00170\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00171}00171\ \textcolor{comment}{\ *\ Imprime:}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00172}00172\ \textcolor{comment}{\ *\ -\/\ ID\ del\ paquete}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00173}00173\ \textcolor{comment}{\ *\ -\/\ Longitud\ (LEN)}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00174}00174\ \textcolor{comment}{\ *\ -\/\ Cada\ byte\ del\ payload\ con\ su\ posición}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00175}00175\ \textcolor{comment}{\ *\ -\/\ CRC\ final}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00176}00176\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00177}00177\ \textcolor{comment}{\ *\ @param\ pkt\ Puntero\ al\ paquete\ recibido.\ Debe\ ser\ válido.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00178}00178\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00179}00179\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_a7e76fba52377be95233416aba19130b7}{mostrar\_packet\_recibido}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_packet}{Packet}}\ *pkt);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00180}00180\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00181}00181\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00182}00182\ \textcolor{comment}{\ *\ @brief\ Muestra\ en\ el\ monitor\ serie\ el\ resultado\ de\ la\ validación\ CRC8.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00183}00183\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00184}00184\ \textcolor{comment}{\ *\ Esta\ función\ imprime\ de\ forma\ clara\ y\ estructurada:}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00185}00185\ \textcolor{comment}{\ *\ \ \ -\/\ El\ CRC\ recibido\ dentro\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00186}00186\ \textcolor{comment}{\ *\ \ \ -\/\ El\ CRC\ calculado\ a\ partir\ de\ los\ datos\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00187}00187\ \textcolor{comment}{\ *\ \ \ -\/\ El\ resultado\ de\ la\ comparación\ entre\ ambos\ valores.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00188}00188\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00189}00189\ \textcolor{comment}{\ *\ Su\ propósito\ es\ facilitar\ la\ depuración\ del\ sistema\ de\ comunicación,}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00190}00190\ \textcolor{comment}{\ *\ permitiendo\ verificar\ si\ el\ paquete\ recibido\ es\ coherente\ o\ presenta}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00191}00191\ \textcolor{comment}{\ *\ posibles\ errores\ de\ transmisión.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00192}00192\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00193}00193\ \textcolor{comment}{\ *\ @param\ crc\_recibido\ \ \ Valor\ CRC\ incluido\ en\ el\ paquete\ recibido.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00194}00194\ \textcolor{comment}{\ *\ @param\ crc\_calculado\ \ Valor\ CRC\ generado\ localmente\ a\ partir\ del\ contenido\ del\ paquete.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00195}00195\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00196}00196\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_aa53dcb7ed5d9f0c950f286f79e7fc246}{mostrar\_validacion\_crc}}(uint8\_t\ crc\_recibido,\ uint8\_t\ crc\_calculado);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00197}00197\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00198}00198\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00199}00199\ \textcolor{comment}{\ *\ @brief\ Muestra\ el\ resultado\ de\ la\ validación\ del\ checksum\ de\ 16\ bits.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00200}00200\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00201}00201\ \textcolor{comment}{\ *\ Esta\ función\ imprime:}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00202}00202\ \textcolor{comment}{\ *\ \ \ -\/\ Los\ bytes\ de\ checksum\ recibidos\ en\ el\ paquete\ (LSB\ y\ MSB).}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00203}00203\ \textcolor{comment}{\ *\ \ \ -\/\ Los\ bytes\ de\ checksum\ calculados\ por\ el\ esclavo.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00204}00204\ \textcolor{comment}{\ *\ \ \ -\/\ El\ resultado\ de\ la\ comparación.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00205}00205\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00206}00206\ \textcolor{comment}{\ *\ @param\ pkt\ \ \ \ \ \ \ \ Puntero\ al\ paquete\ recibido.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00207}00207\ \textcolor{comment}{\ *\ @param\ sum\_Byte\_0\ Byte\ LSB\ del\ checksum\ calculado.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00208}00208\ \textcolor{comment}{\ *\ @param\ sum\_Byte\_1\ Byte\ MSB\ del\ checksum\ calculado.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00209}00209\ \textcolor{comment}{\ *\ @param\ valido\ \ \ \ \ true\ si\ el\ checksum\ coincide,\ false\ en\ caso\ contrario.}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00210}00210\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00211}00211\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{packet_8h_a1480ba1be7fce0bb70e458004ca971e9}{mostrar\_datos\_checksum\_slave}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_packet}{Packet}}\ *pkt,}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ sum\_Byte\_0,}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ sum\_Byte\_1,}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ valido);}
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{packet_8h_source_l00216}00216\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ PACKET\_H}}
+
+\end{DoxyCode}

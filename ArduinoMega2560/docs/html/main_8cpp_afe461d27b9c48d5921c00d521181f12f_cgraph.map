@@ -1,0 +1,39 @@
+<map id="loop" name="loop">
+<area shape="rect" id="Node000001" title="Bucle principal del sistema." alt="" coords="5,267,52,292"/>
+<area shape="rect" id="Node000002" href="$packet_8cpp.html#afb9f26e5ed47e64c9afbd9711a2c5fb6" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="139,104,234,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="40,264,98,201,161,137,165,141,102,205,44,268"/>
+<area shape="rect" id="Node000008" href="$packet_8cpp.html#ab8fd857fb6319b1b97f299ad59fac634" title="Calcula y verifica el checksum de 16 bits del payload recibido." alt="" coords="100,215,273,240"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="51,269,99,253,133,242,134,247,101,258,53,274"/>
+<area shape="rect" id="Node000010" href="$packet_8cpp.html#ada6bc2cff356ad505d96e2888b32a40a" title="Verifica la coherencia de un paquete mediante CRC8." alt="" coords="143,267,230,292"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="52,277,130,277,130,282,52,282"/>
+<area shape="rect" id="Node000012" href="$packet_8cpp.html#a7e76fba52377be95233416aba19130b7" title="Muestra por Serial el contenido de un paquete SPI recibido." alt="" coords="105,316,269,341"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="53,285,101,302,126,310,124,315,99,307,52,290"/>
+<area shape="rect" id="Node000013" href="$spi_8cpp.html#ab954ffe1bc471b86e3b8b21cc6478f8f" title="Envía un bloque completo de bytes mediante SPI maestro." alt="" coords="107,416,266,441"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="43,291,102,352,161,405,158,409,98,356,40,294"/>
+<area shape="rect" id="Node000003" href="$packet_8cpp.html#ac216a312b1db78dfde3a43cd2733d2de" title="Calcula el checksum de 16 bits correspondiente al payload del paquete." alt="" coords="349,5,486,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="206,102,256,71,320,40,342,32,343,37,322,44,259,76,208,106"/>
+<area shape="rect" id="Node000004" href="$packet_8cpp.html#a520b2a685995c323d0bac7d1f79b7459" title="Calcula el CRC&#45;8 (polinomio 0x07) de un bloque de datos." alt="" coords="394,55,441,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="234,104,380,72,381,78,235,109"/>
+<area shape="rect" id="Node000005" href="$packet_8cpp.html#a9fc3c27519b5ba7891fc640a3eed6259" title="Imprime en el monitor serie una tabla detallada con el contenido del paquete." alt="" coords="344,104,491,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="234,114,330,114,330,119,234,119"/>
+<area shape="rect" id="Node000006" href="$packet_8cpp.html#a3ca3bca1ec695199fd56913813acddf3" title="Valida todos los campos de payload dentro de un paquete SPI." alt="" coords="359,153,476,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="235,124,346,148,345,153,234,129"/>
+<area shape="rect" id="Node000007" href="$packet_8cpp.html#abb58e666a4ac9bd96a52c43369150cee" title="Muestra en el monitor serie el estado del paquete SPI." alt="" coords="561,153,733,179"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="476,163,548,163,548,169,476,169"/>
+<area shape="rect" id="Node000009" href="$packet_8cpp.html#a1480ba1be7fce0bb70e458004ca971e9" title="Muestra el resultado de la validación del checksum de 16 bits." alt="" coords="331,203,503,243"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="274,223,318,222,318,228,274,228"/>
+<area shape="rect" id="Node000011" href="$packet_8cpp.html#aa53dcb7ed5d9f0c950f286f79e7fc246" title="Muestra el resultado de la validación CRC8 entre el CRC recibido y el calculado." alt="" coords="340,268,495,293"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="230,277,326,277,326,283,230,282"/>
+<area shape="rect" id="Node000014" href="$spi_8cpp.html#adbf78dc06b1fe5efdad098c291b6536b" title="Limpia el flag SPIF leyendo SPSR y luego SPDR." alt="" coords="373,317,462,343"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="206,414,257,384,320,353,359,340,360,345,322,358,259,388,209,418"/>
+<area shape="rect" id="Node000015" href="$spi_8cpp.html#a92397ce65ed5070e3878f56b58defde9" title="Imprime por consola el tipo de error SPI y su explicación." alt="" coords="342,367,493,392"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="246,413,343,392,345,398,247,419"/>
+<area shape="rect" id="Node000016" href="$spi_8cpp.html#a5ebc63ccefe04139a3682209475877cd" title="Muestra por consola el byte enviado y recibido durante la transferencia SPI." alt="" coords="340,416,495,441"/>
+<area shape="poly" id="edge15_Node000013_Node000016" title=" " alt="" coords="266,426,326,426,326,431,266,431"/>
+<area shape="rect" id="Node000017" href="$spi_8cpp.html#a2d78e391dc5a197d4f2850b78863b545" title="Verifica si el módulo SPI está habilitado (bit SPE en SPCR)." alt="" coords="327,465,507,491"/>
+<area shape="poly" id="edge16_Node000013_Node000017" title=" " alt="" coords="247,439,345,460,343,465,246,444"/>
+<area shape="rect" id="Node000018" href="$spi_8cpp.html#a3faecf73158e3f4435c8fc5b7fe1102e" title="Verifica si el pin SS (Slave Select) está en LOW." alt="" coords="332,515,503,540"/>
+<area shape="poly" id="edge17_Node000013_Node000018" title=" " alt="" coords="208,439,259,470,322,501,343,508,342,513,320,506,256,474,206,444"/>
+<area shape="rect" id="Node000019" href="$spi_8cpp.html#a0dbbbbe01a3d74c6444dfb47f5ed4cd7" title="Verifica si ocurrió una colisión de escritura (WCOL)." alt="" coords="321,564,513,589"/>
+<area shape="poly" id="edge18_Node000013_Node000019" title=" " alt="" coords="200,440,249,494,284,524,323,550,336,557,334,562,320,555,280,529,245,497,196,443"/>
+</map>

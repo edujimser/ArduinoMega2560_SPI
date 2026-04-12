@@ -1,0 +1,7 @@
+<map id="mostrar_datos_checksum_slave" name="mostrar_datos_checksum_slave">
+<area shape="rect" id="Node000001" title="Muestra el resultado de la validación del checksum de 16 bits." alt="" coords="321,5,493,45"/>
+<area shape="rect" id="Node000002" href="$packet_8cpp.html#ab8fd857fb6319b1b97f299ad59fac634" title="Calcula y verifica el checksum de 16 bits del payload recibido." alt="" coords="100,13,273,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="308,28,273,28,273,23,308,23"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,13,52,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,28,52,28,52,23,86,23"/>
+</map>

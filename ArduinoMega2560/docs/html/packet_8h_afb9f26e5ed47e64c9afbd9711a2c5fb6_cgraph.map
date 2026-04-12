@@ -1,0 +1,13 @@
+<map id="build_packet" name="build_packet">
+<area shape="rect" id="Node000001" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="5,80,100,105"/>
+<area shape="rect" id="Node000002" href="$packet_8cpp.html#ac216a312b1db78dfde3a43cd2733d2de" title="Calcula el checksum de 16 bits correspondiente al payload del paquete." alt="" coords="153,5,290,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,78,147,40,164,33,166,38,149,44,76,82"/>
+<area shape="rect" id="Node000003" href="$packet_8cpp.html#a520b2a685995c323d0bac7d1f79b7459" title="Calcula el CRC&#45;8 (polinomio 0x07) de un bloque de datos." alt="" coords="198,55,245,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="100,83,184,70,185,75,101,88"/>
+<area shape="rect" id="Node000004" href="$packet_8cpp.html#a9fc3c27519b5ba7891fc640a3eed6259" title="Imprime en el monitor serie una tabla detallada con el contenido del paquete." alt="" coords="148,104,295,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="101,97,135,102,134,107,100,102"/>
+<area shape="rect" id="Node000005" href="$packet_8cpp.html#a3ca3bca1ec695199fd56913813acddf3" title="Valida todos los campos de payload dentro de un paquete SPI." alt="" coords="163,153,280,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="78,103,149,138,169,146,167,151,147,143,76,108"/>
+<area shape="rect" id="Node000006" href="$packet_8cpp.html#abb58e666a4ac9bd96a52c43369150cee" title="Muestra en el monitor serie el estado del paquete SPI." alt="" coords="343,153,515,179"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="280,163,329,163,329,169,280,169"/>
+</map>

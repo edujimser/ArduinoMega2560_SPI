@@ -1,0 +1,731 @@
+\doxysection{Referencia del archivo spi.\+cpp}
+\hypertarget{spi_8cpp}{}\label{spi_8cpp}\index{spi.cpp@{spi.cpp}}
+{\ttfamily \+\#include "{}spi.\+h"{}}\newline
+Gráfico de dependencias incluidas en spi.\+cpp:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{spi_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{spi_8cpp_ada79a2ef129d5488e1f15c53f41cbc68}{spi\+\_\+init\+\_\+master}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa el módulo SPI en modo MAESTRO. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{spi_8cpp_a7d026fae245411026c3b69a989728fca}{spi\+\_\+init\+\_\+slave}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa el módulo SPI en modo ESCLAVO. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{spi_8cpp_a3759b640dd5424fa5ecb5f1967a481b4}{spi\+\_\+master\+\_\+transfer}} (uint8\+\_\+t data, uint32\+\_\+t delay\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Realiza una transferencia SPI como maestro (envía y recibe un byte). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{spi_8cpp_ab954ffe1bc471b86e3b8b21cc6478f8f}{spi\+\_\+master\+\_\+send\+\_\+block}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len, uint32\+\_\+t delay\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Envía un bloque completo de bytes mediante SPI maestro. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{spi_8cpp_a2d78e391dc5a197d4f2850b78863b545}{spi\+\_\+master\+\_\+\+Valid\+\_\+\+Init\+\_\+\+SPE}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si el módulo SPI está habilitado (bit SPE en SPCR). \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{spi_8cpp_a3faecf73158e3f4435c8fc5b7fe1102e}{spi\+\_\+master\+\_\+\+Valid\+\_\+\+Init\+\_\+\+SS}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si el pin SS (Slave Select) está en LOW. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{spi_8cpp_a0dbbbbe01a3d74c6444dfb47f5ed4cd7}{spi\+\_\+master\+\_\+\+Valid\+\_\+\+Init\+\_\+\+WCOL}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si ocurrió una colisión de escritura (WCOL). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\+\_\+\+SPIF}} ()
+\begin{DoxyCompactList}\small\item\em Limpia el flag SPIF leyendo SPSR y luego SPDR. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{spi_8cpp_a92397ce65ed5070e3878f56b58defde9}{spi\+\_\+master\+\_\+print\+\_\+error}} (uint8\+\_\+t error\+\_\+code)
+\begin{DoxyCompactList}\small\item\em Imprime por consola el tipo de error SPI y su explicación. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{spi_8cpp_a5ebc63ccefe04139a3682209475877cd}{spi\+\_\+master\+\_\+print\+\_\+tx\+\_\+rx}} (uint8\+\_\+t enviado, uint8\+\_\+t recibido)
+\begin{DoxyCompactList}\small\item\em Muestra por consola el byte enviado y recibido durante la transferencia SPI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{spi_8cpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}\index{spi.cpp@{spi.cpp}!clean\_SPIF@{clean\_SPIF}}
+\index{clean\_SPIF@{clean\_SPIF}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{clean\_SPIF()}{clean\_SPIF()}}
+{\footnotesize\ttfamily \label{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b} 
+void clean\+\_\+\+SPIF (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Limpia el flag SPIF leyendo SPSR y luego SPDR. 
+
+Según el datasheet del ATmega2560, el flag SPIF solo se limpia si:\+
+\begin{DoxyEnumerate}
+\item Se lee SPSR.
+\item Se lee SPDR inmediatamente después.
+\end{DoxyEnumerate}
+
+Esta función ejecuta ese procedimiento para dejar el estado SPI limpio. 
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00316}{316}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ dummy\ \_\_attribute\_\_((unused));}
+\DoxyCodeLine{00318\ \ \ \ \ dummy\ =\ SPSR;\ \textcolor{comment}{/*<\ Lectura\ obligatoria\ de\ SPSR\ */}}
+\DoxyCodeLine{00319\ \ \ \ \ dummy\ =\ SPDR;\ \textcolor{comment}{/*<\ Lectura\ obligatoria\ de\ SPDR\ para\ limpiar\ SPIF\ */}}
+\DoxyCodeLine{00320\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_ada79a2ef129d5488e1f15c53f41cbc68}\index{spi.cpp@{spi.cpp}!spi\_init\_master@{spi\_init\_master}}
+\index{spi\_init\_master@{spi\_init\_master}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_init\_master()}{spi\_init\_master()}}
+{\footnotesize\ttfamily \label{spi_8cpp_ada79a2ef129d5488e1f15c53f41cbc68} 
+void spi\+\_\+init\+\_\+master (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el módulo SPI en modo MAESTRO. 
+
+Inicializa el módulo SPI en modo maestro.
+
+Configura los pines físicos del bus SPI:\+
+\begin{DoxyItemize}
+\item MOSI (51) como salida
+\item MISO (50) como entrada
+\item SCK (52) como salida
+\item SS (53) como salida
+\end{DoxyItemize}
+
+Además:\+
+\begin{DoxyItemize}
+\item Coloca SS en HIGH para desactivar al esclavo.
+\item Verifica que los pines estén correctamente configurados.
+\item Configura el registro SPCR para habilitar SPI en modo maestro.
+\item Ajusta la velocidad SPI a Fosc/\+16.
+\item Configura el modo SPI 0 (CPOL=0, CPHA=0).
+\item Asegura que SPSR no use doble velocidad (SPI2X=0).
+\item Muestra la configuración final de SPCR. 
+\end{DoxyItemize}Configuración del registro SPCR:\+ SPE = 1 → SPI habilitado MSTR = 1 → Modo maestro SPR0 = 1 → Velocidad Fosc/\+16 CPOL = 0 → Reloj en LOW en reposo CPHA = 0 → Captura en flanco de subida DORD = 0 → MSB primero
+
+SPI2X = 0 → velocidad normal (sin multiplicar por 2)
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00021}{21}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ pinMode(\doxymbox{\hyperlink{config_spi_8h_a88b6a485feaa606be9ddc27c26a5491d}{PIN\_MOSI}},\ OUTPUT);\ \textcolor{comment}{/*<\ MOSI:\ el\ maestro\ envía\ datos\ */}}
+\DoxyCodeLine{00024\ \ \ \ \ pinMode(\doxymbox{\hyperlink{config_spi_8h_a7bb9f3a473e25d5daf49abdb8aaf7dfd}{PIN\_MISO}},\ INPUT\_PULLUP);\ \ \textcolor{comment}{/*<\ MISO:\ el\ maestro\ recibe\ datos\ */}}
+\DoxyCodeLine{00025\ \ \ \ \ pinMode(\doxymbox{\hyperlink{config_spi_8h_a590dd7c2bde4409edd86324f3d0b1616}{PIN\_SCK}},\ OUTPUT);\ \textcolor{comment}{/*<\ SCK:\ reloj\ generado\ por\ el\ maestro\ */}}
+\DoxyCodeLine{00026\ \ \ \ \ pinMode(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ OUTPUT);\ \textcolor{comment}{/*<\ SS:\ selección\ del\ esclavo\ */}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ HIGH);\ \textcolor{comment}{/*<\ SS\ en\ HIGH\ →\ esclavo\ desactivado\ */}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{msg_8h_ac8b26000ef8aae4924203b9c1eae1e04}{verificar\_configuracion\_spi\_PIN\_Master}}())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ SPCR\ =\ 0;\ \textcolor{comment}{/*<\ Limpia\ SPCR\ antes\ de\ configurar\ */}}
+\DoxyCodeLine{00033\ \textcolor{comment}{}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ /**}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ *\ Configuración\ del\ registro\ SPCR: }}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ *\ \ SPE\ \ =\ 1\ →\ SPI\ habilitado }}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ *\ \ MSTR\ =\ 1\ →\ Modo\ maestro }}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ \ *\ \ SPR0\ =\ 1\ →\ Velocidad\ Fosc/16 }}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ *\ \ CPOL\ =\ 0\ →\ Reloj\ en\ LOW\ en\ reposo }}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ *\ \ CPHA\ =\ 0\ →\ Captura\ en\ flanco\ de\ subida }}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ *\ \ DORD\ =\ 0\ →\ MSB\ primero }}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00043\ \ \ \ \ SPCR\ =\ (1\ <<\ SPE)\ |\ (1\ <<\ MSTR)\ |\ (1\ <<\ SPR0);}
+\DoxyCodeLine{00044\ \ \ \ \ SPCR\ \&=\ \string~(1\ <<\ CPOL);}
+\DoxyCodeLine{00045\ \ \ \ \ SPCR\ \&=\ \string~(1\ <<\ CPHA);}
+\DoxyCodeLine{00046\ \textcolor{comment}{}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ /**}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ *\ \ SPI2X\ =\ 0\ →\ velocidad\ normal\ (sin\ multiplicar\ por\ 2) }}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00050\ \ \ \ \ SPSR\ \&=\ \string~(1\ <<\ SPI2X);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \doxymbox{\hyperlink{msg_8h_a1c2479676c20e04774842ddbfa326afe}{mostrar\_configuracion\_SPCR}}();}
+\DoxyCodeLine{00053\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas de esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{spi_8cpp_ada79a2ef129d5488e1f15c53f41cbc68_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{spi_8cpp_ada79a2ef129d5488e1f15c53f41cbc68_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_a7d026fae245411026c3b69a989728fca}\index{spi.cpp@{spi.cpp}!spi\_init\_slave@{spi\_init\_slave}}
+\index{spi\_init\_slave@{spi\_init\_slave}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_init\_slave()}{spi\_init\_slave()}}
+{\footnotesize\ttfamily \label{spi_8cpp_a7d026fae245411026c3b69a989728fca} 
+void spi\+\_\+init\+\_\+slave (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el módulo SPI en modo ESCLAVO. 
+
+Inicializa el módulo SPI en modo esclavo.
+
+Configura los pines físicos del bus SPI:\+
+\begin{DoxyItemize}
+\item MOSI (51) como entrada
+\item MISO (50) como salida
+\item SCK (52) como entrada
+\item SS (53) como entrada
+\end{DoxyItemize}
+
+Además:\+
+\begin{DoxyItemize}
+\item Coloca SS en HIGH (el maestro lo pondrá en LOW cuando quiera hablar).
+\item Verifica que los pines estén correctamente configurados.
+\item Configura SPCR para habilitar SPI en modo esclavo.
+\item Habilita la interrupción SPI (SPIE) para reaccionar cuando llega un byte.
+\item Configura el modo SPI 0 (CPOL=0, CPHA=0).
+\item Limpia SPI2X en SPSR (no afecta al esclavo).
+\item Muestra la configuración final de SPCR. 
+\end{DoxyItemize}Configuración del registro SPCR:\+ SPIE = 1 → interrupción SPI habilitada SPE = 1 → SPI habilitado MSTR = 0 → modo esclavo CPOL = 0 → reloj en LOW en reposo CPHA = 0 → captura en flanco de subida DORD = 0 → MSB primero
+
+SPR1 y SPR0 NO afectan al esclavo.
+
+SPSR:\+ SPI2X = 0 → sin efecto en esclavo, pero se limpia por coherencia
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00074}{74}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ pinMode(\doxymbox{\hyperlink{config_spi_8h_a88b6a485feaa606be9ddc27c26a5491d}{PIN\_MOSI}},\ INPUT);\ \ \ \textcolor{comment}{/*<\ MOSI:\ el\ esclavo\ recibe\ datos\ */}}
+\DoxyCodeLine{00077\ \ \ \ \ pinMode(\doxymbox{\hyperlink{config_spi_8h_a7bb9f3a473e25d5daf49abdb8aaf7dfd}{PIN\_MISO}},\ OUTPUT);\ \ \textcolor{comment}{/*<\ MISO:\ el\ esclavo\ envía\ datos\ */}}
+\DoxyCodeLine{00078\ \ \ \ \ pinMode(\doxymbox{\hyperlink{config_spi_8h_a590dd7c2bde4409edd86324f3d0b1616}{PIN\_SCK}},\ INPUT);\ \ \ \textcolor{comment}{/*<\ SCK:\ reloj\ recibido\ del\ maestro\ */}}
+\DoxyCodeLine{00079\ \ \ \ \ pinMode(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ INPUT\_PULLUP);\ \ \ \textcolor{comment}{/*<\ SS:\ activado\ por\ el\ maestro\ */}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ HIGH);\ \textcolor{comment}{/*<\ SS\ en\ HIGH\ →\ esclavo\ desactivado\ */}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{msg_8h_aef4f8d6078f2812b9b830dbc52956760}{verificar\_configuracion\_spi\_PIN\_Slave}}())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ SPCR\ =\ 0;\ \textcolor{comment}{/*<\ Limpia\ SPCR\ antes\ de\ configurar\ */}}
+\DoxyCodeLine{00086\ \textcolor{comment}{}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ /**}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ \ \ *\ Configuración\ del\ registro\ SPCR: }}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ \ *\ \ SPIE\ =\ 1\ →\ interrupción\ SPI\ habilitada }}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ \ *\ \ SPE\ \ =\ 1\ →\ SPI\ habilitado }}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ \ *\ \ MSTR\ =\ 0\ →\ modo\ esclavo }}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ *\ \ CPOL\ =\ 0\ →\ reloj\ en\ LOW\ en\ reposo }}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ *\ \ CPHA\ =\ 0\ →\ captura\ en\ flanco\ de\ subida }}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ \ \ \ \ *\ \ DORD\ =\ 0\ →\ MSB\ primero }}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ \ *\ SPR1\ y\ SPR0\ NO\ afectan\ al\ esclavo. }}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00098\ \ \ \ \ SPCR\ =\ (1\ <<\ SPE)\ |\ (1\ <<\ SPIE);}
+\DoxyCodeLine{00099\ \ \ \ \ SPCR\ \&=\ \string~(1\ <<\ CPOL);}
+\DoxyCodeLine{00100\ \ \ \ \ SPCR\ \&=\ \string~(1\ <<\ CPHA);}
+\DoxyCodeLine{00101\ \textcolor{comment}{}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ /**}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ \ *\ SPSR: }}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ \ *\ \ SPI2X\ =\ 0\ →\ sin\ efecto\ en\ esclavo,\ pero\ se\ limpia\ por\ coherencia }}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00106\ \ \ \ \ SPSR\ \&=\ \string~(1\ <<\ SPI2X);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \doxymbox{\hyperlink{msg_8h_a1c2479676c20e04774842ddbfa326afe}{mostrar\_configuracion\_SPCR}}();}
+\DoxyCodeLine{00109\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas de esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{spi_8cpp_a7d026fae245411026c3b69a989728fca_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{spi_8cpp_a7d026fae245411026c3b69a989728fca_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_a92397ce65ed5070e3878f56b58defde9}\index{spi.cpp@{spi.cpp}!spi\_master\_print\_error@{spi\_master\_print\_error}}
+\index{spi\_master\_print\_error@{spi\_master\_print\_error}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_master\_print\_error()}{spi\_master\_print\_error()}}
+{\footnotesize\ttfamily \label{spi_8cpp_a92397ce65ed5070e3878f56b58defde9} 
+void spi\+\_\+master\+\_\+print\+\_\+error (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{error\+\_\+code}{}\end{DoxyParamCaption})}
+
+
+
+Imprime por consola el tipo de error SPI y su explicación. 
+
+Imprime por consola la descripción del error SPI recibido.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em error\+\_\+code} & Código de error SPI\+\_\+\+ERROR\+\_\+\+XXXX. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00328}{328}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}========================================"{}}));}
+\DoxyCodeLine{00332\ \ \ \ \ Serial.print\ \ (F(\textcolor{stringliteral}{"{}[SPI\ ERROR]\ Código:\ 0x"{}}));}
+\DoxyCodeLine{00333\ \ \ \ \ Serial.println(error\_code,\ HEX);}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordflow}{switch}\ (error\_code)\ \{}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{config_spi_8h_a45032087ada7489c059a091d723f6758}{SPI\_ERROR\_TIMEOUT}}:}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Tipo:\ TIMEOUT"{}}));}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Descripción:\ El\ esclavo\ no\ respondió\ a\ tiempo."{}}));}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Causa\ posible:\ El\ esclavo\ está\ bloqueado\ o\ no\ hay\ reloj\ SPI."{}}));}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{config_spi_8h_aaa4db819f7fa370739bd86a623a5b821}{SPI\_ERROR\_NO\_INIT\_SPE}}:}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Tipo:\ SPI\ NO\ INICIALIZADO"{}}));}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Descripción:\ El\ bit\ SPE\ está\ en\ 0."{}}));}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Causa\ posible:\ SPCR\ no\ fue\ configurado\ correctamente."{}}));}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{config_spi_8h_af3e6172f96905ab14eb7f84d302d27e6}{SPI\_ERROR\_NO\_INIT\_SS}}:}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Tipo:\ SS\ NO\ ACTIVO"{}}));}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Descripción:\ El\ pin\ SS\ no\ está\ en\ LOW\ durante\ la\ transferencia."{}}));}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Causa\ posible:\ El\ esclavo\ no\ está\ seleccionado\ o\ hay\ ruido\ en\ la\ línea\ SS."{}}));}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{config_spi_8h_a2ae72234c68fac9d445d218951f66c13}{SPI\_ERROR\_WCOL}}:}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Tipo:\ COLISIÓN\ DE\ ESCRITURA\ (WCOL)"{}}));}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Descripción:\ Se\ escribió\ en\ SPDR\ antes\ de\ que\ terminara\ la\ transferencia\ anterior."{}}));}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Causa\ posible:\ Código\ maestro\ demasiado\ rápido\ o\ interrupciones\ interfiriendo."{}}));}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{config_spi_8h_aaa697b4ed80507e7f75458ff2c1a4ce3}{SPI\_ERROR\_NO\_REQUEST\_SLAVE}}:}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Tipo:\ ESCLAVO\ NO\ RESPONDE"{}}));}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Descripción:\ El\ esclavo\ devolvió\ 0x00\ o\ 0xFF."{}}));}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Causa\ posible:\ El\ esclavo\ no\ está\ conectado,\ no\ está\ inicializado\ o\ no\ tiene\ datos\ preparados."{}}));}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{config_spi_8h_af1b9cb9955d7fceecd7d9b3f94bede98}{SPI\_ERROR\_PIN\_SS\_HIGH}}:}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Tipo:\ PIN\ SS\ EN\ HIGH"{}}));}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Descripción:\ El\ pin\ SS\ se\ detectó\ en\ HIGH\ durante\ la\ transferencia."{}}));}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Causa\ posible:\ El\ maestro\ no\ está\ manteniendo\ SS\ en\ LOW,\ o\ hay\ ruido/interferencia\ en\ la\ línea\ SS."{}}));}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Tipo:\ ERROR\ DESCONOCIDO"{}}));}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Descripción:\ Código\ no\ reconocido."{}}));}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}========================================"{}}));}
+\DoxyCodeLine{00379\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spi_8cpp_a92397ce65ed5070e3878f56b58defde9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_a5ebc63ccefe04139a3682209475877cd}\index{spi.cpp@{spi.cpp}!spi\_master\_print\_tx\_rx@{spi\_master\_print\_tx\_rx}}
+\index{spi\_master\_print\_tx\_rx@{spi\_master\_print\_tx\_rx}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_master\_print\_tx\_rx()}{spi\_master\_print\_tx\_rx()}}
+{\footnotesize\ttfamily \label{spi_8cpp_a5ebc63ccefe04139a3682209475877cd} 
+void spi\+\_\+master\+\_\+print\+\_\+tx\+\_\+rx (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{enviado}{, }\item[{uint8\+\_\+t}]{recibido}{}\end{DoxyParamCaption})}
+
+
+
+Muestra por consola el byte enviado y recibido durante la transferencia SPI. 
+
+Muestra el byte enviado y recibido durante una transferencia SPI.
+
+Esta función NO considera automáticamente 0x00 o 0x\+FF como errores, porque pueden ser datos válidos. Sin embargo, muestra una advertencia para ayudar a depurar si esos valores no eran esperados.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em enviado} & Byte enviado por el maestro. \\
+\hline
+{\em recibido} & Byte recibido desde el esclavo. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00392}{392}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}[SPI]\ Enviado:\ 0x"{}}));}
+\DoxyCodeLine{00395\ \ \ \ \ Serial.print(enviado,\ HEX);}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ |\ Recibido:\ 0x"{}}));}
+\DoxyCodeLine{00398\ \ \ \ \ Serial.print(recibido,\ HEX);}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Detección\ inteligente\ de\ valores\ sospechosos\ -\/-\/-\/}}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordflow}{if}\ (recibido\ ==\ 0x00)\ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ (Aviso:\ 0x00\ recibido.\ Puede\ ser\ dato\ válido\ o\ esclavo\ sin\ respuesta)"{}}));}
+\DoxyCodeLine{00403\ \ \ \ \ \}}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (recibido\ ==\ 0xFF)\ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ (Aviso:\ 0xFF\ recibido.\ Puede\ indicar\ línea\ MISO\ flotante\ o\ sin\ esclavo)"{}}));}
+\DoxyCodeLine{00406\ \ \ \ \ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ Serial.println();}
+\DoxyCodeLine{00409\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spi_8cpp_a5ebc63ccefe04139a3682209475877cd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_ab954ffe1bc471b86e3b8b21cc6478f8f}\index{spi.cpp@{spi.cpp}!spi\_master\_send\_block@{spi\_master\_send\_block}}
+\index{spi\_master\_send\_block@{spi\_master\_send\_block}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_master\_send\_block()}{spi\_master\_send\_block()}}
+{\footnotesize\ttfamily \label{spi_8cpp_ab954ffe1bc471b86e3b8b21cc6478f8f} 
+void spi\+\_\+master\+\_\+send\+\_\+block (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{, }\item[{uint32\+\_\+t}]{delay\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Envía un bloque completo de bytes mediante SPI maestro. 
+
+Realiza una transferencia por cada byte del buffer, validando errores en cada iteración (timeout, SS, SPE, WCOL). Muestra TX/\+\+RX por consola.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em data} & Puntero al buffer de datos a enviar. \\
+\hline
+{\em len} & Número de bytes a transmitir. \\
+\hline
+{\em delay\+\_\+ms} & Retardo opcional tras cada transferencia. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00202}{202}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{//uint8\_t\ REG\ =\ sreg;\ }}
+\DoxyCodeLine{00206\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ LOW);}
+\DoxyCodeLine{00207\ \ \ \ \ delayMicroseconds(100);\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{comment}{//cli();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <=\ len;\ i++)\ \{}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ SPDR\ =\ data[i];\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ uint32\_t\ t0\ =\ micros();}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ (1\ <<\ SPIF)))\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (micros()\ -\/\ t0\ >\ 10000)\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_a92397ce65ed5070e3878f56b58defde9}{spi\_master\_print\_error}}(\doxymbox{\hyperlink{config_spi_8h_a45032087ada7489c059a091d723f6758}{SPI\_ERROR\_TIMEOUT}});}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ HIGH);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (digitalRead(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}})\ ==\ HIGH)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_a92397ce65ed5070e3878f56b58defde9}{spi\_master\_print\_error}}(\doxymbox{\hyperlink{config_spi_8h_af1b9cb9955d7fceecd7d9b3f94bede98}{SPI\_ERROR\_PIN\_SS\_HIGH}});}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ HIGH);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{spi_8cpp_a2d78e391dc5a197d4f2850b78863b545}{spi\_master\_Valid\_Init\_SPE}}())\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ delay(delay\_ms);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_a92397ce65ed5070e3878f56b58defde9}{spi\_master\_print\_error}}(\doxymbox{\hyperlink{config_spi_8h_aaa4db819f7fa370739bd86a623a5b821}{SPI\_ERROR\_NO\_INIT\_SPE}});}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ HIGH);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{spi_8cpp_a3faecf73158e3f4435c8fc5b7fe1102e}{spi\_master\_Valid\_Init\_SS}}())\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ delay(delay\_ms);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_a92397ce65ed5070e3878f56b58defde9}{spi\_master\_print\_error}}(\doxymbox{\hyperlink{config_spi_8h_af3e6172f96905ab14eb7f84d302d27e6}{SPI\_ERROR\_NO\_INIT\_SS}});}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ HIGH);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{spi_8cpp_a0dbbbbe01a3d74c6444dfb47f5ed4cd7}{spi\_master\_Valid\_Init\_WCOL}}())\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ delay(delay\_ms);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_a92397ce65ed5070e3878f56b58defde9}{spi\_master\_print\_error}}(\doxymbox{\hyperlink{config_spi_8h_a2ae72234c68fac9d445d218951f66c13}{SPI\_ERROR\_WCOL}});}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ HIGH);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ uint8\_t\ recibido\ =\ SPDR;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_a5ebc63ccefe04139a3682209475877cd}{spi\_master\_print\_tx\_rx}}(data[i],\ recibido);}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00262\ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00263\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ HIGH);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00264\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas de esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spi_8cpp_ab954ffe1bc471b86e3b8b21cc6478f8f_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{spi_8cpp_ab954ffe1bc471b86e3b8b21cc6478f8f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_a3759b640dd5424fa5ecb5f1967a481b4}\index{spi.cpp@{spi.cpp}!spi\_master\_transfer@{spi\_master\_transfer}}
+\index{spi\_master\_transfer@{spi\_master\_transfer}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_master\_transfer()}{spi\_master\_transfer()}}
+{\footnotesize\ttfamily \label{spi_8cpp_a3759b640dd5424fa5ecb5f1967a481b4} 
+uint8\+\_\+t spi\+\_\+master\+\_\+transfer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data}{, }\item[{uint32\+\_\+t}]{delay\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Realiza una transferencia SPI como maestro (envía y recibe un byte). 
+
+Envía un byte por SPI como maestro y recibe simultáneamente otro.
+
+Esta función escribe un byte en SPDR, espera a que la transferencia SPI finalice (SPIF = 1), verifica errores como timeout, SPI deshabilitado, pin SS incorrecto o colisión de escritura (WCOL), y finalmente devuelve el byte recibido desde el esclavo.
+
+Durante la transferencia se desactivan las interrupciones (cli) para evitar que una ISR interfiera con SPDR, SPSR o SPIF, lo cual podría corromper la comunicación. Al finalizar, se restaura el estado original de SREG.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em data} & Byte a enviar al esclavo SPI. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+uint8\+\_\+t Byte recibido desde el esclavo. Devuelve 0x\+FF en caso de error. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00127}{127}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{/*\ Variables\ */}}
+\DoxyCodeLine{00129\ \ \ \ \ uint32\_t\ timeout\ =\ micros();}
+\DoxyCodeLine{00130\ \ \ \ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{/*\ Interrupcion\ */}}
+\DoxyCodeLine{00133\ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*<\ Asegura\ que\ SPIF\ esté\ limpio\ antes\ de\ iniciar\ la\ transferencia\ */}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//uint8\_t\ REG\ =\ sreg;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /*<\ Guarda\ el\ estado\ de\ interrupciones\ */}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//cli();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /*<\ Desactiva\ interrupciones\ para\ proteger\ la\ transferencia\ */}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{/*\ Iniciar\ transferencia\ */}}
+\DoxyCodeLine{00138\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}},\ LOW);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*<\ Activar\ esclavo\ */}}
+\DoxyCodeLine{00139\ \ \ \ \ SPDR\ =\ data;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*<\ Inicia\ la\ transferencia\ cargando\ el\ dato\ en\ SPDR\ */}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{/*\ Esperar\ a\ que\ SPIF\ indique\ que\ la\ transferencia\ terminó\ */}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ (1\ <<\ SPIF)))\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (micros()\ -\/\ timeout\ >\ 10000)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Timeout\ de\ 10\ ms\ */}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Error:\ Timeout\ en\ transferencia\ SPI"{}}));}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Limpia\ SPIF\ para\ evitar\ estados\ inconsistentes\ */}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//REG\ =\ sreg;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /*\ Restaura\ interrupciones\ */}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(53,\ HIGH);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Desactivar\ esclavo\ */}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{config_spi_8h_a45032087ada7489c059a091d723f6758}{SPI\_ERROR\_TIMEOUT}};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{/*\ Errores\ */}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Validar\ que\ el\ SPI\ está\ habilitado\ */}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{spi_8cpp_a2d78e391dc5a197d4f2850b78863b545}{spi\_master\_Valid\_Init\_SPE}}())\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Error:\ SPI\ no\ está\ correctamente\ inicializado"{}}));}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Limpia\ SPIF\ para\ evitar\ estados\ inconsistentes\ */}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//REG\ =\ sreg;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /*\ Restaura\ el\ estado\ original\ de\ interrupciones\ */}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ digitalWrite(53,\ HIGH);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Desactivar\ esclavo\ */}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ delay(delay\_ms);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Retardo\ opcional\ después\ de\ la\ transferencia\ */}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{config_spi_8h_aaa4db819f7fa370739bd86a623a5b821}{SPI\_ERROR\_NO\_INIT\_SPE}};}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Validar\ que\ el\ pin\ SS\ está\ en\ LOW\ (esclavo\ seleccionado)\ */}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{spi_8cpp_a3faecf73158e3f4435c8fc5b7fe1102e}{spi\_master\_Valid\_Init\_SS}}())\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Error:\ Pin\ SS\ no\ está\ en\ LOW,\ esclavo\ no\ activo"{}}));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Limpia\ SPIF\ para\ evitar\ estados\ inconsistentes\ */}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//REG\ =\ sreg;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /*\ Restaura\ el\ estado\ original\ de\ interrupciones\ */}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ digitalWrite(53,\ HIGH);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Desactivar\ esclavo\ */}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ delay(delay\_ms);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Retardo\ opcional\ después\ de\ la\ transferencia\ */}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{config_spi_8h_af3e6172f96905ab14eb7f84d302d27e6}{SPI\_ERROR\_NO\_INIT\_SS}};}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Validar\ que\ no\ hubo\ colisión\ de\ escritura\ */}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{spi_8cpp_a0dbbbbe01a3d74c6444dfb47f5ed4cd7}{spi\_master\_Valid\_Init\_WCOL}}())\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Error:\ Colisión\ de\ escritura\ detectada"{}}));}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Limpia\ SPIF\ para\ evitar\ estados\ inconsistentes\ */}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//REG\ =\ sreg;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /*\ Restaura\ el\ estado\ original\ de\ interrupciones\ */}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ digitalWrite(53,\ HIGH);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Desactivar\ esclavo\ */}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ delay(delay\_ms);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Retardo\ opcional\ después\ de\ la\ transferencia\ */}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{config_spi_8h_a2ae72234c68fac9d445d218951f66c13}{SPI\_ERROR\_WCOL}};}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{/*\ Recepcion\ */}}
+\DoxyCodeLine{00184\ \ \ \ \ uint8\_t\ recibido\ =\ SPDR;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Lee\ el\ byte\ recibido\ del\ esclavo\ */}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//REG\ =\ sreg;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /*\ Restaura\ el\ estado\ original\ de\ interrupciones\ */}}
+\DoxyCodeLine{00186\ \ \ \ \ \doxymbox{\hyperlink{spi_8cpp_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Limpia\ SPIF\ para\ evitar\ estados\ inconsistentes\ */}}
+\DoxyCodeLine{00187\ \ \ \ \ digitalWrite(53,\ HIGH);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Desactivar\ esclavo\ */}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{/*\ Validar\ el\ byte\ recibido\ */}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}\ (recibido\ ==\ 0xFF\ ||\ recibido\ ==\ 0x00)\ \{\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Aviso:\ No\ hay\ esclavo\ conectado\ o\ no\ responde"{}}));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ delay(delay\_ms);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Retardo\ opcional\ después\ de\ la\ transferencia\ */}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{config_spi_8h_aaa697b4ed80507e7f75458ff2c1a4ce3}{SPI\_ERROR\_NO\_REQUEST\_SLAVE}};}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ delay(delay\_ms);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Retardo\ opcional\ después\ de\ la\ transferencia\ */}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{return}\ recibido;}
+\DoxyCodeLine{00199\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas de esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spi_8cpp_a3759b640dd5424fa5ecb5f1967a481b4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_a2d78e391dc5a197d4f2850b78863b545}\index{spi.cpp@{spi.cpp}!spi\_master\_Valid\_Init\_SPE@{spi\_master\_Valid\_Init\_SPE}}
+\index{spi\_master\_Valid\_Init\_SPE@{spi\_master\_Valid\_Init\_SPE}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_master\_Valid\_Init\_SPE()}{spi\_master\_Valid\_Init\_SPE()}}
+{\footnotesize\ttfamily \label{spi_8cpp_a2d78e391dc5a197d4f2850b78863b545} 
+char spi\+\_\+master\+\_\+\+Valid\+\_\+\+Init\+\_\+\+SPE (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica si el módulo SPI está habilitado (bit SPE en SPCR). 
+
+Verifica si el módulo SPI está habilitado (bit SPE).
+
+\begin{DoxyReturn}{Devuelve}
+true Si SPI está habilitado. 
+
+false Si SPI está deshabilitado. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00272}{272}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordflow}{if}\ (SPCR\ \&\ (1\ <<\ SPE))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00275\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spi_8cpp_a2d78e391dc5a197d4f2850b78863b545_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_a3faecf73158e3f4435c8fc5b7fe1102e}\index{spi.cpp@{spi.cpp}!spi\_master\_Valid\_Init\_SS@{spi\_master\_Valid\_Init\_SS}}
+\index{spi\_master\_Valid\_Init\_SS@{spi\_master\_Valid\_Init\_SS}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_master\_Valid\_Init\_SS()}{spi\_master\_Valid\_Init\_SS()}}
+{\footnotesize\ttfamily \label{spi_8cpp_a3faecf73158e3f4435c8fc5b7fe1102e} 
+char spi\+\_\+master\+\_\+\+Valid\+\_\+\+Init\+\_\+\+SS (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica si el pin SS (Slave Select) está en LOW. 
+
+Verifica si el pin SS está en LOW (esclavo activo).
+
+El pin SS debe estar en LOW para que el esclavo SPI esté activo y responda.
+
+\begin{DoxyReturn}{Devuelve}
+true Si SS está en LOW. 
+
+false Si SS está en HIGH. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00286}{286}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{if}\ (digitalRead(53)\ ==\ LOW)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00289\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spi_8cpp_a3faecf73158e3f4435c8fc5b7fe1102e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spi_8cpp_a0dbbbbe01a3d74c6444dfb47f5ed4cd7}\index{spi.cpp@{spi.cpp}!spi\_master\_Valid\_Init\_WCOL@{spi\_master\_Valid\_Init\_WCOL}}
+\index{spi\_master\_Valid\_Init\_WCOL@{spi\_master\_Valid\_Init\_WCOL}!spi.cpp@{spi.cpp}}
+\doxysubsubsection{\texorpdfstring{spi\_master\_Valid\_Init\_WCOL()}{spi\_master\_Valid\_Init\_WCOL()}}
+{\footnotesize\ttfamily \label{spi_8cpp_a0dbbbbe01a3d74c6444dfb47f5ed4cd7} 
+char spi\+\_\+master\+\_\+\+Valid\+\_\+\+Init\+\_\+\+WCOL (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica si ocurrió una colisión de escritura (WCOL). 
+
+WCOL se activa si se intenta escribir en SPDR mientras una transferencia anterior aún no ha terminado. Esto indica un error grave en la secuencia SPI.
+
+\begin{DoxyReturn}{Devuelve}
+true Si ocurrió colisión de escritura. 
+
+false Si no hubo colisión. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{spi_8cpp_source_l00301}{301}} del archivo \doxymbox{\hyperlink{spi_8cpp_source}{spi.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{if}\ (SPSR\ \&\ (1\ <<\ WCOL))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00304\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spi_8cpp_a0dbbbbe01a3d74c6444dfb47f5ed4cd7_icgraph}
+\end{center}
+\end{figure}

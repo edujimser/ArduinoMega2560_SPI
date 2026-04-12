@@ -1,0 +1,19 @@
+<map id="spi.cpp" name="spi.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="57,5,121,31"/>
+<area shape="rect" id="Node000002" href="$spi_8h.html" title="API del módulo SPI para el ATmega2560 (maestro y esclavo)." alt="" coords="64,79,115,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,31,92,65,87,65,87,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,299,83,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,106,39,126,27,138,17,153,9,188,12,224,21,258,34,286,29,288,16,259,6,225,3,187,12,151,23,135,36,122,64,102"/>
+<area shape="rect" id="Node000004" href="$msg_8h.html" title="Funciones de diagnóstico y verificación de la configuración SPI en el Arduino Mega 2560." alt="" coords="27,152,85,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="79,106,61,140,57,138,75,103"/>
+<area shape="rect" id="Node000005" href="$packet_8h.html" title="Definición del protocolo SPI, estructura Packet y funciones asociadas." alt="" coords="81,225,153,251"/>
+<area shape="poly" id="edge9_Node000002_Node000005" title=" " alt="" coords="94,104,115,211,110,212,89,105"/>
+<area shape="rect" id="Node000006" href="$config_spi_8h.html" title=" " alt="" coords="161,152,247,177"/>
+<area shape="poly" id="edge8_Node000002_Node000006" title=" " alt="" coords="109,102,175,142,172,147,106,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="271,152,334,177"/>
+<area shape="poly" id="edge10_Node000002_Node000007" title=" " alt="" coords="116,99,259,146,258,151,114,104"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="66,151,84,116,89,118,71,153"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="58,178,49,285,43,285,52,178"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="68,176,100,213,96,217,64,179"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="107,253,68,291,64,287,103,249"/>
+</map>

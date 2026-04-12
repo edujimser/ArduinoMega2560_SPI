@@ -1,0 +1,5 @@
+<map id="validate_payload" name="validate_payload">
+<area shape="rect" id="Node000001" title="Valida todos los campos de payload dentro de un paquete SPI." alt="" coords="5,5,123,31"/>
+<area shape="rect" id="Node000002" href="$packet_8cpp.html#abb58e666a4ac9bd96a52c43369150cee" title="Muestra en el monitor serie el estado del paquete SPI." alt="" coords="171,5,343,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,15,157,15,157,21,123,21"/>
+</map>

@@ -1,0 +1,129 @@
+\doxysection{spi.\+h}
+\hypertarget{spi_8h_source}{}\label{spi_8h_source}\index{spi.h@{spi.h}}
+\doxymbox{\hyperlink{spi_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ spi.h}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ API\ del\ módulo\ SPI\ para\ el\ ATmega2560\ (maestro\ y\ esclavo).}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Este\ archivo\ declara\ todas\ las\ funciones\ públicas\ utilizadas\ para\ la}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00006}00006\ \textcolor{comment}{\ *\ inicialización,\ transferencia\ y\ diagnóstico\ del\ bus\ SPI.\ Proporciona}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00007}00007\ \textcolor{comment}{\ *\ una\ interfaz\ de\ alto\ nivel\ para:}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ -\/\ Configurar\ el\ módulo\ SPI\ en\ modo\ maestro\ o\ esclavo.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ -\/\ Enviar\ y\ recibir\ bytes\ mediante\ transferencia\ SPI\ síncrona.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00011}00011\ \textcolor{comment}{\ *\ \ -\/\ Enviar\ bloques\ completos\ de\ datos.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00012}00012\ \textcolor{comment}{\ *\ \ -\/\ Validar\ estados\ internos\ del\ hardware\ SPI\ (SPE,\ SS,\ WCOL).}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00013}00013\ \textcolor{comment}{\ *\ \ -\/\ Limpiar\ el\ flag\ SPIF\ según\ el\ procedimiento\ del\ datasheet.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00014}00014\ \textcolor{comment}{\ *\ \ -\/\ Mostrar\ información\ de\ depuración\ y\ errores\ SPI.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00015}00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00016}00016\ \textcolor{comment}{\ *\ Las\ implementaciones\ correspondientes\ se\ encuentran\ en\ spi.c.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00017}00017\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00018}00018\ \textcolor{comment}{\ *\ @note\ Este\ módulo\ está\ diseñado\ específicamente\ para\ el\ microcontrolador}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00019}00019\ \textcolor{comment}{\ *\ \ \ \ \ \ \ ATmega2560\ y\ utiliza\ registros\ SPCR,\ SPSR\ y\ SPDR\ directamente.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00020}00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00022}00022\ \textcolor{preprocessor}{\#ifndef\ SPI\_H}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00023}00023\ \textcolor{preprocessor}{\#define\ SPI\_H}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{msg_8h}{msg.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_spi_8h}{configSpi.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{packet_8h}{packet.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00029}00029\ \textcolor{preprocessor}{\#include\ <avr/io.h>}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00030}00030\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00031}00031\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00032}00032\ \textcolor{comment}{\ *\ @brief\ Inicializa\ el\ módulo\ SPI\ en\ modo\ maestro.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00033}00033\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00034}00034\ \textcolor{comment}{\ *\ Configura\ los\ pines\ MOSI,\ MISO,\ SCK\ y\ SS,\ habilita\ SPI\ en\ modo\ maestro,}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00035}00035\ \textcolor{comment}{\ *\ selecciona\ velocidad\ Fosc/16,\ modo\ SPI\ 0\ (CPOL=0,\ CPHA=0)\ y\ limpia\ SPI2X.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00036}00036\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00037}00037\ \textcolor{comment}{\ *\ @note\ Debe\ llamarse\ antes\ de\ cualquier\ transferencia\ SPI.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00038}00038\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00039}00039\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{spi_8h_ada79a2ef129d5488e1f15c53f41cbc68}{spi\_init\_master}}();}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00040}00040\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00041}00041\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00042}00042\ \textcolor{comment}{\ *\ @brief\ Inicializa\ el\ módulo\ SPI\ en\ modo\ esclavo.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00043}00043\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00044}00044\ \textcolor{comment}{\ *\ Configura\ los\ pines\ SPI\ en\ modo\ esclavo,\ habilita\ SPI\ y\ la\ interrupción\ SPIE,}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00045}00045\ \textcolor{comment}{\ *\ establece\ modo\ SPI\ 0\ y\ limpia\ SPI2X.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00046}00046\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00047}00047\ \textcolor{comment}{\ *\ @note\ El\ maestro\ debe\ colocar\ SS\ en\ LOW\ para\ activar\ al\ esclavo.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00048}00048\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00049}00049\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{spi_8h_a7d026fae245411026c3b69a989728fca}{spi\_init\_slave}}();}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00050}00050\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00051}00051\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00052}00052\ \textcolor{comment}{\ *\ @brief\ Envía\ un\ byte\ por\ SPI\ como\ maestro\ y\ recibe\ simultáneamente\ otro.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00053}00053\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00054}00054\ \textcolor{comment}{\ *\ Gestiona\ timeout,\ validación\ de\ SPE,\ estado\ del\ pin\ SS\ y\ colisión\ WCOL.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00055}00055\ \textcolor{comment}{\ *\ Devuelve\ el\ byte\ recibido\ o\ un\ código\ de\ error\ SPI\_ERROR\_XXXX.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00056}00056\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00057}00057\ \textcolor{comment}{\ *\ @param\ data\ Byte\ a\ enviar.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00058}00058\ \textcolor{comment}{\ *\ @param\ delay\_ms\ Retardo\ opcional\ tras\ la\ transferencia.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00059}00059\ \textcolor{comment}{\ *\ @return\ uint8\_t\ Byte\ recibido\ o\ código\ de\ error.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00060}00060\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00061}00061\ uint8\_t\ \doxymbox{\hyperlink{spi_8h_a3759b640dd5424fa5ecb5f1967a481b4}{spi\_master\_transfer}}(uint8\_t\ data,\ uint32\_t\ delay\_ms);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00062}00062\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00063}00063\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00064}00064\ \textcolor{comment}{\ *\ @brief\ Envía\ un\ bloque\ completo\ de\ bytes\ mediante\ SPI\ maestro.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00065}00065\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00066}00066\ \textcolor{comment}{\ *\ Realiza\ una\ transferencia\ por\ cada\ byte\ del\ buffer,\ validando\ errores}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00067}00067\ \textcolor{comment}{\ *\ en\ cada\ iteración\ (timeout,\ SS,\ SPE,\ WCOL).\ Muestra\ TX/RX\ por\ consola.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00068}00068\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00069}00069\ \textcolor{comment}{\ *\ @param\ data\ Puntero\ al\ buffer\ de\ datos\ a\ enviar.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00070}00070\ \textcolor{comment}{\ *\ @param\ len\ Número\ de\ bytes\ a\ transmitir.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00071}00071\ \textcolor{comment}{\ *\ @param\ delay\_ms\ Retardo\ opcional\ tras\ cada\ transferencia.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00072}00072\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00073}00073\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{spi_8h_ab954ffe1bc471b86e3b8b21cc6478f8f}{spi\_master\_send\_block}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len,\ uint32\_t\ delay\_ms);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00074}00074\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00075}00075\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00076}00076\ \textcolor{comment}{\ *\ @brief\ Imprime\ por\ consola\ la\ descripción\ del\ error\ SPI\ recibido.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00077}00077\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00078}00078\ \textcolor{comment}{\ *\ @param\ error\_code\ Código\ de\ error\ SPI\_ERROR\_XXXX.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00079}00079\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00080}00080\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{spi_8h_a92397ce65ed5070e3878f56b58defde9}{spi\_master\_print\_error}}(uint8\_t\ error\_code);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00081}00081\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00082}00082\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00083}00083\ \textcolor{comment}{\ *\ @brief\ Muestra\ el\ byte\ enviado\ y\ recibido\ durante\ una\ transferencia\ SPI.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00084}00084\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00085}00085\ \textcolor{comment}{\ *\ Incluye\ advertencias\ si\ el\ valor\ recibido\ es\ 0x00\ o\ 0xFF.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00086}00086\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00087}00087\ \textcolor{comment}{\ *\ @param\ enviado\ Byte\ transmitido.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00088}00088\ \textcolor{comment}{\ *\ @param\ recibido\ Byte\ recibido.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00089}00089\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00090}00090\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{spi_8h_a5ebc63ccefe04139a3682209475877cd}{spi\_master\_print\_tx\_rx}}(uint8\_t\ enviado,\ uint8\_t\ recibido);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00091}00091\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00092}00092\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00093}00093\ \textcolor{comment}{\ *\ @brief\ Verifica\ si\ el\ módulo\ SPI\ está\ habilitado\ (bit\ SPE).}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00094}00094\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00095}00095\ \textcolor{comment}{\ *\ @return\ true\ Si\ SPI\ está\ habilitado.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00096}00096\ \textcolor{comment}{\ *\ @return\ false\ Si\ SPE\ está\ en\ 0.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00097}00097\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00098}00098\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{spi_8h_a2d78e391dc5a197d4f2850b78863b545}{spi\_master\_Valid\_Init\_SPE}}();}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00099}00099\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00100}00100\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00101}00101\ \textcolor{comment}{\ *\ @brief\ Verifica\ si\ el\ pin\ SS\ está\ en\ LOW\ (esclavo\ activo).}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00102}00102\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00103}00103\ \textcolor{comment}{\ *\ @return\ true\ Si\ SS\ está\ en\ LOW.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00104}00104\ \textcolor{comment}{\ *\ @return\ false\ Si\ SS\ está\ en\ HIGH.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00105}00105\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00106}00106\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{spi_8h_a3faecf73158e3f4435c8fc5b7fe1102e}{spi\_master\_Valid\_Init\_SS}}();}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00107}00107\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00108}00108\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00109}00109\ \textcolor{comment}{\ *\ @brief\ Verifica\ si\ ocurrió\ una\ colisión\ de\ escritura\ (WCOL).}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00110}00110\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00111}00111\ \textcolor{comment}{\ *\ @return\ true\ Si\ no\ hubo\ colisión.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00112}00112\ \textcolor{comment}{\ *\ @return\ false\ Si\ WCOL\ está\ activo.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00113}00113\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00114}00114\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{spi_8h_a0dbbbbe01a3d74c6444dfb47f5ed4cd7}{spi\_master\_Valid\_Init\_WCOL}}();}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00115}00115\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00116}00116\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00117}00117\ \textcolor{comment}{\ *\ @brief\ Limpia\ el\ flag\ SPIF\ leyendo\ SPSR\ y\ luego\ SPDR.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00118}00118\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00119}00119\ \textcolor{comment}{\ *\ Procedimiento\ obligatorio\ según\ el\ datasheet\ del\ ATmega2560.}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00120}00120\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00121}00121\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{spi_8h_adbf78dc06b1fe5efdad098c291b6536b}{clean\_SPIF}}();}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00123}00123\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ SPI\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,5 @@
+<map id="crc8_valido" name="crc8_valido">
+<area shape="rect" id="Node000001" title="Verifica la coherencia de un paquete mediante CRC8." alt="" coords="5,5,92,31"/>
+<area shape="rect" id="Node000002" href="$packet_8cpp.html#aa53dcb7ed5d9f0c950f286f79e7fc246" title="Muestra el resultado de la validación CRC8 entre el CRC recibido y el calculado." alt="" coords="140,5,295,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,15,126,15,126,21,92,21"/>
+</map>

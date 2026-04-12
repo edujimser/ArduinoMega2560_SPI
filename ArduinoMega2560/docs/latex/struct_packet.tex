@@ -1,0 +1,189 @@
+\doxysection{Referencia de la estructura Packet}
+\hypertarget{struct_packet}{}\label{struct_packet}\index{Packet@{Packet}}
+
+
+Representa un paquete SPI completo.  
+
+
+
+
+{\ttfamily \+\#include $<$packet.\+h$>$}
+
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_aedb268d2c2f44bb48457277fb57421d7}{LEN}} = \doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\+\_\+\+SIZE}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chech\+Sum\+Byte\+\_\+0}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chech\+Sum\+Byte\+\_\+1}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\+\_\+0}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}{payload\+\_\+1}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}{payload\+\_\+2}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_afed0be2706ac18e39fe488aa49f80e31}{payload\+\_\+3}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}{payload\+\_\+4}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}{payload\+\_\+5}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}{payload\+\_\+6}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}{payload\+\_\+7}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Representa un paquete SPI completo. 
+
+Esta estructura contiene todos los campos necesarios para transmitir un mensaje SPI según el protocolo definido. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00056}{56}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_packet_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}\index{Packet@{Packet}!chechSumByte\_0@{chechSumByte\_0}}
+\index{chechSumByte\_0@{chechSumByte\_0}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{chechSumByte\_0}{chechSumByte\_0}}
+{\footnotesize\ttfamily \label{struct_packet_a4dd5ed431075a3ddaf9f39be26209824} 
+uint8\+\_\+t Packet::\+chech\+Sum\+Byte\+\_\+0}
+
+Byte reservado para checksum (no utilizado en este protocolo). 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00059}{59}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_ad0aaa92155c121843da0c8aabd84a847}\index{Packet@{Packet}!chechSumByte\_1@{chechSumByte\_1}}
+\index{chechSumByte\_1@{chechSumByte\_1}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{chechSumByte\_1}{chechSumByte\_1}}
+{\footnotesize\ttfamily \label{struct_packet_ad0aaa92155c121843da0c8aabd84a847} 
+uint8\+\_\+t Packet::\+chech\+Sum\+Byte\+\_\+1}
+
+Byte reservado para checksum (no utilizado en este protocolo). 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00060}{60}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}\index{Packet@{Packet}!CRC@{CRC}}
+\index{CRC@{CRC}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{CRC}{CRC}}
+{\footnotesize\ttfamily \label{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74} 
+uint8\+\_\+t Packet::\+\+CRC}
+
+CRC-\/8 del paquete. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00069}{69}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_a1797cf7455306345da96901bf823b973}\index{Packet@{Packet}!ID@{ID}}
+\index{ID@{ID}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \label{struct_packet_a1797cf7455306345da96901bf823b973} 
+uint8\+\_\+t Packet::\+\+ID}
+
+Identificador del comando. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00057}{57}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_aedb268d2c2f44bb48457277fb57421d7}\index{Packet@{Packet}!LEN@{LEN}}
+\index{LEN@{LEN}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{LEN}{LEN}}
+{\footnotesize\ttfamily \label{struct_packet_aedb268d2c2f44bb48457277fb57421d7} 
+uint8\+\_\+t Packet::\+\+LEN = \doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\+\_\+\+SIZE}}}
+
+Longitud del payload (0–8). 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00058}{58}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_a36bb0281513399db8cda8bd0fb067472}\index{Packet@{Packet}!payload\_0@{payload\_0}}
+\index{payload\_0@{payload\_0}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_0}{payload\_0}}
+{\footnotesize\ttfamily \label{struct_packet_a36bb0281513399db8cda8bd0fb067472} 
+uint8\+\_\+t Packet::\+payload\+\_\+0}
+
+Byte 0 del payload. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00061}{61}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}\index{Packet@{Packet}!payload\_1@{payload\_1}}
+\index{payload\_1@{payload\_1}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_1}{payload\_1}}
+{\footnotesize\ttfamily \label{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2} 
+uint8\+\_\+t Packet::\+payload\+\_\+1}
+
+Byte 1 del payload. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00062}{62}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}\index{Packet@{Packet}!payload\_2@{payload\_2}}
+\index{payload\_2@{payload\_2}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_2}{payload\_2}}
+{\footnotesize\ttfamily \label{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f} 
+uint8\+\_\+t Packet::\+payload\+\_\+2}
+
+Byte 2 del payload. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00063}{63}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_afed0be2706ac18e39fe488aa49f80e31}\index{Packet@{Packet}!payload\_3@{payload\_3}}
+\index{payload\_3@{payload\_3}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_3}{payload\_3}}
+{\footnotesize\ttfamily \label{struct_packet_afed0be2706ac18e39fe488aa49f80e31} 
+uint8\+\_\+t Packet::\+payload\+\_\+3}
+
+Byte 3 del payload. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00064}{64}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}\index{Packet@{Packet}!payload\_4@{payload\_4}}
+\index{payload\_4@{payload\_4}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_4}{payload\_4}}
+{\footnotesize\ttfamily \label{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4} 
+uint8\+\_\+t Packet::\+payload\+\_\+4}
+
+Byte 4 del payload. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00065}{65}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}\index{Packet@{Packet}!payload\_5@{payload\_5}}
+\index{payload\_5@{payload\_5}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_5}{payload\_5}}
+{\footnotesize\ttfamily \label{struct_packet_aa7413ba3c8c17783d822f9925873cbf3} 
+uint8\+\_\+t Packet::\+payload\+\_\+5}
+
+Byte 5 del payload. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00066}{66}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}\index{Packet@{Packet}!payload\_6@{payload\_6}}
+\index{payload\_6@{payload\_6}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_6}{payload\_6}}
+{\footnotesize\ttfamily \label{struct_packet_a87d7f4e000aee7bce96eb66e11862e01} 
+uint8\+\_\+t Packet::\+payload\+\_\+6}
+
+Byte 6 del payload. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00067}{67}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}\index{Packet@{Packet}!payload\_7@{payload\_7}}
+\index{payload\_7@{payload\_7}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_7}{payload\_7}}
+{\footnotesize\ttfamily \label{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6} 
+uint8\+\_\+t Packet::\+payload\+\_\+7}
+
+Byte 7 del payload. 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00068}{68}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+
+
+La documentación de esta estructura está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{packet_8h}{packet.\+h}}\end{DoxyCompactItemize}

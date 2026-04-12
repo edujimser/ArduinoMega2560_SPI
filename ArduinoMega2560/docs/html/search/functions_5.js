@@ -1,0 +1,13 @@
+var searchData=
+[
+  ['setup_0',['setup',['../main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d',1,'main.cpp']]],
+  ['spi_5finit_5fmaster_1',['spi_init_master',['../spi_8h.html#ada79a2ef129d5488e1f15c53f41cbc68',1,'spi_init_master():&#160;spi.cpp'],['../spi_8cpp.html#ada79a2ef129d5488e1f15c53f41cbc68',1,'spi_init_master():&#160;spi.cpp']]],
+  ['spi_5finit_5fslave_2',['spi_init_slave',['../spi_8h.html#a7d026fae245411026c3b69a989728fca',1,'spi_init_slave():&#160;spi.cpp'],['../spi_8cpp.html#a7d026fae245411026c3b69a989728fca',1,'spi_init_slave():&#160;spi.cpp']]],
+  ['spi_5fmaster_5fprint_5ferror_3',['spi_master_print_error',['../spi_8h.html#a92397ce65ed5070e3878f56b58defde9',1,'spi_master_print_error(uint8_t error_code):&#160;spi.cpp'],['../spi_8cpp.html#a92397ce65ed5070e3878f56b58defde9',1,'spi_master_print_error(uint8_t error_code):&#160;spi.cpp']]],
+  ['spi_5fmaster_5fprint_5ftx_5frx_4',['spi_master_print_tx_rx',['../spi_8h.html#a5ebc63ccefe04139a3682209475877cd',1,'spi_master_print_tx_rx(uint8_t enviado, uint8_t recibido):&#160;spi.cpp'],['../spi_8cpp.html#a5ebc63ccefe04139a3682209475877cd',1,'spi_master_print_tx_rx(uint8_t enviado, uint8_t recibido):&#160;spi.cpp']]],
+  ['spi_5fmaster_5fsend_5fblock_5',['spi_master_send_block',['../spi_8h.html#ab954ffe1bc471b86e3b8b21cc6478f8f',1,'spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms):&#160;spi.cpp'],['../spi_8cpp.html#ab954ffe1bc471b86e3b8b21cc6478f8f',1,'spi_master_send_block(const uint8_t *data, size_t len, uint32_t delay_ms):&#160;spi.cpp']]],
+  ['spi_5fmaster_5ftransfer_6',['spi_master_transfer',['../spi_8h.html#a3759b640dd5424fa5ecb5f1967a481b4',1,'spi_master_transfer(uint8_t data, uint32_t delay_ms):&#160;spi.cpp'],['../spi_8cpp.html#a3759b640dd5424fa5ecb5f1967a481b4',1,'spi_master_transfer(uint8_t data, uint32_t delay_ms):&#160;spi.cpp']]],
+  ['spi_5fmaster_5fvalid_5finit_5fspe_7',['spi_master_Valid_Init_SPE',['../spi_8h.html#a2d78e391dc5a197d4f2850b78863b545',1,'spi_master_Valid_Init_SPE():&#160;spi.cpp'],['../spi_8cpp.html#a2d78e391dc5a197d4f2850b78863b545',1,'spi_master_Valid_Init_SPE():&#160;spi.cpp']]],
+  ['spi_5fmaster_5fvalid_5finit_5fss_8',['spi_master_Valid_Init_SS',['../spi_8h.html#a3faecf73158e3f4435c8fc5b7fe1102e',1,'spi_master_Valid_Init_SS():&#160;spi.cpp'],['../spi_8cpp.html#a3faecf73158e3f4435c8fc5b7fe1102e',1,'spi_master_Valid_Init_SS():&#160;spi.cpp']]],
+  ['spi_5fmaster_5fvalid_5finit_5fwcol_9',['spi_master_Valid_Init_WCOL',['../spi_8h.html#a0dbbbbe01a3d74c6444dfb47f5ed4cd7',1,'spi_master_Valid_Init_WCOL():&#160;spi.cpp'],['../spi_8cpp.html#a0dbbbbe01a3d74c6444dfb47f5ed4cd7',1,'spi_master_Valid_Init_WCOL():&#160;spi.cpp']]]
+];

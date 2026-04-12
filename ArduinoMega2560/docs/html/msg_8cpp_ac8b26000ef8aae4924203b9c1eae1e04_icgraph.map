@@ -1,0 +1,7 @@
+<map id="verificar_configuracion_spi_PIN_Master" name="verificar_configuracion_spi_PIN_Master">
+<area shape="rect" id="Node000001" title="Verifica la configuración de los pines SPI cuando el Arduino actúa como Maestro." alt="" coords="267,5,415,45"/>
+<area shape="rect" id="Node000002" href="$spi_8cpp.html#ada79a2ef129d5488e1f15c53f41cbc68" title="Inicializa el módulo SPI en modo maestro." alt="" coords="108,13,219,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="253,28,219,28,219,23,253,23"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Inicializa el sistema según el modo SPI seleccionado." alt="" coords="5,13,60,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
+</map>

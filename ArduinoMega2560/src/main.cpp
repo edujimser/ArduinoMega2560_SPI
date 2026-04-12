@@ -1,19 +1,40 @@
+/**
+ * @file main.cpp
+ * @brief Lógica principal del sistema SPI para el Arduino Mega 2560.
+ *
+ * Este archivo implementa la inicialización del sistema según el modo seleccionado
+ * (MAESTRO, ESCLAVO o ESCLAVO_PRUEBA), el bucle principal de ejecución y las rutinas
+ * de interrupción asociadas al SPI y al pin SS.
+ *
+ * Maneja:
+ * - Recepción de paquetes SPI
+ * - Procesamiento de comandos
+ * - Validación CRC8 y checksum
+ * - Respuesta automática en modo SLAVE_PRUEBA
+ */
+
 #include "main.h"
 
+/** @brief Estado de recepción del esclavo. */
+bool receiving = false;
 
-bool receiving = false;                               /** Estado de recepción del esclavo. */
-bool packet_ready = false;                            /** Indica que el paquete recibido está listo para ser procesar. */
-uint8_t rx_index = 0;                                 /** Índice de escritura en el buffer de recepción del esclavo. */
-uint8_t rx_buffer[PACKET_SIZE];                       /** Buffer para almacenar un paquete SPI (13 bytes). */
+/** @brief Indica que el paquete recibido está listo para procesarse. */
+bool packet_ready = false;
+
+/** @brief Índice de escritura en el buffer de recepción del esclavo. */
+uint8_t rx_index = 0;
+
+/** @brief Buffer para almacenar un paquete SPI completo. */
+uint8_t rx_buffer[PACKET_SIZE];
 
 /**
  * @brief Inicializa el sistema según el modo SPI seleccionado.
  *
  * Configura:
- * - Serial
- * - Validación de modo (MASTER/SLAVE/PRUEBA)
- * - Inicialización SPI
- * - Interrupciones (solo esclavo)
+ * - Comunicación Serial
+ * - Validación de modo (MASTER / SLAVE / SLAVE_PRUEBA)
+ * - Inicialización del módulo SPI
+ * - Interrupciones (solo en modo esclavo)
  */
 void setup() {
     Serial.begin(115200);
@@ -24,7 +45,7 @@ void setup() {
         #error "Debes seleccionar exactamente un modo: MASTER, SLAVE o SLAVE_PRUEBA"
     #endif
 
-     /* Modo maestro */
+    /* Modo maestro */
     #if MASTER
         spi_init_master();
     #endif
@@ -55,7 +76,12 @@ void setup() {
     ));
 }
 
-
+/**
+ * @brief Bucle principal del sistema.
+ *
+ * - En modo MAESTRO: construye y envía un paquete SPI.
+ * - En modo ESCLAVO: procesa el paquete recibido cuando está completo.
+ */
 void loop() {
 
     #if MASTER
@@ -77,12 +103,11 @@ void loop() {
     #if SLAVE
         if (packet_ready)
         {
-            
             Packet received_pkt = {
                 .ID = rx_buffer[0],
                 .LEN = rx_buffer[1],
-                .chechSumByte_0 = rx_buffer[2],  
-                .chechSumByte_1 = rx_buffer[3],  
+                .chechSumByte_0 = rx_buffer[2],
+                .chechSumByte_1 = rx_buffer[3],
                 .payload_0 = rx_buffer[4],
                 .payload_1 = rx_buffer[5],
                 .payload_2 = rx_buffer[6],
@@ -93,11 +118,11 @@ void loop() {
                 .payload_7 = rx_buffer[11],
                 .CRC = rx_buffer[12]
             };
-            
+
             crc8_valido(&received_pkt);
             checksum8_calculo_slave(&received_pkt);
             mostrar_packet_recibido(&received_pkt);
-            
+
             switch (received_pkt.ID){
                 case 0x01:
                     Serial.println(F("Comando 0x01 recibido:"));
@@ -126,54 +151,61 @@ void loop() {
                     if (received_pkt.ID < 0x10) Serial.print('0');
                     Serial.println(received_pkt.ID, HEX);
                     break;
-        }
+            }
+
             packet_ready = false;
-   
         }
     #endif
-} 
+}
 
-/* ------------------ ISR DEL ESCLAVO ------------------ */
+/* -------------------------------------------------------------------------- */
+/*                               RUTINAS ISR                                  */
+/* -------------------------------------------------------------------------- */
 
+/**
+ * @brief ISR para cambios en el pin SS (PCINT0).
+ *
+ * - SS BAJO  → inicio de paquete
+ * - SS ALTO  → fin de paquete
+ */
 ISR(PCINT0_vect)
-{   
+{
     if (SLAVE == true && SLAVE_PRUEBA == false)
     {
-         bool ss_state = PINB & (1 << PB0);
+        bool ss_state = PINB & (1 << PB0);
 
         if (!ss_state) {
-            // SS BAJO → INICIO DE PAQUETE
             Serial.println("SS BAJO → INICIO PAQUETE");
             rx_index = 0;
             receiving = true;
-            packet_ready = false;   // ← CORRECTO
+            packet_ready = false;
         } else {
-            // SS ALTO → FIN DE PAQUETE
             Serial.print("SS ALTO → FIN PAQUETE. Bytes recibidos: ");
             Serial.println(rx_index);
             receiving = false;
-            packet_ready = true;    // ← CORRECTO
-        
+            packet_ready = true;
         }
     }
 }
 
-
+/**
+ * @brief ISR de transferencia SPI (SPI_STC_vect).
+ *
+ * - En modo SLAVE_PRUEBA: responde automáticamente incrementando el byte recibido.
+ * - En modo SLAVE normal: almacena los bytes recibidos en el buffer.
+ */
 ISR(SPI_STC_vect)
-{   
+{
     if (SLAVE == true && SLAVE_PRUEBA == true)
     {
-        uint8_t recibido = SPDR;   // lo que mandó el maestro
-        SPDR = recibido + 1;       // preparar respuesta para el SIGUIENTE byte
+        uint8_t recibido = SPDR;
+        SPDR = recibido + 1;
     }
 
     if (SLAVE == true && SLAVE_PRUEBA == false)
     {
-         if (receiving && rx_index < PACKET_SIZE) {
+        if (receiving && rx_index < PACKET_SIZE) {
             rx_buffer[rx_index++] = SPDR;
         }
     }
-    
 }
-
-

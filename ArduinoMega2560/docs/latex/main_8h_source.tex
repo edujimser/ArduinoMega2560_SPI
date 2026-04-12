@@ -1,0 +1,44 @@
+\doxysection{main.\+h}
+\hypertarget{main_8h_source}{}\label{main_8h_source}\index{main.h@{main.h}}
+\doxymbox{\hyperlink{main_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ main.h}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Declaraciones\ globales\ y\ variables\ compartidas\ para\ el\ sistema\ SPI\ del\ Arduino\ Mega\ 2560.}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Este\ archivo\ contiene\ las\ variables\ externas\ utilizadas\ por\ el\ módulo\ principal}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00006}00006\ \textcolor{comment}{\ *\ y\ el\ manejador\ de\ recepción\ SPI.\ Define\ los\ flags\ de\ estado,\ el\ índice\ de\ recepción}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00007}00007\ \textcolor{comment}{\ *\ y\ el\ buffer\ donde\ se\ almacena\ el\ paquete\ recibido.}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00009}00009\ \textcolor{comment}{\ *\ @note\ Este\ archivo\ forma\ parte\ del\ sistema\ de\ comunicación\ SPI\ entre\ el\ Maestro\ y\ el\ Esclavo.}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00010}00010\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00012}00012\ \textcolor{preprocessor}{\#ifndef\ MAIN\_H}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00013}00013\ \textcolor{preprocessor}{\#define\ MAIN\_H}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{spi_8h}{spi.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00017}00017\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00018}00018\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00019}00019\ \textcolor{comment}{\ *\ @brief\ Indica\ si\ actualmente\ se\ está\ recibiendo\ un\ paquete\ SPI.}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00020}00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00021}00021\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{main_8h_a3264ca17406556a54abe56667f2c8611}{receiving}};}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00022}00022\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00023}00023\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00024}00024\ \textcolor{comment}{\ *\ @brief\ Señala\ que\ un\ paquete\ completo\ ha\ sido\ recibido\ y\ está\ listo\ para\ procesarse.}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00025}00025\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00026}00026\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{main_8h_ac7410dfa63307501a368035aaffc3fc3}{packet\_ready}};}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00027}00027\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00028}00028\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00029}00029\ \textcolor{comment}{\ *\ @brief\ Índice\ actual\ de\ escritura\ dentro\ del\ buffer\ de\ recepción.}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00030}00030\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00031}00031\ \textcolor{keyword}{extern}\ uint8\_t\ \doxymbox{\hyperlink{main_8h_ac4b08f79fc99cb2c9c396b1d2be494bb}{rx\_index}};}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00032}00032\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00033}00033\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00034}00034\ \textcolor{comment}{\ *\ @brief\ Buffer\ donde\ se\ almacena\ el\ paquete\ recibido\ vía\ SPI.}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00035}00035\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00036}00036\ \textcolor{keyword}{extern}\ uint8\_t\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[\doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\_SIZE}}];}
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{main_8h_source_l00038}00038\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ MAIN\_H}}
+
+\end{DoxyCode}

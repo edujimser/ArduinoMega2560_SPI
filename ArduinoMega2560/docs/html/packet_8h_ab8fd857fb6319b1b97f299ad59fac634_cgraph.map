@@ -1,0 +1,5 @@
+<map id="checksum8_calculo_slave" name="checksum8_calculo_slave">
+<area shape="rect" id="Node000001" title="Calcula y verifica el checksum de 16 bits del payload recibido." alt="" coords="5,13,179,38"/>
+<area shape="rect" id="Node000002" href="$packet_8cpp.html#a1480ba1be7fce0bb70e458004ca971e9" title="Muestra el resultado de la validación del checksum de 16 bits." alt="" coords="227,5,399,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,23,213,23,213,28,179,28"/>
+</map>

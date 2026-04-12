@@ -1,0 +1,405 @@
+\doxysection{Referencia del archivo msg.\+h}
+\hypertarget{msg_8h}{}\label{msg_8h}\index{msg.h@{msg.h}}
+
+
+Funciones de diagnóstico y verificación de la configuración SPI en el Arduino Mega 2560.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \+\#include "{}spi.\+h"{}}\newline
+{\ttfamily \+\#include "{}packet.\+h"{}}\newline
+Gráfico de dependencias incluidas en msg.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{msg_8h__incl}
+\end{center}
+\end{figure}
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{msg_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{msg_8h_ac8b26000ef8aae4924203b9c1eae1e04}{verificar\+\_\+configuracion\+\_\+spi\+\_\+\+PIN\+\_\+\+Master}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si la configuración de pines SPI corresponde al modo Maestro. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{msg_8h_aef4f8d6078f2812b9b830dbc52956760}{verificar\+\_\+configuracion\+\_\+spi\+\_\+\+PIN\+\_\+\+Slave}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si la configuración de pines SPI corresponde al modo Esclavo. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{msg_8h_a1c2479676c20e04774842ddbfa326afe}{mostrar\+\_\+configuracion\+\_\+\+SPCR}} ()
+\begin{DoxyCompactList}\small\item\em Muestra el contenido del registro SPCR para depuración. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Funciones de diagnóstico y verificación de la configuración SPI en el Arduino Mega 2560. 
+
+Este archivo declara funciones utilizadas para comprobar el estado de los pines SPI, validar la configuración del registro SPCR y mostrar información útil para depuración.
+
+\begin{DoxyNote}{Nota}
+Forma parte del sistema de comunicación SPI entre Maestro y Esclavo. 
+\end{DoxyNote}
+
+
+Definición en el archivo \doxymbox{\hyperlink{msg_8h_source}{msg.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{msg_8h_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{msg_8h_a1c2479676c20e04774842ddbfa326afe}\index{msg.h@{msg.h}!mostrar\_configuracion\_SPCR@{mostrar\_configuracion\_SPCR}}
+\index{mostrar\_configuracion\_SPCR@{mostrar\_configuracion\_SPCR}!msg.h@{msg.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_configuracion\_SPCR()}{mostrar\_configuracion\_SPCR()}}
+{\footnotesize\ttfamily \label{msg_8h_a1c2479676c20e04774842ddbfa326afe} 
+void mostrar\+\_\+configuracion\+\_\+\+SPCR (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Muestra el contenido del registro SPCR para depuración. 
+
+Imprime en el monitor serie los bits relevantes del registro SPCR, permitiendo verificar la configuración del módulo SPI.
+
+Muestra el contenido del registro SPCR para depuración.
+
+Desglosa cada bit del registro SPCR e imprime su significado:\+
+\begin{DoxyItemize}
+\item SPIE:\+ interrupción SPI habilitada/\+deshabilitada ~\newline
+
+\item SPE:\+ SPI habilitado/\+deshabilitado ~\newline
+
+\item DORD:\+ orden de bits (LSB/\+\+MSB) ~\newline
+
+\item MSTR:\+ modo maestro/\+esclavo ~\newline
+
+\item CPOL:\+ polaridad del reloj ~\newline
+
+\item CPHA:\+ fase del reloj ~\newline
+
+\item SPR1/\+\+SPR0:\+ divisor de frecuencia ~\newline
+
+\end{DoxyItemize}
+
+También calcula y muestra la velocidad SPI resultante. 
+
+Definición en la línea \doxymbox{\hyperlink{msg_8cpp_source_l00172}{172}} del archivo \doxymbox{\hyperlink{msg_8cpp_source}{msg.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)n===================================================="{}}));}
+\DoxyCodeLine{00175\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ ESTADO\ DEL\ REGISTRO\ SPCR\ (SPI\ CONTROL)\ \ \ \ \ \ "{}}));}
+\DoxyCodeLine{00176\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}===================================================="{}}));}
+\DoxyCodeLine{00177\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ Bit\ |\ Nombre\ |\ Valor\ |\ Descripción"{}}));}
+\DoxyCodeLine{00178\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \textcolor{comment}{//\ Bit\ 7\ –\ SPIE}}
+\DoxyCodeLine{00181\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ 7\ \ |\ SPIE\ \ \ |\ \ "{}}));}
+\DoxyCodeLine{00182\ \ \ Serial.print((SPCR\ \&\ (1\ <<\ SPIE))\ ?\ \textcolor{stringliteral}{"{}1"{}}\ :\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00183\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00184\ \ \ Serial.println((SPCR\ \&\ (1\ <<\ SPIE))\ ?\ }
+\DoxyCodeLine{00185\ \ \ \ \ F(\textcolor{stringliteral}{"{}Interrupción\ SPI\ habilitada"{}})\ :\ }
+\DoxyCodeLine{00186\ \ \ \ \ F(\textcolor{stringliteral}{"{}Interrupción\ SPI\ deshabilitada"{}}));}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \textcolor{comment}{//\ Bit\ 6\ –\ SPE}}
+\DoxyCodeLine{00189\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ 6\ \ |\ SPE\ \ \ \ |\ \ "{}}));}
+\DoxyCodeLine{00190\ \ \ Serial.print((SPCR\ \&\ (1\ <<\ SPE))\ ?\ \textcolor{stringliteral}{"{}1"{}}\ :\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00191\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00192\ \ \ Serial.println((SPCR\ \&\ (1\ <<\ SPE))\ ?\ }
+\DoxyCodeLine{00193\ \ \ \ \ F(\textcolor{stringliteral}{"{}SPI\ habilitado"{}})\ :\ }
+\DoxyCodeLine{00194\ \ \ \ \ F(\textcolor{stringliteral}{"{}SPI\ deshabilitado"{}}));}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \textcolor{comment}{//\ Bit\ 5\ –\ DORD}}
+\DoxyCodeLine{00197\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ 5\ \ |\ DORD\ \ \ |\ \ "{}}));}
+\DoxyCodeLine{00198\ \ \ Serial.print((SPCR\ \&\ (1\ <<\ DORD))\ ?\ \textcolor{stringliteral}{"{}1"{}}\ :\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00199\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00200\ \ \ Serial.println((SPCR\ \&\ (1\ <<\ DORD))\ ?\ }
+\DoxyCodeLine{00201\ \ \ \ \ F(\textcolor{stringliteral}{"{}LSB\ primero"{}})\ :\ }
+\DoxyCodeLine{00202\ \ \ \ \ F(\textcolor{stringliteral}{"{}MSB\ primero"{}}));}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \textcolor{comment}{//\ Bit\ 4\ –\ MSTR}}
+\DoxyCodeLine{00205\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ 4\ \ |\ MSTR\ \ \ |\ \ "{}}));}
+\DoxyCodeLine{00206\ \ \ Serial.print((SPCR\ \&\ (1\ <<\ MSTR))\ ?\ \textcolor{stringliteral}{"{}1"{}}\ :\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00207\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00208\ \ \ Serial.println((SPCR\ \&\ (1\ <<\ MSTR))\ ?\ }
+\DoxyCodeLine{00209\ \ \ \ \ F(\textcolor{stringliteral}{"{}Modo\ MAESTRO"{}})\ :\ }
+\DoxyCodeLine{00210\ \ \ \ \ F(\textcolor{stringliteral}{"{}Modo\ ESCLAVO"{}}));}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \textcolor{comment}{//\ Bit\ 3\ –\ CPOL}}
+\DoxyCodeLine{00213\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ 3\ \ |\ CPOL\ \ \ |\ \ "{}}));}
+\DoxyCodeLine{00214\ \ \ Serial.print((SPCR\ \&\ (1\ <<\ CPOL))\ ?\ \textcolor{stringliteral}{"{}1"{}}\ :\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00215\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00216\ \ \ Serial.println((SPCR\ \&\ (1\ <<\ CPOL))\ ?\ }
+\DoxyCodeLine{00217\ \ \ \ \ F(\textcolor{stringliteral}{"{}Reloj\ en\ HIGH\ en\ reposo"{}})\ :\ }
+\DoxyCodeLine{00218\ \ \ \ \ F(\textcolor{stringliteral}{"{}Reloj\ en\ LOW\ en\ reposo"{}}));}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \textcolor{comment}{//\ Bit\ 2\ –\ CPHA}}
+\DoxyCodeLine{00221\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ 2\ \ |\ CPHA\ \ \ |\ \ "{}}));}
+\DoxyCodeLine{00222\ \ \ Serial.print((SPCR\ \&\ (1\ <<\ CPHA))\ ?\ \textcolor{stringliteral}{"{}1"{}}\ :\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00223\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00224\ \ \ Serial.println((SPCR\ \&\ (1\ <<\ CPHA))\ ?\ }
+\DoxyCodeLine{00225\ \ \ \ \ F(\textcolor{stringliteral}{"{}Captura\ en\ segundo\ flanco"{}})\ :\ }
+\DoxyCodeLine{00226\ \ \ \ \ F(\textcolor{stringliteral}{"{}Captura\ en\ primer\ flanco"{}}));}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \textcolor{comment}{//\ Bit\ 1\ –\ SPR1}}
+\DoxyCodeLine{00229\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ 1\ \ |\ SPR1\ \ \ |\ \ "{}}));}
+\DoxyCodeLine{00230\ \ \ Serial.print((SPCR\ \&\ (1\ <<\ SPR1))\ ?\ \textcolor{stringliteral}{"{}1"{}}\ :\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00231\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00232\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Bit\ alto\ del\ divisor\ de\ reloj"{}}));}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \textcolor{comment}{//\ Bit\ 0\ –\ SPR0}}
+\DoxyCodeLine{00235\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ 0\ \ |\ SPR0\ \ \ |\ \ "{}}));}
+\DoxyCodeLine{00236\ \ \ Serial.print((SPCR\ \&\ (1\ <<\ SPR0))\ ?\ \textcolor{stringliteral}{"{}1"{}}\ :\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00237\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00238\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Bit\ bajo\ del\ divisor\ de\ reloj"{}}));}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \textcolor{comment}{//\ Mostrar\ velocidad\ SPI\ resultante}}
+\DoxyCodeLine{00243\ \ \ uint8\_t\ spr1\ =\ (SPCR\ \&\ (1\ <<\ SPR1))\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00244\ \ \ uint8\_t\ spr0\ =\ (SPCR\ \&\ (1\ <<\ SPR0))\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ Velocidad\ SPI:\ "{}}));}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \textcolor{keywordflow}{if}\ (!(SPCR\ \&\ (1\ <<\ MSTR)))\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Controlada\ por\ el\ maestro\ (modo\ esclavo)"{}}));}
+\DoxyCodeLine{00250\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordflow}{if}\ (spr1\ ==\ 0\ \&\&\ spr0\ ==\ 0)\ Serial.print(F(\textcolor{stringliteral}{"{}Fosc/4"{}}));}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordflow}{if}\ (spr1\ ==\ 0\ \&\&\ spr0\ ==\ 1)\ Serial.print(F(\textcolor{stringliteral}{"{}Fosc/16"{}}));}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{if}\ (spr1\ ==\ 1\ \&\&\ spr0\ ==\ 0)\ Serial.print(F(\textcolor{stringliteral}{"{}Fosc/64"{}}));}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{if}\ (spr1\ ==\ 1\ \&\&\ spr0\ ==\ 1)\ Serial.print(F(\textcolor{stringliteral}{"{}Fosc/128"{}}));}
+\DoxyCodeLine{00255\ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ Serial.println();}
+\DoxyCodeLine{00258\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}====================================================\(\backslash\)n"{}}));}
+\DoxyCodeLine{00259\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{msg_8h_a1c2479676c20e04774842ddbfa326afe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{msg_8h_ac8b26000ef8aae4924203b9c1eae1e04}\index{msg.h@{msg.h}!verificar\_configuracion\_spi\_PIN\_Master@{verificar\_configuracion\_spi\_PIN\_Master}}
+\index{verificar\_configuracion\_spi\_PIN\_Master@{verificar\_configuracion\_spi\_PIN\_Master}!msg.h@{msg.h}}
+\doxysubsubsection{\texorpdfstring{verificar\_configuracion\_spi\_PIN\_Master()}{verificar\_configuracion\_spi\_PIN\_Master()}}
+{\footnotesize\ttfamily \label{msg_8h_ac8b26000ef8aae4924203b9c1eae1e04} 
+bool verificar\+\_\+configuracion\+\_\+spi\+\_\+\+PIN\+\_\+\+Master (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica si la configuración de pines SPI corresponde al modo Maestro. 
+
+Comprueba que los pines MOSI, MISO, SCK y SS están configurados correctamente para operar como Maestro SPI.
+
+\begin{DoxyReturn}{Devuelve}
+true si la configuración es correcta, false en caso contrario.
+\end{DoxyReturn}
+Verifica si la configuración de pines SPI corresponde al modo Maestro.
+
+Comprueba:\+
+\begin{DoxyItemize}
+\item MOSI (51) → OUTPUT ~\newline
+
+\item MISO (50) → INPUT ~\newline
+
+\item SCK (52) → OUTPUT ~\newline
+
+\item SS (53) → OUTPUT y en HIGH ~\newline
+
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Devuelve}
+true si todos los pines están configurados correctamente, false si se detecta algún error. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{msg_8cpp_source_l00026}{26}} del archivo \doxymbox{\hyperlink{msg_8cpp_source}{msg.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{bool}\ ok\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)n===================================================="{}}));}
+\DoxyCodeLine{00030\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ VERIFICACIÓN\ DE\ CONFIGURACIÓN\ SPI\ (MEGA\ MAESTRO)"{}}));}
+\DoxyCodeLine{00031\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}===================================================="{}}));}
+\DoxyCodeLine{00032\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ Pin\ |\ Señal\ |\ Dirección\ esperada\ |\ Estado\ detectado"{}}));}
+\DoxyCodeLine{00033\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{comment}{//\ MOSI\ (51)\ →\ OUTPUT}}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{if}\ (digitalRead(51)\ ==\ HIGH\ ||\ digitalRead(51)\ ==\ LOW)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 51\ \ |\ MOSI\ \ |\ OUTPUT\ \ \ \ \ \ \ \ \ \ \ \ \ |\ OK"{}}));}
+\DoxyCodeLine{00038\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 51\ \ |\ MOSI\ \ |\ OUTPUT\ \ \ \ \ \ \ \ \ \ \ \ \ |\ ERROR"{}}));}
+\DoxyCodeLine{00040\ \ \ \ \ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{comment}{//\ MISO\ (50)\ →\ INPUT}}
+\DoxyCodeLine{00044\ \ \ pinMode(50,\ INPUT\_PULLUP);\ \textcolor{comment}{//\ test\ temporal}}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{if}\ (digitalRead(50)\ ==\ HIGH\ ||\ digitalRead(50)\ ==\ LOW)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 50\ \ |\ MISO\ \ |\ INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ OK"{}}));}
+\DoxyCodeLine{00047\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 50\ \ |\ MISO\ \ |\ INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ ERROR"{}}));}
+\DoxyCodeLine{00049\ \ \ \ \ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ \ \ pinMode(50,\ INPUT);\ \textcolor{comment}{//\ restaurar}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//\ SCK\ (52)\ →\ OUTPUT}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (digitalRead(52)\ ==\ HIGH\ ||\ digitalRead(52)\ ==\ LOW)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 52\ \ |\ SCK\ \ \ |\ OUTPUT\ \ \ \ \ \ \ \ \ \ \ \ \ |\ OK"{}}));}
+\DoxyCodeLine{00056\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 52\ \ |\ SCK\ \ \ |\ OUTPUT\ \ \ \ \ \ \ \ \ \ \ \ \ |\ ERROR"{}}));}
+\DoxyCodeLine{00058\ \ \ \ \ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{comment}{//\ SS\ (53)\ →\ OUTPUT\ y\ en\ HIGH}}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordflow}{if}\ (digitalRead(53)\ ==\ HIGH)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 53\ \ |\ SS\ \ \ \ |\ OUTPUT\ +\ HIGH\ \ \ \ \ \ |\ OK"{}}));}
+\DoxyCodeLine{00064\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 53\ \ |\ SS\ \ \ \ |\ OUTPUT\ +\ HIGH\ \ \ \ \ \ |\ ERROR\ (debe\ estar\ HIGH)"{}}));}
+\DoxyCodeLine{00066\ \ \ \ \ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00067\ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordflow}{if}\ (ok)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ ✔\ Todos\ los\ pines\ SPI\ están\ configurados\ correctamente."{}}));}
+\DoxyCodeLine{00073\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ El\ módulo\ SPI\ puede\ iniciarse\ sin\ riesgos."{}}));}
+\DoxyCodeLine{00074\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ ✖\ Se\ han\ detectado\ errores\ en\ la\ configuración\ SPI."{}}));}
+\DoxyCodeLine{00076\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ Revisa\ el\ wiring\ y\ los\ pinMode\ antes\ de\ continuar."{}}));}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}====================================================\(\backslash\)n"{}}));}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordflow}{return}\ ok;}
+\DoxyCodeLine{00082\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{msg_8h_ac8b26000ef8aae4924203b9c1eae1e04_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{msg_8h_aef4f8d6078f2812b9b830dbc52956760}\index{msg.h@{msg.h}!verificar\_configuracion\_spi\_PIN\_Slave@{verificar\_configuracion\_spi\_PIN\_Slave}}
+\index{verificar\_configuracion\_spi\_PIN\_Slave@{verificar\_configuracion\_spi\_PIN\_Slave}!msg.h@{msg.h}}
+\doxysubsubsection{\texorpdfstring{verificar\_configuracion\_spi\_PIN\_Slave()}{verificar\_configuracion\_spi\_PIN\_Slave()}}
+{\footnotesize\ttfamily \label{msg_8h_aef4f8d6078f2812b9b830dbc52956760} 
+bool verificar\+\_\+configuracion\+\_\+spi\+\_\+\+PIN\+\_\+\+Slave (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica si la configuración de pines SPI corresponde al modo Esclavo. 
+
+Comprueba que los pines SPI están configurados adecuadamente para operar como Esclavo.
+
+\begin{DoxyReturn}{Devuelve}
+true si la configuración es correcta, false en caso contrario.
+\end{DoxyReturn}
+Verifica si la configuración de pines SPI corresponde al modo Esclavo.
+
+Comprueba:\+
+\begin{DoxyItemize}
+\item MOSI (51) → INPUT ~\newline
+
+\item MISO (50) → OUTPUT ~\newline
+
+\item SCK (52) → INPUT ~\newline
+
+\item SS (53) → INPUT (controlado por el maestro) ~\newline
+
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Devuelve}
+true si todos los pines están configurados correctamente, false si se detecta algún error. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{msg_8cpp_source_l00095}{95}} del archivo \doxymbox{\hyperlink{msg_8cpp_source}{msg.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordtype}{bool}\ ok\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)n===================================================="{}}));}
+\DoxyCodeLine{00099\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ VERIFICACIÓN\ DE\ CONFIGURACIÓN\ SPI\ (MEGA\ ESCLAVO)"{}}));}
+\DoxyCodeLine{00100\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}===================================================="{}}));}
+\DoxyCodeLine{00101\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ Pin\ |\ Señal\ |\ Dirección\ esperada\ |\ Estado\ detectado"{}}));}
+\DoxyCodeLine{00102\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{comment}{//\ MOSI\ (51)\ →\ INPUT}}
+\DoxyCodeLine{00105\ \ \ pinMode(51,\ INPUT\_PULLUP);\ \textcolor{comment}{//\ test\ temporal}}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{if}\ (digitalRead(51)\ ==\ HIGH\ ||\ digitalRead(51)\ ==\ LOW)\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 51\ \ |\ MOSI\ \ |\ INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ OK"{}}));}
+\DoxyCodeLine{00108\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 51\ \ |\ MOSI\ \ |\ INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ ERROR"{}}));}
+\DoxyCodeLine{00110\ \ \ \ \ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00111\ \ \ \}}
+\DoxyCodeLine{00112\ \ \ pinMode(51,\ INPUT);\ \textcolor{comment}{//\ restaurar}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \textcolor{comment}{//\ MISO\ (50)\ →\ OUTPUT}}
+\DoxyCodeLine{00115\ \ \ pinMode(50,\ OUTPUT);}
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordflow}{if}\ (digitalRead(50)\ ==\ HIGH\ ||\ digitalRead(50)\ ==\ LOW)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 50\ \ |\ MISO\ \ |\ OUTPUT\ \ \ \ \ \ \ \ \ \ \ \ \ |\ OK"{}}));}
+\DoxyCodeLine{00118\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 50\ \ |\ MISO\ \ |\ OUTPUT\ \ \ \ \ \ \ \ \ \ \ \ \ |\ ERROR"{}}));}
+\DoxyCodeLine{00120\ \ \ \ \ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00121\ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \textcolor{comment}{//\ SCK\ (52)\ →\ INPUT}}
+\DoxyCodeLine{00124\ \ \ pinMode(52,\ INPUT\_PULLUP);\ \textcolor{comment}{//\ test\ temporal}}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordflow}{if}\ (digitalRead(52)\ ==\ HIGH\ ||\ digitalRead(52)\ ==\ LOW)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 52\ \ |\ SCK\ \ \ |\ INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ OK"{}}));}
+\DoxyCodeLine{00127\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 52\ \ |\ SCK\ \ \ |\ INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ ERROR"{}}));}
+\DoxyCodeLine{00129\ \ \ \ \ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00130\ \ \ \}}
+\DoxyCodeLine{00131\ \ \ pinMode(52,\ INPUT);\ \textcolor{comment}{//\ restaurar}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \textcolor{comment}{//\ SS\ (53)\ →\ INPUT}}
+\DoxyCodeLine{00134\ \ \ pinMode(53,\ INPUT\_PULLUP);\ \textcolor{comment}{//\ test\ temporal}}
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordflow}{if}\ (digitalRead(53)\ ==\ HIGH\ ||\ digitalRead(53)\ ==\ LOW)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 53\ \ |\ SS\ \ \ \ |\ INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ OK"{}}));}
+\DoxyCodeLine{00137\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ 53\ \ |\ SS\ \ \ \ |\ INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ ERROR"{}}));}
+\DoxyCodeLine{00139\ \ \ \ \ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00140\ \ \ \}}
+\DoxyCodeLine{00141\ \ \ pinMode(53,\ INPUT);\ \textcolor{comment}{//\ restaurar}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordflow}{if}\ (ok)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ ✔\ Configuración\ SPI\ ESCLAVO\ correcta."{}}));}
+\DoxyCodeLine{00147\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ El\ módulo\ SPI\ puede\ iniciarse\ sin\ riesgos."{}}));}
+\DoxyCodeLine{00148\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ ✖\ Errores\ detectados\ en\ la\ configuración\ SPI\ ESCLAVO."{}}));}
+\DoxyCodeLine{00150\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ Revisa\ wiring\ y\ pinMode\ antes\ de\ continuar."{}}));}
+\DoxyCodeLine{00151\ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ Serial.println(F(\textcolor{stringliteral}{"{}====================================================\(\backslash\)n"{}}));}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordflow}{return}\ ok;}
+\DoxyCodeLine{00156\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{msg_8h_aef4f8d6078f2812b9b830dbc52956760_icgraph}
+\end{center}
+\end{figure}

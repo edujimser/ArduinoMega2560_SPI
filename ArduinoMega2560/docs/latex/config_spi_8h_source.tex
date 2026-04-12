@@ -1,0 +1,131 @@
+\doxysection{config\+Spi.\+h}
+\hypertarget{config_spi_8h_source}{}\label{config_spi_8h_source}\index{configSpi.h@{configSpi.h}}
+\doxymbox{\hyperlink{config_spi_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ spi\_config.h}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Definiciones,\ constantes\ y\ parámetros\ de\ configuración\ del\ sistema\ SPI.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Este\ archivo\ contiene\ la\ configuración\ principal\ del\ módulo\ SPI\ utilizada}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00006}00006\ \textcolor{comment}{\ *\ tanto\ por\ el\ maestro\ como\ por\ el\ esclavo.\ Incluye:}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00007}00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00008}00008\ \textcolor{comment}{\ *\ \ -\/\ Selección\ del\ modo\ de\ operación\ (MASTER,\ SLAVE,\ SLAVE\_PRUEBA)}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ -\/\ Definición\ de\ los\ pines\ hardware\ del\ bus\ SPI\ (SS,\ MOSI,\ MISO,\ SCK)}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ -\/\ Códigos\ de\ error\ asociados\ a\ fallos\ en\ la\ comunicación\ SPI}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00011}00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00012}00012\ \textcolor{comment}{\ *\ Su\ propósito\ es\ centralizar\ todos\ los\ parámetros\ críticos\ del\ sistema\ SPI}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00013}00013\ \textcolor{comment}{\ *\ para\ garantizar\ coherencia\ entre\ módulos,\ facilitar\ la\ depuración\ y\ permitir}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00014}00014\ \textcolor{comment}{\ *\ una\ configuración\ flexible\ del\ entorno\ de\ comunicación.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00015}00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00016}00016\ \textcolor{comment}{\ *\ @section\ CONFIGURACION\_SPI\ Selección\ del\ modo\ SPI}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00017}00017\ \textcolor{comment}{\ *\ Se\ definen\ macros\ para\ compilar\ el\ firmware\ en\ modo\ maestro,\ esclavo\ o}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00018}00018\ \textcolor{comment}{\ *\ esclavo\ de\ prueba.\ Solo\ uno\ de\ ellos\ debe\ estar\ activo\ simultáneamente.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00019}00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00020}00020\ \textcolor{comment}{\ *\ @section\ PINES\_SPI\ Pines\ hardware\ del\ bus\ SPI}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00021}00021\ \textcolor{comment}{\ *\ Se\ especifican\ los\ pines\ utilizados\ por\ el\ microcontrolador\ para\ la\ interfaz}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00022}00022\ \textcolor{comment}{\ *\ SPI\ estándar\ (SS,\ MOSI,\ MISO,\ SCK).\ Estos\ valores\ deben\ corresponder\ a\ los}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00023}00023\ \textcolor{comment}{\ *\ pines\ físicos\ del\ hardware\ utilizado.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00024}00024\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00025}00025\ \textcolor{comment}{\ *\ @section\ CODIGOS\_ERROR\_SPI\ Códigos\ de\ error\ del\ sistema\ SPI}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00026}00026\ \textcolor{comment}{\ *\ Se\ definen\ códigos\ de\ error\ de\ 8\ bits\ que\ permiten\ identificar\ fallos}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00027}00027\ \textcolor{comment}{\ *\ específicos\ durante\ la\ transferencia\ SPI,\ tales\ como\ timeouts,\ colisiones}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00028}00028\ \textcolor{comment}{\ *\ de\ escritura,\ falta\ de\ inicialización\ o\ estados\ incorrectos\ del\ pin\ SS.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00029}00029\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00030}00030\ \textcolor{comment}{\ *\ @note\ Este\ archivo\ debe\ incluirse\ en\ todos\ los\ módulos\ que\ utilicen\ SPI}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00031}00031\ \textcolor{comment}{\ *\ \ \ \ \ \ \ para\ asegurar\ una\ configuración\ consistente\ del\ sistema.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00032}00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00034}00034\ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00035}00035\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00036}00036\ \textcolor{comment}{\ *\ @def\ MASTER}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00037}00037\ \textcolor{comment}{\ *\ @brief\ Activa\ el\ modo\ maestro\ SPI.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00038}00038\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00039}00039\ \textcolor{comment}{\ *\ Colocar\ en\ 1\ para\ compilar\ en\ modo\ maestro.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00040}00040\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00041}\doxymbox{\hyperlink{config_spi_8h_a3fa2d3bf1901157f734a584d47b25d8b}{00041}}\ \textcolor{preprocessor}{\#define\ MASTER\ 0}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00042}00042\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00043}00043\ \textcolor{comment}{\ *\ @def\ SLAVE}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00044}00044\ \textcolor{comment}{\ *\ @brief\ Activa\ el\ modo\ esclavo\ SPI.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00045}00045\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00046}00046\ \textcolor{comment}{\ *\ Colocar\ en\ 1\ para\ compilar\ en\ modo\ esclavo.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00047}00047\ \textcolor{comment}{\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00048}\doxymbox{\hyperlink{config_spi_8h_ae342da5a4630c191c1c983958808edd8}{00048}}\ \textcolor{preprocessor}{\#define\ SLAVE\ 1}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00049}00049\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00050}00050\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00051}00051\ \textcolor{comment}{\ *\ @def\ SLAVE\_PRUEBA}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00052}00052\ \textcolor{comment}{\ *\ @brief\ Activa\ un\ modo\ esclavo\ especial\ para\ pruebas.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00053}00053\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00054}\doxymbox{\hyperlink{config_spi_8h_a1136776b8503ea922d2bd82afbdf48a0}{00054}}\ \textcolor{preprocessor}{\#define\ SLAVE\_PRUEBA\ 0}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00056}00056\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00057}00057\ \textcolor{comment}{\ *\ @section\ PINES\_SPI\ Pines\ hardware\ del\ bus\ SPI}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00058}00058\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00059}00059\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00060}00060\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00061}00061\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00062}00062\ \textcolor{comment}{\ *\ @brief\ Pin\ SS\ (Slave\ Select)\ usado\ por\ el\ maestro\ para\ seleccionar\ al\ esclavo.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00063}00063\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00064}\doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{00064}}\ \textcolor{keyword}{const}\ uint8\_t\ \doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\_SS}}\ \ \ =\ 53;}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00065}00065\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00066}00066\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00067}00067\ \textcolor{comment}{\ *\ @brief\ Pin\ MOSI\ (Master\ Out\ Slave\ In).\ \ }}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00068}00068\ \textcolor{comment}{\ *\ Línea\ de\ datos\ desde\ el\ maestro\ hacia\ el\ esclavo.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00069}00069\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00070}\doxymbox{\hyperlink{config_spi_8h_a88b6a485feaa606be9ddc27c26a5491d}{00070}}\ \textcolor{keyword}{const}\ uint8\_t\ \doxymbox{\hyperlink{config_spi_8h_a88b6a485feaa606be9ddc27c26a5491d}{PIN\_MOSI}}\ =\ 51;}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00071}00071\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00072}00072\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00073}00073\ \textcolor{comment}{\ *\ @brief\ Pin\ MISO\ (Master\ In\ Slave\ Out).\ \ }}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00074}00074\ \textcolor{comment}{\ *\ Línea\ de\ datos\ desde\ el\ esclavo\ hacia\ el\ maestro.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00075}00075\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00076}\doxymbox{\hyperlink{config_spi_8h_a7bb9f3a473e25d5daf49abdb8aaf7dfd}{00076}}\ \textcolor{keyword}{const}\ uint8\_t\ \doxymbox{\hyperlink{config_spi_8h_a7bb9f3a473e25d5daf49abdb8aaf7dfd}{PIN\_MISO}}\ =\ 50;}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00077}00077\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00078}00078\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00079}00079\ \textcolor{comment}{\ *\ @brief\ Pin\ SCK\ (Serial\ Clock).\ \ }}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00080}00080\ \textcolor{comment}{\ *\ Reloj\ generado\ por\ el\ maestro.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00081}00081\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00082}\doxymbox{\hyperlink{config_spi_8h_a590dd7c2bde4409edd86324f3d0b1616}{00082}}\ \textcolor{keyword}{const}\ uint8\_t\ \doxymbox{\hyperlink{config_spi_8h_a590dd7c2bde4409edd86324f3d0b1616}{PIN\_SCK}}\ \ =\ 52;}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00084}00084\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00085}00085\ \textcolor{comment}{\ *\ @section\ CODIGOS\_ERROR\_SPI\ Códigos\ de\ error\ del\ sistema\ SPI}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00086}00086\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00087}00087\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00088}00088\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00089}00089\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00090}00090\ \textcolor{comment}{\ *\ @def\ SPI\_ERROR\_TIMEOUT}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00091}00091\ \textcolor{comment}{\ *\ @brief\ Error:\ la\ transferencia\ SPI\ excedió\ el\ tiempo\ máximo\ permitido.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00092}00092\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00093}\doxymbox{\hyperlink{config_spi_8h_a45032087ada7489c059a091d723f6758}{00093}}\ \textcolor{preprocessor}{\#define\ SPI\_ERROR\_TIMEOUT\ \ \ \ \ \ \ \ \ \ \ 0xFF}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00094}00094\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00095}00095\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00096}00096\ \textcolor{comment}{\ *\ @def\ SPI\_ERROR\_NO\_INIT\_SPE}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00097}00097\ \textcolor{comment}{\ *\ @brief\ Error:\ el\ módulo\ SPI\ no\ está\ habilitado\ (bit\ SPE\ =\ 0).}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00098}00098\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00099}\doxymbox{\hyperlink{config_spi_8h_aaa4db819f7fa370739bd86a623a5b821}{00099}}\ \textcolor{preprocessor}{\#define\ SPI\_ERROR\_NO\_INIT\_SPE\ \ \ \ \ \ \ 0xFE}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00100}00100\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00101}00101\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00102}00102\ \textcolor{comment}{\ *\ @def\ SPI\_ERROR\_NO\_INIT\_SS}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00103}00103\ \textcolor{comment}{\ *\ @brief\ Error:\ el\ pin\ SS\ no\ estaba\ en\ LOW\ cuando\ se\ esperaba.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00104}00104\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00105}\doxymbox{\hyperlink{config_spi_8h_af3e6172f96905ab14eb7f84d302d27e6}{00105}}\ \textcolor{preprocessor}{\#define\ SPI\_ERROR\_NO\_INIT\_SS\ \ \ \ \ \ \ \ 0xFD}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00106}00106\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00107}00107\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00108}00108\ \textcolor{comment}{\ *\ @def\ SPI\_ERROR\_WCOL}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00109}00109\ \textcolor{comment}{\ *\ @brief\ Error:\ colisión\ de\ escritura\ (bit\ WCOL\ =\ 1).}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00110}00110\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00111}\doxymbox{\hyperlink{config_spi_8h_a2ae72234c68fac9d445d218951f66c13}{00111}}\ \textcolor{preprocessor}{\#define\ SPI\_ERROR\_WCOL\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0xFC}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00112}00112\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00113}00113\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00114}00114\ \textcolor{comment}{\ *\ @def\ SPI\_ERROR\_NO\_REQUEST\_SLAVE}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00115}00115\ \textcolor{comment}{\ *\ @brief\ Error:\ el\ esclavo\ no\ responde\ (recibido\ 0x00\ o\ 0xFF).}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00116}00116\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00117}\doxymbox{\hyperlink{config_spi_8h_aaa697b4ed80507e7f75458ff2c1a4ce3}{00117}}\ \textcolor{preprocessor}{\#define\ SPI\_ERROR\_NO\_REQUEST\_SLAVE\ \ 0xFB}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00118}00118\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00119}00119\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00120}00120\ \textcolor{comment}{\ *\ @def\ SPI\_ERROR\_PIN\_SS\_HIGH}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00121}00121\ \textcolor{comment}{\ *\ @brief\ Error:\ el\ pin\ SS\ se\ encuentra\ en\ HIGH\ durante\ la\ transferencia.}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00122}00122\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00123}\doxymbox{\hyperlink{config_spi_8h_af1b9cb9955d7fceecd7d9b3f94bede98}{00123}}\ \textcolor{preprocessor}{\#define\ SPI\_ERROR\_PIN\_SS\_HIGH\ \ \ \ \ \ \ 0xFA}}
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{config_spi_8h_source_l00125}00125\ }
+
+\end{DoxyCode}

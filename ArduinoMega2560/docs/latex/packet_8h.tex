@@ -1,0 +1,1254 @@
+\doxysection{Referencia del archivo packet.\+h}
+\hypertarget{packet_8h}{}\label{packet_8h}\index{packet.h@{packet.h}}
+
+
+Definición del protocolo SPI, estructura \doxylink{struct_packet}{Packet} y funciones asociadas.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+Gráfico de dependencias incluidas en packet.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=138pt]{packet_8h__incl}
+\end{center}
+\end{figure}
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{packet_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_packet}{Packet}}
+\begin{DoxyCompactList}\small\item\em Representa un paquete SPI completo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\+\_\+\+SIZE}}~8
+\begin{DoxyCompactList}\small\item\em Número de bytes disponibles en el payload del paquete SPI. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\+\_\+\+SIZE}}~(1 + 1 + 2 + \doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\+\_\+\+SIZE}} + 1)
+\begin{DoxyCompactList}\small\item\em Tamaño total del paquete SPI (ID + LEN + CHECKSUM + PAYLOAD + CRC) = 11. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{packet_8h_aa47a722f20125405f90819c2b9a3c1b2}{PACKET\+\_\+\+SIZE\+\_\+\+WITHOUT\+\_\+\+CRC}}~(\doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\+\_\+\+SIZE}} -\/ 1)
+\begin{DoxyCompactList}\small\item\em Tamaño del paquete sin el byte de CRC. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{packet_8h_aa9014c0323292997ecf2e930bb21ea8d}{POSITION\+\_\+\+PAYLOAD\+\_\+\+BYTE}}~4
+\begin{DoxyCompactList}\small\item\em Posición del primer byte del payload en el paquete SPI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{Packet\+Status}} \{ \newline
+\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{PKT\+\_\+\+VALUE\+\_\+\+NONE}} = -\/2
+, \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{PKT\+\_\+\+PAYLOAD\+\_\+\+NONE}} = -\/1
+, \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{PKT\+\_\+\+OK}} = 0
+, \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}{PKT\+\_\+\+ERR\+\_\+\+PAYLOAD\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE}} = 1
+, \newline
+\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}{PKT\+\_\+\+ERR\+\_\+\+NULL\+\_\+\+PTR}} = 2
+, \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c}{PKT\+\_\+\+ERR\+\_\+\+PAYLOAD\+\_\+\+SIZE\+\_\+\+EXCEEDED}} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Códigos de estado para validación y diagnóstico de paquetes SPI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{packet_8h_afb9f26e5ed47e64c9afbd9711a2c5fb6}{build\+\_\+packet}} (\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}pkt, bool msg, uint32\+\_\+t delay\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Construye un paquete SPI válido y calcula su CRC. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{packet_8h_a520b2a685995c323d0bac7d1f79b7459}{crc8}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Calcula el CRC-\/8 de un buffer. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{packet_8h_ada6bc2cff356ad505d96e2888b32a40a}{crc8\+\_\+valido}} (\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}pkt)
+\begin{DoxyCompactList}\small\item\em Verifica la coherencia de un paquete mediante CRC8. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{packet_8h_ac216a312b1db78dfde3a43cd2733d2de}{checksum8\+\_\+calculo}} (\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}pkt)
+\begin{DoxyCompactList}\small\item\em Calcula el checksum de 16 bits del payload del paquete. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{packet_8h_ab8fd857fb6319b1b97f299ad59fac634}{checksum8\+\_\+calculo\+\_\+slave}} (\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}pkt)
+\begin{DoxyCompactList}\small\item\em Calcula y verifica el checksum de 16 bits del payload recibido. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{packet_8h_a9fc3c27519b5ba7891fc640a3eed6259}{mostrar\+\_\+packet\+\_\+tabla}} (\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}pkt)
+\begin{DoxyCompactList}\small\item\em Muestra el contenido del paquete en formato tabla. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{Packet\+Status}} \doxymbox{\hyperlink{packet_8h_a3ca3bca1ec695199fd56913813acddf3}{validate\+\_\+payload}} (\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}pkt)
+\begin{DoxyCompactList}\small\item\em Valida los campos del payload y la coherencia del paquete. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{packet_8h_abb58e666a4ac9bd96a52c43369150cee}{mostrar\+\_\+estado\+\_\+completo}} (\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{Packet\+Status}} st, int8\+\_\+t payload\+\_\+index, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Muestra información detallada del estado del paquete. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{packet_8h_a7e76fba52377be95233416aba19130b7}{mostrar\+\_\+packet\+\_\+recibido}} (const \doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}pkt)
+\begin{DoxyCompactList}\small\item\em Muestra por Serial el contenido de un paquete SPI recibido. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{packet_8h_aa53dcb7ed5d9f0c950f286f79e7fc246}{mostrar\+\_\+validacion\+\_\+crc}} (uint8\+\_\+t crc\+\_\+recibido, uint8\+\_\+t crc\+\_\+calculado)
+\begin{DoxyCompactList}\small\item\em Muestra en el monitor serie el resultado de la validación CRC8. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{packet_8h_a1480ba1be7fce0bb70e458004ca971e9}{mostrar\+\_\+datos\+\_\+checksum\+\_\+slave}} (const \doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}pkt, uint8\+\_\+t sum\+\_\+\+Byte\+\_\+0, uint8\+\_\+t sum\+\_\+\+Byte\+\_\+1, bool valido)
+\begin{DoxyCompactList}\small\item\em Muestra el resultado de la validación del checksum de 16 bits. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_packet}{Packet}} \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}
+\begin{DoxyCompactList}\small\item\em Verificación en tiempo de compilación del tamaño del paquete. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Definición del protocolo SPI, estructura \doxylink{struct_packet}{Packet} y funciones asociadas. 
+
+Este archivo contiene la definición del paquete SPI utilizado en el sistema, así como los códigos de estado, constantes del protocolo y prototipos de funciones para construir, validar y visualizar paquetes. 
+
+Definición en el archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{packet_8h_doc-define-members}
+\doxysubsection{Documentación de «define»}
+\Hypertarget{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}\index{packet.h@{packet.h}!PACKET\_SIZE@{PACKET\_SIZE}}
+\index{PACKET\_SIZE@{PACKET\_SIZE}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{PACKET\_SIZE}{PACKET\_SIZE}}
+{\footnotesize\ttfamily \label{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b} 
+\+\#define PACKET\+\_\+\+SIZE~(1 + 1 + 2 + \doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\+\_\+\+SIZE}} + 1)}
+
+
+
+Tamaño total del paquete SPI (ID + LEN + CHECKSUM + PAYLOAD + CRC) = 11. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00025}{25}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{packet_8h_aa47a722f20125405f90819c2b9a3c1b2}\index{packet.h@{packet.h}!PACKET\_SIZE\_WITHOUT\_CRC@{PACKET\_SIZE\_WITHOUT\_CRC}}
+\index{PACKET\_SIZE\_WITHOUT\_CRC@{PACKET\_SIZE\_WITHOUT\_CRC}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{PACKET\_SIZE\_WITHOUT\_CRC}{PACKET\_SIZE\_WITHOUT\_CRC}}
+{\footnotesize\ttfamily \label{packet_8h_aa47a722f20125405f90819c2b9a3c1b2} 
+\+\#define PACKET\+\_\+\+SIZE\+\_\+\+WITHOUT\+\_\+\+CRC~(\doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\+\_\+\+SIZE}} -\/ 1)}
+
+
+
+Tamaño del paquete sin el byte de CRC. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00028}{28}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}\index{packet.h@{packet.h}!PAYLOAD\_SIZE@{PAYLOAD\_SIZE}}
+\index{PAYLOAD\_SIZE@{PAYLOAD\_SIZE}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{PAYLOAD\_SIZE}{PAYLOAD\_SIZE}}
+{\footnotesize\ttfamily \label{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d} 
+\+\#define PAYLOAD\+\_\+\+SIZE~8}
+
+
+
+Número de bytes disponibles en el payload del paquete SPI. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00019}{19}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+\Hypertarget{packet_8h_aa9014c0323292997ecf2e930bb21ea8d}\index{packet.h@{packet.h}!POSITION\_PAYLOAD\_BYTE@{POSITION\_PAYLOAD\_BYTE}}
+\index{POSITION\_PAYLOAD\_BYTE@{POSITION\_PAYLOAD\_BYTE}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{POSITION\_PAYLOAD\_BYTE}{POSITION\_PAYLOAD\_BYTE}}
+{\footnotesize\ttfamily \label{packet_8h_aa9014c0323292997ecf2e930bb21ea8d} 
+\+\#define POSITION\+\_\+\+PAYLOAD\+\_\+\+BYTE~4}
+
+
+
+Posición del primer byte del payload en el paquete SPI. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00034}{34}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{packet_8h_doc-enum-members}
+\doxysubsection{Documentación de enumeraciones}
+\Hypertarget{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}\index{packet.h@{packet.h}!PacketStatus@{PacketStatus}}
+\index{PacketStatus@{PacketStatus}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{PacketStatus}{PacketStatus}}
+{\footnotesize\ttfamily \label{packet_8h_a4bfd4d15be352a21c38bec38fc710d46} 
+enum \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{Packet\+Status}}}
+
+
+
+Códigos de estado para validación y diagnóstico de paquetes SPI. 
+
+\begin{DoxyEnumFields}[2]{Valores de enumeraciones}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PKT\_VALUE\_NONE@{PKT\_VALUE\_NONE}!packet.h@{packet.h}}
+\index{packet.h@{packet.h}!PKT\_VALUE\_NONE@{PKT\_VALUE\_NONE}}
+}\Hypertarget{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}\label{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c} 
+PKT\+\_\+\+VALUE\+\_\+\+NONE&No se proporciona un valor asociado. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PKT\_PAYLOAD\_NONE@{PKT\_PAYLOAD\_NONE}!packet.h@{packet.h}}
+\index{packet.h@{packet.h}!PKT\_PAYLOAD\_NONE@{PKT\_PAYLOAD\_NONE}}
+}\Hypertarget{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}\label{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1} 
+PKT\+\_\+\+PAYLOAD\+\_\+\+NONE&No se especifica un índice de payload. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PKT\_OK@{PKT\_OK}!packet.h@{packet.h}}
+\index{packet.h@{packet.h}!PKT\_OK@{PKT\_OK}}
+}\Hypertarget{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}\label{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c} 
+PKT\+\_\+\+OK&El paquete es válido. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE@{PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE}!packet.h@{packet.h}}
+\index{packet.h@{packet.h}!PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE@{PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE}}
+}\Hypertarget{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}\label{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516} 
+PKT\+\_\+\+ERR\+\_\+\+PAYLOAD\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE&Algún payload excede el rango permitido. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PKT\_ERR\_NULL\_PTR@{PKT\_ERR\_NULL\_PTR}!packet.h@{packet.h}}
+\index{packet.h@{packet.h}!PKT\_ERR\_NULL\_PTR@{PKT\_ERR\_NULL\_PTR}}
+}\Hypertarget{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}\label{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670} 
+PKT\+\_\+\+ERR\+\_\+\+NULL\+\_\+\+PTR&El puntero al paquete es NULL. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED@{PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED}!packet.h@{packet.h}}
+\index{packet.h@{packet.h}!PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED@{PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED}}
+}\Hypertarget{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c}\label{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c} 
+PKT\+\_\+\+ERR\+\_\+\+PAYLOAD\+\_\+\+SIZE\+\_\+\+EXCEEDED&El tamaño del struct no coincide con PACKET\+\_\+\+SIZE. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8h_source_l00040}{40}} del archivo \doxymbox{\hyperlink{packet_8h_source}{packet.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{PKT\_VALUE\_NONE}}\ =\ -\/2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ No\ se\ proporciona\ un\ valor\ asociado.\ */}}
+\DoxyCodeLine{00042\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{PKT\_PAYLOAD\_NONE}}\ =\ -\/1,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ No\ se\ especifica\ un\ índice\ de\ payload.\ */}}
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{PKT\_OK}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ El\ paquete\ es\ válido.\ */}}
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}{PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE}}\ =\ 1,\ \ \textcolor{comment}{/**<\ Algún\ payload\ excede\ el\ rango\ permitido.\ */}}
+\DoxyCodeLine{00045\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}{PKT\_ERR\_NULL\_PTR}}\ =\ 2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ El\ puntero\ al\ paquete\ es\ NULL.\ */}}
+\DoxyCodeLine{00046\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c}{PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED}}\ =\ 3\ \ \textcolor{comment}{/**<\ El\ tamaño\ del\ struct\ no\ coincide\ con\ PACKET\_SIZE.\ */}}
+\DoxyCodeLine{00047\ \}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{PacketStatus}};}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{packet_8h_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{packet_8h_afb9f26e5ed47e64c9afbd9711a2c5fb6}\index{packet.h@{packet.h}!build\_packet@{build\_packet}}
+\index{build\_packet@{build\_packet}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{build\_packet()}{build\_packet()}}
+{\footnotesize\ttfamily \label{packet_8h_afb9f26e5ed47e64c9afbd9711a2c5fb6} 
+void build\+\_\+packet (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}}]{pkt}{, }\item[{bool}]{msg}{, }\item[{uint32\+\_\+t}]{delay\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Construye un paquete SPI válido y calcula su CRC. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete a construir. \\
+\hline
+{\em msg} & Si es true, muestra el paquete por Serial. \\
+\hline
+{\em delay\+\_\+ms} & Retardo opcional tras mostrar el paquete.\\
+\hline
+\end{DoxyParams}
+Esta función valida el contenido del paquete antes de construirlo mediante \doxylink{packet_8cpp_a3ca3bca1ec695199fd56913813acddf3}{validate\+\_\+payload()}. Si la validación falla (por ejemplo, por un payload fuera de rango o un puntero inválido), el paquete se limpia completamente con memset() y no se calcula ningún CRC.
+
+En caso de que el paquete sea válido, se genera el CRC8 a partir de los campos ID, LEN y los 8 payloads, y se almacena en el campo CRC del paquete. Opcionalmente, puede mostrarse una tabla con el contenido final del paquete.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete a construir y actualizar. \\
+\hline
+{\em msg} & Si es true, se mostrará una tabla con el contenido del paquete. \\
+\hline
+{\em delay\+\_\+ms} & Parámetro reservado para uso futuro (por ejemplo, temporización asociada al envío del paquete).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Nota}
+Si la validación falla, el contenido del paquete se resetea a cero mediante memset() y la función retorna sin modificar el CRC. 
+\end{DoxyNote}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00054}{54}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Validar\ el\ contenido\ del\ paquete\ antes\ de\ construirlo}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Si\ la\ validación\ falla,\ se\ muestra\ el\ paquete\ (si\ msg\ ==\ true),}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ se\ limpia\ completamente\ la\ estructura\ y\ se\ aborta\ la\ construcción.}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{PacketStatus}}\ st\ =\ \doxymbox{\hyperlink{packet_8cpp_a3ca3bca1ec695199fd56913813acddf3}{validate\_payload}}(pkt);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Calcular\ el\ checksum\ de\ 16\ bits\ a\ partir\ del\ payload\ y\ almacenarlo\ en\ el\ paquete}}
+\DoxyCodeLine{00063\ \ \ \ \ \doxymbox{\hyperlink{packet_8cpp_ac216a312b1db78dfde3a43cd2733d2de}{checksum8\_calculo}}(pkt);\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (st\ !=\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{PKT\_OK}})\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (msg)\ \doxymbox{\hyperlink{packet_8cpp_a9fc3c27519b5ba7891fc640a3eed6259}{mostrar\_packet\_tabla}}(pkt);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ memset(pkt,\ 0x00,\ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{struct_packet}{Packet}}));\ \ \ \textcolor{comment}{//\ Reset\ completo\ del\ paquete}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ Construir\ un\ buffer\ temporal\ con\ los\ campos\ que\ se\ usarán\ para\ el\ CRC}}
+\DoxyCodeLine{00072\ \ \ \ \ uint8\_t\ buffer[\doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\_SIZE}}];}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ buffer[0]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\_0}};}
+\DoxyCodeLine{00075\ \ \ \ \ buffer[1]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}{payload\_1}};}
+\DoxyCodeLine{00076\ \ \ \ \ buffer[2]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}{payload\_2}};}
+\DoxyCodeLine{00077\ \ \ \ \ buffer[3]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_afed0be2706ac18e39fe488aa49f80e31}{payload\_3}};}
+\DoxyCodeLine{00078\ \ \ \ \ buffer[4]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}{payload\_4}};}
+\DoxyCodeLine{00079\ \ \ \ \ buffer[5]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}{payload\_5}};}
+\DoxyCodeLine{00080\ \ \ \ \ buffer[6]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}{payload\_6}};}
+\DoxyCodeLine{00081\ \ \ \ \ buffer[7]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}{payload\_7}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ Cálculo\ del\ CRC8\ sobre\ el\ buffer\ construido}}
+\DoxyCodeLine{00085\ \ \ \ \ pkt-\/>\doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}}\ =\ \doxymbox{\hyperlink{packet_8cpp_a520b2a685995c323d0bac7d1f79b7459}{crc8}}(buffer,\ \textcolor{keyword}{sizeof}(buffer));}
+\DoxyCodeLine{00086\ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Mostrar\ el\ paquete\ final\ si\ se\ solicita}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (msg)\ \doxymbox{\hyperlink{packet_8cpp_a9fc3c27519b5ba7891fc640a3eed6259}{mostrar\_packet\_tabla}}(pkt);}
+\DoxyCodeLine{00089\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas de esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packet_8h_afb9f26e5ed47e64c9afbd9711a2c5fb6_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{packet_8h_afb9f26e5ed47e64c9afbd9711a2c5fb6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_ac216a312b1db78dfde3a43cd2733d2de}\index{packet.h@{packet.h}!checksum8\_calculo@{checksum8\_calculo}}
+\index{checksum8\_calculo@{checksum8\_calculo}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{checksum8\_calculo()}{checksum8\_calculo()}}
+{\footnotesize\ttfamily \label{packet_8h_ac216a312b1db78dfde3a43cd2733d2de} 
+void checksum8\+\_\+calculo (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}}]{pkt}{}\end{DoxyParamCaption})}
+
+
+
+Calcula el checksum de 16 bits del payload del paquete. 
+
+Esta función recorre los bytes del payload definidos por POSITION\+\_\+\+PAYLOAD\+\_\+\+BYTE y PAYLOAD\+\_\+\+SIZE, acumulando su valor en un registro de 16 bits. El resultado final se almacena en los campos chech\+Sum\+Byte\+\_\+0 (LSB) y chech\+Sum\+Byte\+\_\+1 (MSB) de la estructura \doxylink{struct_packet}{Packet}, siguiendo el formato little-\/endian.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero a la estructura \doxylink{struct_packet}{Packet} sobre la que se generará y almacenará el checksum.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+{\ttfamily pkt} debe apuntar a una estructura \doxylink{struct_packet}{Packet} válida y con el payload correctamente inicializado.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+Los campos {\ttfamily chech\+Sum\+Byte\+\_\+0} y {\ttfamily chech\+Sum\+Byte\+\_\+1} contendrán el checksum de 16 bits correspondiente al payload del paquete.
+\end{DoxyPostcond}
+Calcula el checksum de 16 bits del payload del paquete.
+
+Esta función recorre secuencialmente los bytes del payload del paquete, comenzando en POSITION\+\_\+\+PAYLOAD\+\_\+\+BYTE y procesando exactamente PAYLOAD\+\_\+\+SIZE bytes consecutivos. Cada byte se acumula en la variable interna {\ttfamily sum}, cuyo tamaño de 16 bits permite almacenar el resultado completo de la suma.
+
+Una vez finalizado el cálculo, el valor de 16 bits se divide en dos partes:\+
+\begin{DoxyItemize}
+\item chech\+Sum\+Byte\+\_\+0 :\+ Byte menos significativo (LSB).
+\item chech\+Sum\+Byte\+\_\+1 :\+ Byte más significativo (MSB).
+\end{DoxyItemize}
+
+Ambos bytes se almacenan en la estructura \doxylink{struct_packet}{Packet} siguiendo el formato little-\/endian, habitual en microcontroladores AVR/\+\+ARM, lo que garantiza compatibilidad con protocolos binarios que transmiten valores de 16 bits descompuestos en dos octetos.
+
+\begin{DoxyNote}{Nota}
+La función no valida el contenido del payload ni comprueba límites. Se asume que POSITION\+\_\+\+PAYLOAD\+\_\+\+BYTE y PAYLOAD\+\_\+\+SIZE describen un rango de memoria válido dentro de la estructura \doxylink{struct_packet}{Packet}.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete sobre el que se calcula y almacena el checksum.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+{\ttfamily pkt} debe apuntar a una estructura \doxylink{struct_packet}{Packet} correctamente inicializada. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+Los campos {\ttfamily chech\+Sum\+Byte\+\_\+0} y {\ttfamily chech\+Sum\+Byte\+\_\+1} contendrán el checksum de 16 bits generado a partir del payload. 
+\end{DoxyPostcond}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00240}{240}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ int16\_t\ sum\ =\ 0;}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *raw\ =\ (\textcolor{keyword}{const}\ uint8\_t\ *)pkt;}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ \doxymbox{\hyperlink{packet_8h_aa9014c0323292997ecf2e930bb21ea8d}{POSITION\_PAYLOAD\_BYTE}};\ i\ <\ \doxymbox{\hyperlink{packet_8h_aa9014c0323292997ecf2e930bb21ea8d}{POSITION\_PAYLOAD\_BYTE}}\ +\ \doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\_SIZE}};\ i++)\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ sum\ +=\ raw[i];}
+\DoxyCodeLine{00247\ \ \ \ \ \}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{comment}{//\ Guardar\ el\ checksum\ en\ dos\ bytes\ dentro\ del\ paquete}}
+\DoxyCodeLine{00250\ \ \ \ \ pkt-\/>\doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chechSumByte\_0}}\ \ =\ (uint8\_t)(sum\ \&\ 0xFF);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ LSB}}
+\DoxyCodeLine{00251\ \ \ \ \ pkt-\/>\doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chechSumByte\_1}}\ =\ (uint8\_t)((sum\ >>\ 8)\ \&\ 0xFF);\ \ \textcolor{comment}{//\ MSB}}
+\DoxyCodeLine{00252\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packet_8h_ac216a312b1db78dfde3a43cd2733d2de_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_ab8fd857fb6319b1b97f299ad59fac634}\index{packet.h@{packet.h}!checksum8\_calculo\_slave@{checksum8\_calculo\_slave}}
+\index{checksum8\_calculo\_slave@{checksum8\_calculo\_slave}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{checksum8\_calculo\_slave()}{checksum8\_calculo\_slave()}}
+{\footnotesize\ttfamily \label{packet_8h_ab8fd857fb6319b1b97f299ad59fac634} 
+void checksum8\+\_\+calculo\+\_\+slave (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}}]{pkt}{}\end{DoxyParamCaption})}
+
+
+
+Calcula y verifica el checksum de 16 bits del payload recibido. 
+
+Esta función suma los bytes del payload del paquete recibido por SPI y compara el resultado con los valores de checksum almacenados en los campos {\ttfamily chech\+Sum\+Byte\+\_\+0} y {\ttfamily chech\+Sum\+Byte\+\_\+1} del paquete.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero a la estructura \doxylink{struct_packet}{Packet} que contiene los datos recibidos.\\
+\hline
+\end{DoxyParams}
+Calcula y verifica el checksum de 16 bits del payload recibido.
+
+Recorre los bytes del payload del paquete recibido y acumula su suma en un entero de 16 bits. Luego extrae el LSB y MSB de dicha suma y los compara con los valores almacenados en el paquete ({\ttfamily chech\+Sum\+Byte\+\_\+0} y {\ttfamily chech\+Sum\+Byte\+\_\+1}). Finalmente, muestra el resultado de la validación.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete recibido que contiene el payload y los bytes de checksum enviados por el maestro.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Nota}
+Esta función no modifica el contenido del paquete; únicamente calcula y verifica el checksum. 
+\end{DoxyNote}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00271}{271}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ int16\_t\ sum\ =\ 0;}
+\DoxyCodeLine{00273\ \ \ \ \ int8\_t\ \ sum\_Byte\_0\ =\ 0;}
+\DoxyCodeLine{00274\ \ \ \ \ int8\_t\ \ sum\_Byte\_1\ =\ 0;}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordtype}{bool}\ checksum\_valido\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00276\ \ \ \ \ }
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *raw\ =\ (\textcolor{keyword}{const}\ uint8\_t\ *)pkt;}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ \doxymbox{\hyperlink{packet_8h_aa9014c0323292997ecf2e930bb21ea8d}{POSITION\_PAYLOAD\_BYTE}};\ i\ <\ \doxymbox{\hyperlink{packet_8h_aa9014c0323292997ecf2e930bb21ea8d}{POSITION\_PAYLOAD\_BYTE}}\ +\ \doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\_SIZE}};\ i++)\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ sum\ +=\ raw[i];}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{comment}{//\ Datos\ del\ checksum\ de\ 16\ bits\ almacenados\ en\ el\ paquete}}
+\DoxyCodeLine{00284\ \ \ \ \ sum\_Byte\_0\ \ =\ (uint8\_t)(sum\ \&\ 0xFF);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ LSB}}
+\DoxyCodeLine{00285\ \ \ \ \ sum\_Byte\_1\ =\ (uint8\_t)((sum\ >>\ 8)\ \&\ 0xFF);\ \ \textcolor{comment}{//\ MSB}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{if}\ (pkt-\/>\doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chechSumByte\_0}}\ ==\ sum\_Byte\_0\ \&\&\ pkt-\/>\doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chechSumByte\_1}}\ ==\ sum\_Byte\_1)}
+\DoxyCodeLine{00288\ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ checksum\_valido\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ }
+\DoxyCodeLine{00292\ \ \ \ \ \doxymbox{\hyperlink{packet_8cpp_a1480ba1be7fce0bb70e458004ca971e9}{mostrar\_datos\_checksum\_slave}}(pkt,\ sum\_Byte\_0,\ sum\_Byte\_1,\ checksum\_valido);}
+\DoxyCodeLine{00293\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas de esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packet_8h_ab8fd857fb6319b1b97f299ad59fac634_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{packet_8h_ab8fd857fb6319b1b97f299ad59fac634_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_a520b2a685995c323d0bac7d1f79b7459}\index{packet.h@{packet.h}!crc8@{crc8}}
+\index{crc8@{crc8}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{crc8()}{crc8()}}
+{\footnotesize\ttfamily \label{packet_8h_a520b2a685995c323d0bac7d1f79b7459} 
+uint8\+\_\+t crc8 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Calcula el CRC-\/8 de un buffer. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em data} & Puntero al buffer. \\
+\hline
+{\em len} & Longitud del buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Valor CRC-\/8 calculado.
+\end{DoxyReturn}
+Calcula el CRC-\/8 de un buffer.
+
+Esta función implementa el algoritmo CRC-\/8 estándar basado en el polinomio 0x07 (CRC-\/8/\+\+SMBUS). El cálculo se realiza byte a byte y bit a bit, aplicando desplazamientos y XOR según corresponda. No utiliza XOR final ni valor inicial distinto de cero.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em data} & Puntero al bloque de datos de entrada. \\
+\hline
+{\em len} & Número de bytes a procesar.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valores devueltos}
+{\em uint8\+\_\+t} & Valor CRC-\/8 resultante del cálculo.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Nota}
+Este CRC corresponde a la variante CRC-\/8/\+\+SMBUS:\+
+\begin{DoxyItemize}
+\item Polinomio:\+ 0x07
+\item Valor inicial:\+ 0x00
+\item Sin XOR final
+\item Procesamiento MSB-\/first 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00113}{113}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ uint8\_t\ crc\ =\ 0x00;\ \ \textcolor{comment}{//\ Valor\ inicial\ del\ CRC}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ Procesar\ cada\ byte\ del\ buffer}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ len;\ ++i)\ \{}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ crc\ \string^=\ data[i];\ \ \textcolor{comment}{//\ XOR\ inicial\ con\ el\ byte\ actual}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Procesar\ cada\ uno\ de\ los\ 8\ bits\ del\ byte}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ b\ =\ 0;\ b\ <\ 8;\ ++b)\ \{}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ el\ bit\ más\ significativo\ está\ a\ 1,\ aplicar\ polinomio}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (crc\ \&\ 0x80)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ =\ (uint8\_t)((crc\ <<\ 1)\ \string^\ 0x07);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ =\ (uint8\_t)(crc\ <<\ 1);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ crc;\ \ \textcolor{comment}{//\ Resultado\ final\ del\ CRC-\/8}}
+\DoxyCodeLine{00134\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{packet_8h_a520b2a685995c323d0bac7d1f79b7459_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_ada6bc2cff356ad505d96e2888b32a40a}\index{packet.h@{packet.h}!crc8\_valido@{crc8\_valido}}
+\index{crc8\_valido@{crc8\_valido}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{crc8\_valido()}{crc8\_valido()}}
+{\footnotesize\ttfamily \label{packet_8h_ada6bc2cff356ad505d96e2888b32a40a} 
+void crc8\+\_\+valido (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}}]{pkt}{}\end{DoxyParamCaption})}
+
+
+
+Verifica la coherencia de un paquete mediante CRC8. 
+
+Esta función recalcula el CRC8 del paquete recibido (excluyendo el byte de CRC original) y permite validar si el contenido es íntegro o si ha sufrido corrupción durante la transmisión.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete recibido.\\
+\hline
+\end{DoxyParams}
+Esta función toma un paquete recibido, extrae su CRC original y calcula nuevamente el CRC8 sobre todos los campos excepto el propio CRC. El cálculo utiliza el polinomio estándar 0x07, sin reflexión y con valor inicial 0x00.
+
+El objetivo es determinar si el paquete ha sido recibido correctamente o si presenta corrupción en alguno de sus bytes.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete recibido que contiene ID, longitud, payload y CRC.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Nota}
+El cálculo del CRC se realiza sobre (PACKET\+\_\+\+SIZE -\/ 1) bytes, es decir, todos los campos excepto el byte final que contiene el CRC original.
+\end{DoxyNote}
+Algoritmo CRC8 utilizado:\+
+\begin{DoxyItemize}
+\item Polinomio:\+ 0x07
+\item Valor inicial:\+ 0x00
+\item Sin reflexión de entrada
+\item Sin reflexión de salida
+\item Sin XOR final
+\end{DoxyItemize}
+
+El proceso consiste en:\+
+\begin{DoxyEnumerate}
+\item Copiar el paquete y poner su CRC a 0.
+\item Convertir la estructura a un arreglo de bytes.
+\item Construir un buffer con todos los bytes excepto el CRC.
+\item Aplicar el algoritmo CRC8 bit a bit.
+\item Comparar el CRC calculado con el CRC recibido. 
+\end{DoxyEnumerate}
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00169}{169}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ 1.\ Guardar\ el\ CRC\ original\ del\ paquete}}
+\DoxyCodeLine{00172\ \ \ \ \ uint8\_t\ crc\_paquete\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ 2.\ Crear\ copia\ temporal\ del\ paquete\ y\ poner\ CRC\ =\ 0}}
+\DoxyCodeLine{00175\ \ \ \ \ \doxymbox{\hyperlink{struct_packet}{Packet}}\ temp\_pkt\ =\ *pkt;}
+\DoxyCodeLine{00176\ \ \ \ \ temp\_pkt.\doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}}\ =\ 0x00;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//\ 3.\ Convertir\ la\ estructura\ a\ un\ arreglo\ de\ bytes}}
+\DoxyCodeLine{00179\ \ \ \ uint8\_t\ buffer[8];}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ buffer[0]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\_0}};}
+\DoxyCodeLine{00182\ \ \ \ \ buffer[1]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}{payload\_1}};}
+\DoxyCodeLine{00183\ \ \ \ \ buffer[2]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}{payload\_2}};}
+\DoxyCodeLine{00184\ \ \ \ \ buffer[3]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_afed0be2706ac18e39fe488aa49f80e31}{payload\_3}};}
+\DoxyCodeLine{00185\ \ \ \ \ buffer[4]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}{payload\_4}};}
+\DoxyCodeLine{00186\ \ \ \ \ buffer[5]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}{payload\_5}};}
+\DoxyCodeLine{00187\ \ \ \ \ buffer[6]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}{payload\_6}};}
+\DoxyCodeLine{00188\ \ \ \ \ buffer[7]\ =\ pkt-\/>\doxymbox{\hyperlink{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}{payload\_7}};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//\ 4.\ Calcular\ CRC8\ usando\ polinomio\ 0x07}}
+\DoxyCodeLine{00191\ \ \ \ \ uint8\_t\ crc\ =\ 0x00;}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \textcolor{keyword}{sizeof}(buffer);\ ++i)\ \{}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ crc\ \string^=\ buffer[i];\ \ \textcolor{comment}{//\ Mezclar\ el\ byte\ actual}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Procesar\ cada\ uno\ de\ los\ 8\ bits}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ b\ =\ 0;\ b\ <\ 8;\ ++b)\ \{}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ el\ bit\ más\ significativo\ está\ a\ 1,\ aplicar\ polinomio}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (crc\ \&\ 0x80)}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ =\ (uint8\_t)((crc\ <<\ 1)\ \string^\ 0x07);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ =\ (uint8\_t)(crc\ <<\ 1);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \doxymbox{\hyperlink{packet_8cpp_aa53dcb7ed5d9f0c950f286f79e7fc246}{mostrar\_validacion\_crc}}(crc\_paquete,\ crc);}
+\DoxyCodeLine{00209\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas de esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{packet_8h_ada6bc2cff356ad505d96e2888b32a40a_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{packet_8h_ada6bc2cff356ad505d96e2888b32a40a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_a1480ba1be7fce0bb70e458004ca971e9}\index{packet.h@{packet.h}!mostrar\_datos\_checksum\_slave@{mostrar\_datos\_checksum\_slave}}
+\index{mostrar\_datos\_checksum\_slave@{mostrar\_datos\_checksum\_slave}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_datos\_checksum\_slave()}{mostrar\_datos\_checksum\_slave()}}
+{\footnotesize\ttfamily \label{packet_8h_a1480ba1be7fce0bb70e458004ca971e9} 
+void mostrar\+\_\+datos\+\_\+checksum\+\_\+slave (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}}]{pkt}{, }\item[{uint8\+\_\+t}]{sum\+\_\+\+Byte\+\_\+0}{, }\item[{uint8\+\_\+t}]{sum\+\_\+\+Byte\+\_\+1}{, }\item[{bool}]{valido}{}\end{DoxyParamCaption})}
+
+
+
+Muestra el resultado de la validación del checksum de 16 bits. 
+
+Esta función imprime:\+
+\begin{DoxyItemize}
+\item Los bytes de checksum recibidos en el paquete (LSB y MSB).
+\item Los bytes de checksum calculados por el esclavo.
+\item El resultado de la comparación.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete recibido. \\
+\hline
+{\em sum\+\_\+\+Byte\+\_\+0} & Byte LSB del checksum calculado. \\
+\hline
+{\em sum\+\_\+\+Byte\+\_\+1} & Byte MSB del checksum calculado. \\
+\hline
+{\em valido} & true si el checksum coincide, false en caso contrario. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00626}{626}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00630\ \{}
+\DoxyCodeLine{00631\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)n========================================="{}}));}
+\DoxyCodeLine{00632\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ VALIDACIÓN\ DE\ CHECKSUM\ 16b"{}}));}
+\DoxyCodeLine{00633\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}========================================="{}}));}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}Checksum\ recibido\ (LSB):\ 0x"{}}));}
+\DoxyCodeLine{00636\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chechSumByte\_0}},\ HEX);}
+\DoxyCodeLine{00637\ }
+\DoxyCodeLine{00638\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}Checksum\ recibido\ (MSB):\ 0x"{}}));}
+\DoxyCodeLine{00639\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chechSumByte\_1}},\ HEX);}
+\DoxyCodeLine{00640\ }
+\DoxyCodeLine{00641\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}Checksum\ calculado\ (LSB):\ 0x"{}}));}
+\DoxyCodeLine{00642\ \ \ \ \ Serial.println(sum\_Byte\_0,\ HEX);}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00644\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}Checksum\ calculado\ (MSB):\ 0x"{}}));}
+\DoxyCodeLine{00645\ \ \ \ \ Serial.println(sum\_Byte\_1,\ HEX);}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00647\ \ \ \ \ Serial.println();}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \ \ \textcolor{keywordflow}{if}\ (valido)\ \{}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}✔\ Checksum\ válido.\ El\ paquete\ es\ coherente."{}}));}
+\DoxyCodeLine{00651\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}✘\ Checksum\ inválido.\ El\ paquete\ puede\ estar\ corrupto."{}}));}
+\DoxyCodeLine{00653\ \ \ \ \ \}}
+\DoxyCodeLine{00654\ }
+\DoxyCodeLine{00655\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}=========================================\(\backslash\)n"{}}));}
+\DoxyCodeLine{00656\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packet_8h_a1480ba1be7fce0bb70e458004ca971e9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_abb58e666a4ac9bd96a52c43369150cee}\index{packet.h@{packet.h}!mostrar\_estado\_completo@{mostrar\_estado\_completo}}
+\index{mostrar\_estado\_completo@{mostrar\_estado\_completo}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_estado\_completo()}{mostrar\_estado\_completo()}}
+{\footnotesize\ttfamily \label{packet_8h_abb58e666a4ac9bd96a52c43369150cee} 
+void mostrar\+\_\+estado\+\_\+completo (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{Packet\+Status}}}]{st}{, }\item[{int8\+\_\+t}]{payload\+\_\+index}{, }\item[{uint16\+\_\+t}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Muestra información detallada del estado del paquete. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em st} & Código de estado. \\
+\hline
+{\em payload\+\_\+index} & Índice del payload afectado (si aplica). \\
+\hline
+{\em value} & Valor asociado al error (si aplica).\\
+\hline
+\end{DoxyParams}
+Muestra información detallada del estado del paquete.
+
+Esta función imprime un informe detallado del estado del paquete, indicando si es válido (PKT\+\_\+\+OK) o si se ha producido algún error, como un puntero nulo (PKT\+\_\+\+ERR\+\_\+\+NULL\+\_\+\+PTR) o un payload fuera de rango (PKT\+\_\+\+ERR\+\_\+\+PAYLOAD\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE).
+
+Cuando el error está relacionado con un payload, también se muestran el índice del payload afectado y el valor recibido, siempre que dichos parámetros no sean PKT\+\_\+\+PAYLOAD\+\_\+\+NONE o PKT\+\_\+\+VALUE\+\_\+\+NONE.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em st} & Código de estado del paquete. \\
+\hline
+{\em payload\+\_\+index} & Índice del payload asociado al error, o PKT\+\_\+\+PAYLOAD\+\_\+\+NONE si no aplica. \\
+\hline
+{\em value} & Valor del payload asociado al error, o PKT\+\_\+\+VALUE\+\_\+\+NONE si no aplica. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00458}{458}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00459\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)n========================================="{}}));}
+\DoxyCodeLine{00460\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ PACKET\ STATUS"{}}));}
+\DoxyCodeLine{00461\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}========================================="{}}));}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keywordflow}{switch}\ (st)\ \{}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{PKT\_OK}}:}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}✔️\ Estado:\ PKT\_OK"{}}));}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}El\ paquete\ es\ válido\ y\ no\ se\ detectaron\ errores."{}}));}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}{PKT\_ERR\_NULL\_PTR}}:}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}❌\ Estado:\ PKT\_ERR\_NULL\_PTR"{}}));}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Se\ recibió\ un\ puntero\ NULL.\ No\ es\ posible\ procesar\ el\ paquete."{}}));}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}{PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE}}:}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}❌\ Estado:\ PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE"{}}));}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Uno\ de\ los\ valores\ del\ payload\ está\ fuera\ del\ rango\ permitido.\(\backslash\)n"{}}));}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solo\ mostramos\ detalles\ si\ payload\_index\ es\ válido}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (payload\_index\ !=\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{PKT\_PAYLOAD\_NONE}})\ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}Payload\ afectado:\ P"{}}));}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(payload\_index);}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Payload\ afectado:\ (no\ especificado)"{}}));}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ !=\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{PKT\_VALUE\_NONE}})\ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}Valor\ recibido:\ "{}}));}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(value);}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ (0x"{}}));}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(value,\ HEX);}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{})"{}}));}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Valor\ recibido:\ (no\ especificado)"{}}));}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)nRango\ permitido:\ 0\ -\/\ 255\ (0x00\ -\/\ 0xFF)"{}}));}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c}{PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED}}:}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}❌\ Estado:\ PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED"{}}));}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}El\ tamaño\ del\ paquete\ no\ coincide\ con\ PACKET\_SIZE.\ Revisa\ la\ definición\ del\ struct\ Packet."{}}));}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}⚠️\ Estado\ desconocido."{}}));}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00508\ \ \ \ \ \}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}=========================================\(\backslash\)n"{}}));}
+\DoxyCodeLine{00511\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packet_8h_abb58e666a4ac9bd96a52c43369150cee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_a7e76fba52377be95233416aba19130b7}\index{packet.h@{packet.h}!mostrar\_packet\_recibido@{mostrar\_packet\_recibido}}
+\index{mostrar\_packet\_recibido@{mostrar\_packet\_recibido}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_packet\_recibido()}{mostrar\_packet\_recibido()}}
+{\footnotesize\ttfamily \label{packet_8h_a7e76fba52377be95233416aba19130b7} 
+void mostrar\+\_\+packet\+\_\+recibido (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}}]{pkt}{}\end{DoxyParamCaption})}
+
+
+
+Muestra por Serial el contenido de un paquete SPI recibido. 
+
+Imprime:\+
+\begin{DoxyItemize}
+\item ID del paquete
+\item Longitud (LEN)
+\item Cada byte del payload con su posición
+\item CRC final
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete recibido. Debe ser válido.\\
+\hline
+\end{DoxyParams}
+Muestra por Serial el contenido de un paquete SPI recibido.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete recibido. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00519}{519}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keywordflow}{if}\ (!pkt)\ \{}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Error:\ puntero\ NULL\ en\ mostrar\_packet\_recibido()"{}}));}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)n========================================="{}}));}
+\DoxyCodeLine{00526\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ PAQUETE\ RECIBIDO\ (Contenido\ Detallado)"{}}));}
+\DoxyCodeLine{00527\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}========================================="{}}));}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ ID\ -\/-\/-\/}}
+\DoxyCodeLine{00530\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}ID:\ \ \ 0x"{}}));}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keywordflow}{if}\ (pkt-\/>\doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}}\ <\ 0x10)\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00532\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}},\ HEX);}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ LEN\ -\/-\/-\/}}
+\DoxyCodeLine{00535\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}LEN:\ \ "{}}));}
+\DoxyCodeLine{00536\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_aedb268d2c2f44bb48457277fb57421d7}{LEN}});}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ CHECKSUM\ 16\ bits\ -\/-\/-\/}}
+\DoxyCodeLine{00539\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}CHECKSUM\ 16\ bits:"{}}));}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ LSB\ (chechSumByte\_0):\ 0x"{}}));}
+\DoxyCodeLine{00542\ \ \ \ \ \textcolor{keywordflow}{if}\ (pkt-\/>\doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chechSumByte\_0}}\ <\ 0x10)\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00543\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chechSumByte\_0}},\ HEX);}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ MSB\ (chechSumByte\_1):\ 0x"{}}));}
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordflow}{if}\ (pkt-\/>\doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chechSumByte\_1}}\ <\ 0x10)\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00547\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chechSumByte\_1}},\ HEX);}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ PAYLOAD\ -\/-\/-\/}}
+\DoxyCodeLine{00550\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)nPAYLOAD\ (posición\ :\ valor):"{}}));}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *payload\ =\ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\_0}};}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ \doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\_SIZE}};\ i++)\ \{}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ ["{}}));}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ Serial.print(i);}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}]\ =\ 0x"{}}));}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (payload[i]\ <\ 0x10)\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ Serial.println(payload[i],\ HEX);}
+\DoxyCodeLine{00560\ \ \ \ \ \}}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ CRC\ -\/-\/-\/}}
+\DoxyCodeLine{00563\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\(\backslash\)nCRC:\ \ 0x"{}}));}
+\DoxyCodeLine{00564\ \ \ \ \ \textcolor{keywordflow}{if}\ (pkt-\/>\doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}}\ <\ 0x10)\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00565\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}},\ HEX);}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}=========================================\(\backslash\)n"{}}));}
+\DoxyCodeLine{00568\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{packet_8h_a7e76fba52377be95233416aba19130b7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_a9fc3c27519b5ba7891fc640a3eed6259}\index{packet.h@{packet.h}!mostrar\_packet\_tabla@{mostrar\_packet\_tabla}}
+\index{mostrar\_packet\_tabla@{mostrar\_packet\_tabla}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_packet\_tabla()}{mostrar\_packet\_tabla()}}
+{\footnotesize\ttfamily \label{packet_8h_a9fc3c27519b5ba7891fc640a3eed6259} 
+void mostrar\+\_\+packet\+\_\+tabla (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}}]{pkt}{}\end{DoxyParamCaption})}
+
+
+
+Muestra el contenido del paquete en formato tabla. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete.\\
+\hline
+\end{DoxyParams}
+Muestra el contenido del paquete en formato tabla.
+
+Esta implementación recorre la estructura \doxylink{struct_packet}{Packet} siguiendo estrictamente el orden real de sus campos en memoria. La salida se organiza en una tabla legible que incluye:\+
+
+
+\begin{DoxyItemize}
+\item ID y LEN (cabecera del paquete)
+\item chech\+Sum\+Byte\+\_\+0 y chech\+Sum\+Byte\+\_\+1 (checksum de 16 bits, LSB → MSB)
+\item payload\+\_\+0 ... payload\+\_\+7 (contenido del mensaje)
+\item CRC final del paquete
+\end{DoxyItemize}
+
+Cada campo se muestra en formato decimal y hexadecimal para facilitar la inspección del protocolo durante la depuración. La tabla mantiene separadores consistentes y alineación fija para mejorar la legibilidad.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero a la estructura \doxylink{struct_packet}{Packet} que se desea visualizar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+{\ttfamily pkt} debe apuntar a una estructura \doxylink{struct_packet}{Packet} válida. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+Se envía al monitor serie una tabla completa con todos los campos del paquete.
+\end{DoxyPostcond}
+\begin{DoxyWarning}{Atención}
+Esta función utiliza Serial.\+println() y no debe ejecutarse dentro de interrupciones (ISR) ni en contextos donde la salida por UART pueda bloquear la ejecución. 
+\end{DoxyWarning}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00323}{323}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)n========================================="{}}));}
+\DoxyCodeLine{00326\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ PACKET\ TABLE"{}}));}
+\DoxyCodeLine{00327\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}========================================="{}}));}
+\DoxyCodeLine{00328\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}|\ FIELD\ \ \ \ \ \ \ \ \ \ |\ \ \ DEC\ \ \ |\ \ \ HEX\ \ \ \ \ \ \ |"{}}));}
+\DoxyCodeLine{00329\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ CAMPOS\ PRINCIPALES\ -\/-\/-\/-\/}}
+\DoxyCodeLine{00332\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ ID\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00333\ \ \ \ \ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}});}
+\DoxyCodeLine{00334\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));}
+\DoxyCodeLine{00335\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}},\ HEX);}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ LEN\ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00338\ \ \ \ \ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_aedb268d2c2f44bb48457277fb57421d7}{LEN}});}
+\DoxyCodeLine{00339\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));}
+\DoxyCodeLine{00340\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_aedb268d2c2f44bb48457277fb57421d7}{LEN}},\ HEX);}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00343\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}|\ CHECKSUM\ 16b\ \ \ |\ \ \ DEC\ \ \ |\ \ \ HEX\ \ \ \ \ \ \ |"{}}));}
+\DoxyCodeLine{00344\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ CHK\ LSB\ (0)\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00347\ \ \ \ \ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chechSumByte\_0}});}
+\DoxyCodeLine{00348\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));}
+\DoxyCodeLine{00349\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a4dd5ed431075a3ddaf9f39be26209824}{chechSumByte\_0}},\ HEX);}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ CHK\ MSB\ (1)\ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00352\ \ \ \ \ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chechSumByte\_1}});}
+\DoxyCodeLine{00353\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));}
+\DoxyCodeLine{00354\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_ad0aaa92155c121843da0c8aabd84a847}{chechSumByte\_1}},\ HEX);}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00357\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}|\ PAYLOAD\ \ \ \ \ \ \ \ |\ \ \ DEC\ \ \ |\ \ \ HEX\ \ \ \ \ \ \ |"{}}));}
+\DoxyCodeLine{00358\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ P0\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));\ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\_0}});\ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));\ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\_0}},\ HEX);}
+\DoxyCodeLine{00361\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ P1\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));\ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}{payload\_1}});\ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));\ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}{payload\_1}},\ HEX);}
+\DoxyCodeLine{00362\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ P2\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));\ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}{payload\_2}});\ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));\ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}{payload\_2}},\ HEX);}
+\DoxyCodeLine{00363\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ P3\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));\ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_afed0be2706ac18e39fe488aa49f80e31}{payload\_3}});\ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));\ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_afed0be2706ac18e39fe488aa49f80e31}{payload\_3}},\ HEX);}
+\DoxyCodeLine{00364\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ P4\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));\ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}{payload\_4}});\ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));\ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}{payload\_4}},\ HEX);}
+\DoxyCodeLine{00365\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ P5\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));\ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}{payload\_5}});\ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));\ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}{payload\_5}},\ HEX);}
+\DoxyCodeLine{00366\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ P6\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));\ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}{payload\_6}});\ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));\ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}{payload\_6}},\ HEX);}
+\DoxyCodeLine{00367\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ P7\ \ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));\ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}{payload\_7}});\ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));\ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}{payload\_7}},\ HEX);}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}));}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ CRC\ -\/-\/-\/-\/}}
+\DoxyCodeLine{00372\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}|\ CRC\ \ \ \ \ \ \ \ \ \ \ \ |\ "{}}));}
+\DoxyCodeLine{00373\ \ \ \ \ Serial.print(pkt-\/>\doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}});}
+\DoxyCodeLine{00374\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ |\ 0x"{}}));}
+\DoxyCodeLine{00375\ \ \ \ \ Serial.println(pkt-\/>\doxymbox{\hyperlink{struct_packet_a1e37d7403c8ee5dc4dc299bd2feaeb74}{CRC}},\ HEX);}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}=========================================\(\backslash\)n"{}}));}
+\DoxyCodeLine{00378\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packet_8h_a9fc3c27519b5ba7891fc640a3eed6259_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_aa53dcb7ed5d9f0c950f286f79e7fc246}\index{packet.h@{packet.h}!mostrar\_validacion\_crc@{mostrar\_validacion\_crc}}
+\index{mostrar\_validacion\_crc@{mostrar\_validacion\_crc}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_validacion\_crc()}{mostrar\_validacion\_crc()}}
+{\footnotesize\ttfamily \label{packet_8h_aa53dcb7ed5d9f0c950f286f79e7fc246} 
+void mostrar\+\_\+validacion\+\_\+crc (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{crc\+\_\+recibido}{, }\item[{uint8\+\_\+t}]{crc\+\_\+calculado}{}\end{DoxyParamCaption})}
+
+
+
+Muestra en el monitor serie el resultado de la validación CRC8. 
+
+Esta función imprime de forma clara y estructurada:\+
+\begin{DoxyItemize}
+\item El CRC recibido dentro del paquete.
+\item El CRC calculado a partir de los datos del paquete.
+\item El resultado de la comparación entre ambos valores.
+\end{DoxyItemize}
+
+Su propósito es facilitar la depuración del sistema de comunicación, permitiendo verificar si el paquete recibido es coherente o presenta posibles errores de transmisión.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em crc\+\_\+recibido} & Valor CRC incluido en el paquete recibido. \\
+\hline
+{\em crc\+\_\+calculado} & Valor CRC generado localmente a partir del contenido del paquete.\\
+\hline
+\end{DoxyParams}
+Muestra en el monitor serie el resultado de la validación CRC8.
+
+Esta función imprime:\+
+\begin{DoxyItemize}
+\item El CRC recibido en el paquete.
+\item El CRC calculado internamente.
+\item El resultado de la comparación.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em crc\+\_\+recibido} & CRC original incluido en el paquete. \\
+\hline
+{\em crc\+\_\+calculado} & CRC obtenido tras procesar los datos del paquete. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00586}{586}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00587\ \{}
+\DoxyCodeLine{00588\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\(\backslash\)n========================================="{}}));}
+\DoxyCodeLine{00589\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ VALIDACIÓN\ DE\ CRC\ DEL\ PAQUETE"{}}));}
+\DoxyCodeLine{00590\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}========================================="{}}));}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}CRC\ recibido\ Maestro:\ \ \ 0x"{}}));}
+\DoxyCodeLine{00593\ \ \ \ \ Serial.println(crc\_recibido,\ HEX);}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}CRC\ calculado\ Esclavo:\ \ 0x"{}}));}
+\DoxyCodeLine{00596\ \ \ \ \ Serial.println(crc\_calculado,\ HEX);}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \ \ Serial.println();}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \ \ \textcolor{keywordflow}{if}\ (crc\_recibido\ ==\ crc\_calculado)\ \{}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}✔\ CRC\ válido.\ El\ paquete\ es\ coherente."{}}));}
+\DoxyCodeLine{00602\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}✘\ CRC\ inválido.\ El\ paquete\ puede\ estar\ corrupto."{}}));}
+\DoxyCodeLine{00604\ \ \ \ \ \}}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}=========================================\(\backslash\)n"{}}));}
+\DoxyCodeLine{00607\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packet_8h_aa53dcb7ed5d9f0c950f286f79e7fc246_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{packet_8h_a3ca3bca1ec695199fd56913813acddf3}\index{packet.h@{packet.h}!validate\_payload@{validate\_payload}}
+\index{validate\_payload@{validate\_payload}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{validate\_payload()}{validate\_payload()}}
+{\footnotesize\ttfamily \label{packet_8h_a3ca3bca1ec695199fd56913813acddf3} 
+\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{Packet\+Status}} validate\+\_\+payload (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_packet}{Packet}} \texorpdfstring{$\ast$}{*}}]{pkt}{}\end{DoxyParamCaption})}
+
+
+
+Valida los campos del payload y la coherencia del paquete. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Código de estado \doxylink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46}{Packet\+Status}.
+\end{DoxyReturn}
+Valida los campos del payload y la coherencia del paquete.
+
+Esta función verifica que el puntero al paquete sea válido y que cada uno de los 8 payloads se encuentre dentro del rango permitido (0–255). ~\newline
+ Si se detecta un error, se informa mediante \doxylink{packet_8h_abb58e666a4ac9bd96a52c43369150cee}{mostrar\+\_\+estado\+\_\+completo()} y se devuelve el código de error correspondiente.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pkt} & Puntero al paquete que se desea validar.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valores devueltos}
+{\em \doxylink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{PKT\+\_\+\+VALUE\+\_\+\+NONE}} & No se especifica un valor de payload afectado (usado cuando el error no está relacionado con un payload específico). \\
+\hline
+{\em \doxylink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{PKT\+\_\+\+PAYLOAD\+\_\+\+NONE}} & El paquete no contiene payloads válidos (no se especifica un payload afectado). \\
+\hline
+{\em \doxylink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{PKT\+\_\+\+OK}} & Todos los payloads son válidos. \\
+\hline
+{\em \doxylink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}{PKT\+\_\+\+ERR\+\_\+\+NULL\+\_\+\+PTR}} & El puntero al paquete es NULL. \\
+\hline
+{\em \doxylink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}{PKT\+\_\+\+ERR\+\_\+\+PAYLOAD\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE}} & Algún payload excede el rango permitido.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Nota}
+Esta función no modifica el contenido del paquete; solo valida. 
+\end{DoxyNote}
+
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00402}{402}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{comment}{//\ Verificar\ que\ el\ tamaño\ del\ paquete\ coincida\ con\ PACKET\_SIZE}}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{struct_packet}{Packet}})\ !=\ \doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\_SIZE}})\ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8cpp_abb58e666a4ac9bd96a52c43369150cee}{mostrar\_estado\_completo}}(\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c}{PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED}},\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{PKT\_PAYLOAD\_NONE}},\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{PKT\_VALUE\_NONE}});}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c}{PKT\_ERR\_PAYLOAD\_SIZE\_EXCEEDED}};}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ }
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{comment}{//\ Verificar\ que\ el\ puntero\ al\ paquete\ sea\ válido}}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keywordflow}{if}\ (!pkt)\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8cpp_abb58e666a4ac9bd96a52c43369150cee}{mostrar\_estado\_completo}}(\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}{PKT\_ERR\_NULL\_PTR}},\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{PKT\_PAYLOAD\_NONE}},\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{PKT\_VALUE\_NONE}});}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670}{PKT\_ERR\_NULL\_PTR}};}
+\DoxyCodeLine{00413\ \ \ \ \ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{comment}{//\ Crear\ un\ arreglo\ de\ punteros\ a\ los\ 8\ payloads\ para\ recorrerlos\ de\ forma\ compacta}}
+\DoxyCodeLine{00416\ \ \ \ \ uint8\_t\ *payloads[8]\ =\ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\_0}},\ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_aa9237d95f1b40dd41d2230bf90dee2e2}{payload\_1}},\ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_a12e1baa4bc74526b7d67b2c90e21154f}{payload\_2}},\ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_afed0be2706ac18e39fe488aa49f80e31}{payload\_3}},}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_af06ac00187fc0e9b1a50b54abd28feb4}{payload\_4}},\ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_aa7413ba3c8c17783d822f9925873cbf3}{payload\_5}},\ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_a87d7f4e000aee7bce96eb66e11862e01}{payload\_6}},\ \&pkt-\/>\doxymbox{\hyperlink{struct_packet_a34dad95a56828f8fbd7f464c1ebe1cb6}{payload\_7}}}
+\DoxyCodeLine{00419\ \ \ \ \ \};}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{comment}{//\ Validar\ cada\ payload\ individualmente}}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ \doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\_SIZE}};\ i++)\ \{}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ el\ valor\ excede\ el\ rango\ permitido\ (0–255),\ reportar\ el\ error}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*payloads[i]\ >\ 0xFF)\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8cpp_abb58e666a4ac9bd96a52c43369150cee}{mostrar\_estado\_completo}}(\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}{PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE}},\ i,\ *payloads[i]);}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516}{PKT\_ERR\_PAYLOAD\_OUT\_OF\_RANGE}};}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{comment}{//\ Si\ todos\ los\ payloads\ son\ válidos,\ reportar\ estado\ OK}}
+\DoxyCodeLine{00432\ \ \ \ \ \doxymbox{\hyperlink{packet_8cpp_abb58e666a4ac9bd96a52c43369150cee}{mostrar\_estado\_completo}}(\doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{PKT\_OK}},\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1}{PKT\_PAYLOAD\_NONE}},\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c}{PKT\_VALUE\_NONE}});}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{packet_8h_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c}{PKT\_OK}};}
+\DoxyCodeLine{00434\ \}}
+
+\end{DoxyCode}
+Gráfico de llamadas de esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{packet_8h_a3ca3bca1ec695199fd56913813acddf3_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{packet_8h_a3ca3bca1ec695199fd56913813acddf3_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{packet_8h_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}\index{packet.h@{packet.h}!pkt0@{pkt0}}
+\index{pkt0@{pkt0}!packet.h@{packet.h}}
+\doxysubsubsection{\texorpdfstring{pkt0}{pkt0}}
+{\footnotesize\ttfamily \label{packet_8h_a4ba9f8230113c11110c5b0bad34608c0} 
+\doxymbox{\hyperlink{struct_packet}{Packet}} pkt0\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Verificación en tiempo de compilación del tamaño del paquete. 
+
+Instancia global del paquete (opcional). 
+
+Definición en la línea \doxymbox{\hyperlink{packet_8cpp_source_l00032}{32}} del archivo \doxymbox{\hyperlink{packet_8cpp_source}{packet.\+cpp}}.
+

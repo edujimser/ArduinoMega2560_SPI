@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ArduinoMega2560_SPI: Referencia del archivo configSpi.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ArduinoMega2560_SPI<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('config_spi_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo configSpi.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><div class="dynheader">
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:</div>
+<div class="dyncontent">
+<div class="center"><img src="config_spi_8h__dep__incl.png" border="0" usemap="#aconfig_spi_8hdep" loading="lazy" alt=""/></div>
+<map name="aconfig_spi_8hdep" id="aconfig_spi_8hdep">
+<area shape="rect" title=" " alt="" coords="93,5,179,31"/>
+<area shape="rect" href="spi_8h.html" title="API del módulo SPI para el ATmega2560 (maestro y esclavo)." alt="" coords="111,79,161,104"/>
+<area shape="poly" title=" " alt="" coords="139,44,139,79,133,79,133,44"/>
+<area shape="rect" href="main_8h.html" title="Declaraciones globales y variables compartidas para el sistema SPI del Arduino Mega 2560." alt="" coords="15,152,76,177"/>
+<area shape="poly" title=" " alt="" coords="112,115,62,154,59,150,109,110"/>
+<area shape="rect" href="msg_8h.html" title="Funciones de diagnóstico y verificación de la configuración SPI en el Arduino Mega 2560." alt="" coords="107,152,165,177"/>
+<area shape="poly" title=" " alt="" coords="130,118,132,152,126,152,125,118"/>
+<area shape="rect" href="spi_8cpp.html" title=" " alt="" coords="189,152,253,177"/>
+<area shape="poly" title=" " alt="" coords="162,110,209,150,206,154,158,115"/>
+<area shape="rect" href="main_8cpp.html" title="Lógica principal del sistema SPI para el Arduino Mega 2560." alt="" coords="5,225,80,251"/>
+<area shape="poly" title=" " alt="" coords="47,191,46,225,40,225,42,191"/>
+<area shape="poly" title=" " alt="" coords="142,139,140,104,146,104,147,138"/>
+<area shape="rect" href="msg_8cpp.html" title="Funciones de diagnóstico para verificar la configuración SPI del Arduino Mega 2560." alt="" coords="104,225,176,251"/>
+<area shape="poly" title=" " alt="" coords="140,191,142,225,137,225,135,191"/>
+</map>
+</div>
+</div>
+<p><a href="config_spi_8h_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a3fa2d3bf1901157f734a584d47b25d8b" id="r_a3fa2d3bf1901157f734a584d47b25d8b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3fa2d3bf1901157f734a584d47b25d8b">MASTER</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a3fa2d3bf1901157f734a584d47b25d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activa el modo maestro SPI.  <br /></td></tr>
+<tr class="memitem:ae342da5a4630c191c1c983958808edd8" id="r_ae342da5a4630c191c1c983958808edd8"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ae342da5a4630c191c1c983958808edd8">SLAVE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ae342da5a4630c191c1c983958808edd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activa el modo esclavo SPI.  <br /></td></tr>
+<tr class="memitem:a1136776b8503ea922d2bd82afbdf48a0" id="r_a1136776b8503ea922d2bd82afbdf48a0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a1136776b8503ea922d2bd82afbdf48a0">SLAVE_PRUEBA</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a1136776b8503ea922d2bd82afbdf48a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activa un modo esclavo especial para pruebas.  <br /></td></tr>
+<tr class="memitem:a45032087ada7489c059a091d723f6758" id="r_a45032087ada7489c059a091d723f6758"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a45032087ada7489c059a091d723f6758">SPI_ERROR_TIMEOUT</a>&#160;&#160;&#160;0xFF</td></tr>
+<tr class="memdesc:a45032087ada7489c059a091d723f6758"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error: la transferencia SPI excedió el tiempo máximo permitido.  <br /></td></tr>
+<tr class="memitem:aaa4db819f7fa370739bd86a623a5b821" id="r_aaa4db819f7fa370739bd86a623a5b821"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaa4db819f7fa370739bd86a623a5b821">SPI_ERROR_NO_INIT_SPE</a>&#160;&#160;&#160;0xFE</td></tr>
+<tr class="memdesc:aaa4db819f7fa370739bd86a623a5b821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error: el módulo SPI no está habilitado (bit SPE = 0).  <br /></td></tr>
+<tr class="memitem:af3e6172f96905ab14eb7f84d302d27e6" id="r_af3e6172f96905ab14eb7f84d302d27e6"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af3e6172f96905ab14eb7f84d302d27e6">SPI_ERROR_NO_INIT_SS</a>&#160;&#160;&#160;0xFD</td></tr>
+<tr class="memdesc:af3e6172f96905ab14eb7f84d302d27e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error: el pin SS no estaba en LOW cuando se esperaba.  <br /></td></tr>
+<tr class="memitem:a2ae72234c68fac9d445d218951f66c13" id="r_a2ae72234c68fac9d445d218951f66c13"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a2ae72234c68fac9d445d218951f66c13">SPI_ERROR_WCOL</a>&#160;&#160;&#160;0xFC</td></tr>
+<tr class="memdesc:a2ae72234c68fac9d445d218951f66c13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error: colisión de escritura (bit WCOL = 1).  <br /></td></tr>
+<tr class="memitem:aaa697b4ed80507e7f75458ff2c1a4ce3" id="r_aaa697b4ed80507e7f75458ff2c1a4ce3"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaa697b4ed80507e7f75458ff2c1a4ce3">SPI_ERROR_NO_REQUEST_SLAVE</a>&#160;&#160;&#160;0xFB</td></tr>
+<tr class="memdesc:aaa697b4ed80507e7f75458ff2c1a4ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error: el esclavo no responde (recibido 0x00 o 0xFF).  <br /></td></tr>
+<tr class="memitem:af1b9cb9955d7fceecd7d9b3f94bede98" id="r_af1b9cb9955d7fceecd7d9b3f94bede98"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af1b9cb9955d7fceecd7d9b3f94bede98">SPI_ERROR_PIN_SS_HIGH</a>&#160;&#160;&#160;0xFA</td></tr>
+<tr class="memdesc:af1b9cb9955d7fceecd7d9b3f94bede98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error: el pin SS se encuentra en HIGH durante la transferencia.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aa08e789ac12c166d1db6b7b095309073" id="r_aa08e789ac12c166d1db6b7b095309073"><td class="memItemLeft">const uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#aa08e789ac12c166d1db6b7b095309073">PIN_SS</a> = 53</td></tr>
+<tr class="memdesc:aa08e789ac12c166d1db6b7b095309073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin SS (Slave Select) usado por el maestro para seleccionar al esclavo.  <br /></td></tr>
+<tr class="memitem:a88b6a485feaa606be9ddc27c26a5491d" id="r_a88b6a485feaa606be9ddc27c26a5491d"><td class="memItemLeft">const uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a88b6a485feaa606be9ddc27c26a5491d">PIN_MOSI</a> = 51</td></tr>
+<tr class="memdesc:a88b6a485feaa606be9ddc27c26a5491d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin MOSI (Master Out Slave In). <br  />
+ Línea de datos desde el maestro hacia el esclavo.  <br /></td></tr>
+<tr class="memitem:a7bb9f3a473e25d5daf49abdb8aaf7dfd" id="r_a7bb9f3a473e25d5daf49abdb8aaf7dfd"><td class="memItemLeft">const uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a7bb9f3a473e25d5daf49abdb8aaf7dfd">PIN_MISO</a> = 50</td></tr>
+<tr class="memdesc:a7bb9f3a473e25d5daf49abdb8aaf7dfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin MISO (Master In Slave Out). <br  />
+ Línea de datos desde el esclavo hacia el maestro.  <br /></td></tr>
+<tr class="memitem:a590dd7c2bde4409edd86324f3d0b1616" id="r_a590dd7c2bde4409edd86324f3d0b1616"><td class="memItemLeft">const uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a590dd7c2bde4409edd86324f3d0b1616">PIN_SCK</a> = 52</td></tr>
+<tr class="memdesc:a590dd7c2bde4409edd86324f3d0b1616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin SCK (Serial Clock). <br  />
+ Reloj generado por el maestro.  <br /></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="a3fa2d3bf1901157f734a584d47b25d8b" name="a3fa2d3bf1901157f734a584d47b25d8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fa2d3bf1901157f734a584d47b25d8b">&#9670;&#160;</a></span>MASTER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MASTER&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Activa el modo maestro SPI. </p>
+<p>Colocar en 1 para compilar en modo maestro. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00041">41</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="ae342da5a4630c191c1c983958808edd8" name="ae342da5a4630c191c1c983958808edd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae342da5a4630c191c1c983958808edd8">&#9670;&#160;</a></span>SLAVE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLAVE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Activa el modo esclavo SPI. </p>
+<p>Colocar en 1 para compilar en modo esclavo. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00048">48</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="a1136776b8503ea922d2bd82afbdf48a0" name="a1136776b8503ea922d2bd82afbdf48a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1136776b8503ea922d2bd82afbdf48a0">&#9670;&#160;</a></span>SLAVE_PRUEBA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLAVE_PRUEBA&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Activa un modo esclavo especial para pruebas. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00054">54</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="aaa4db819f7fa370739bd86a623a5b821" name="aaa4db819f7fa370739bd86a623a5b821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa4db819f7fa370739bd86a623a5b821">&#9670;&#160;</a></span>SPI_ERROR_NO_INIT_SPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPI_ERROR_NO_INIT_SPE&#160;&#160;&#160;0xFE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Error: el módulo SPI no está habilitado (bit SPE = 0). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00099">99</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="af3e6172f96905ab14eb7f84d302d27e6" name="af3e6172f96905ab14eb7f84d302d27e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3e6172f96905ab14eb7f84d302d27e6">&#9670;&#160;</a></span>SPI_ERROR_NO_INIT_SS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPI_ERROR_NO_INIT_SS&#160;&#160;&#160;0xFD</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Error: el pin SS no estaba en LOW cuando se esperaba. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00105">105</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="aaa697b4ed80507e7f75458ff2c1a4ce3" name="aaa697b4ed80507e7f75458ff2c1a4ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa697b4ed80507e7f75458ff2c1a4ce3">&#9670;&#160;</a></span>SPI_ERROR_NO_REQUEST_SLAVE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPI_ERROR_NO_REQUEST_SLAVE&#160;&#160;&#160;0xFB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Error: el esclavo no responde (recibido 0x00 o 0xFF). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00117">117</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="af1b9cb9955d7fceecd7d9b3f94bede98" name="af1b9cb9955d7fceecd7d9b3f94bede98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1b9cb9955d7fceecd7d9b3f94bede98">&#9670;&#160;</a></span>SPI_ERROR_PIN_SS_HIGH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPI_ERROR_PIN_SS_HIGH&#160;&#160;&#160;0xFA</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Error: el pin SS se encuentra en HIGH durante la transferencia. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00123">123</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="a45032087ada7489c059a091d723f6758" name="a45032087ada7489c059a091d723f6758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45032087ada7489c059a091d723f6758">&#9670;&#160;</a></span>SPI_ERROR_TIMEOUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPI_ERROR_TIMEOUT&#160;&#160;&#160;0xFF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Error: la transferencia SPI excedió el tiempo máximo permitido. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00093">93</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="a2ae72234c68fac9d445d218951f66c13" name="a2ae72234c68fac9d445d218951f66c13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ae72234c68fac9d445d218951f66c13">&#9670;&#160;</a></span>SPI_ERROR_WCOL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPI_ERROR_WCOL&#160;&#160;&#160;0xFC</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Error: colisión de escritura (bit WCOL = 1). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00111">111</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="a7bb9f3a473e25d5daf49abdb8aaf7dfd" name="a7bb9f3a473e25d5daf49abdb8aaf7dfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bb9f3a473e25d5daf49abdb8aaf7dfd">&#9670;&#160;</a></span>PIN_MISO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t PIN_MISO = 50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pin MISO (Master In Slave Out). <br  />
+ Línea de datos desde el esclavo hacia el maestro. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00076">76</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="a88b6a485feaa606be9ddc27c26a5491d" name="a88b6a485feaa606be9ddc27c26a5491d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88b6a485feaa606be9ddc27c26a5491d">&#9670;&#160;</a></span>PIN_MOSI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t PIN_MOSI = 51</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pin MOSI (Master Out Slave In). <br  />
+ Línea de datos desde el maestro hacia el esclavo. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00070">70</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="a590dd7c2bde4409edd86324f3d0b1616" name="a590dd7c2bde4409edd86324f3d0b1616"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a590dd7c2bde4409edd86324f3d0b1616">&#9670;&#160;</a></span>PIN_SCK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t PIN_SCK = 52</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pin SCK (Serial Clock). <br  />
+ Reloj generado por el maestro. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00082">82</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+<a id="aa08e789ac12c166d1db6b7b095309073" name="aa08e789ac12c166d1db6b7b095309073"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa08e789ac12c166d1db6b7b095309073">&#9670;&#160;</a></span>PIN_SS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t PIN_SS = 53</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pin SS (Slave Select) usado por el maestro para seleccionar al esclavo. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="config_spi_8h_source.html#l00064">64</a> del archivo <a class="el" href="config_spi_8h_source.html">configSpi.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="config_spi_8h.html">configSpi.h</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

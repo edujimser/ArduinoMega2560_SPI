@@ -1,0 +1,240 @@
+\doxysection{Referencia del archivo config\+Spi.\+h}
+\hypertarget{config_spi_8h}{}\label{config_spi_8h}\index{configSpi.h@{configSpi.h}}
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{config_spi_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_a3fa2d3bf1901157f734a584d47b25d8b}{MASTER}}~0
+\begin{DoxyCompactList}\small\item\em Activa el modo maestro SPI. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_ae342da5a4630c191c1c983958808edd8}{SLAVE}}~1
+\begin{DoxyCompactList}\small\item\em Activa el modo esclavo SPI. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_a1136776b8503ea922d2bd82afbdf48a0}{SLAVE\+\_\+\+PRUEBA}}~0
+\begin{DoxyCompactList}\small\item\em Activa un modo esclavo especial para pruebas. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_a45032087ada7489c059a091d723f6758}{SPI\+\_\+\+ERROR\+\_\+\+TIMEOUT}}~0x\+FF
+\begin{DoxyCompactList}\small\item\em Error:\+ la transferencia SPI excedió el tiempo máximo permitido. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_aaa4db819f7fa370739bd86a623a5b821}{SPI\+\_\+\+ERROR\+\_\+\+NO\+\_\+\+INIT\+\_\+\+SPE}}~0x\+FE
+\begin{DoxyCompactList}\small\item\em Error:\+ el módulo SPI no está habilitado (bit SPE = 0). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_af3e6172f96905ab14eb7f84d302d27e6}{SPI\+\_\+\+ERROR\+\_\+\+NO\+\_\+\+INIT\+\_\+\+SS}}~0x\+FD
+\begin{DoxyCompactList}\small\item\em Error:\+ el pin SS no estaba en LOW cuando se esperaba. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_a2ae72234c68fac9d445d218951f66c13}{SPI\+\_\+\+ERROR\+\_\+\+WCOL}}~0x\+FC
+\begin{DoxyCompactList}\small\item\em Error:\+ colisión de escritura (bit WCOL = 1). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_aaa697b4ed80507e7f75458ff2c1a4ce3}{SPI\+\_\+\+ERROR\+\_\+\+NO\+\_\+\+REQUEST\+\_\+\+SLAVE}}~0x\+FB
+\begin{DoxyCompactList}\small\item\em Error:\+ el esclavo no responde (recibido 0x00 o 0x\+FF). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{config_spi_8h_af1b9cb9955d7fceecd7d9b3f94bede98}{SPI\+\_\+\+ERROR\+\_\+\+PIN\+\_\+\+SS\+\_\+\+HIGH}}~0x\+FA
+\begin{DoxyCompactList}\small\item\em Error:\+ el pin SS se encuentra en HIGH durante la transferencia. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}{PIN\+\_\+\+SS}} = 53
+\begin{DoxyCompactList}\small\item\em Pin SS (Slave Select) usado por el maestro para seleccionar al esclavo. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{config_spi_8h_a88b6a485feaa606be9ddc27c26a5491d}{PIN\+\_\+\+MOSI}} = 51
+\begin{DoxyCompactList}\small\item\em Pin MOSI (Master Out Slave In). ~\newline
+ Línea de datos desde el maestro hacia el esclavo. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{config_spi_8h_a7bb9f3a473e25d5daf49abdb8aaf7dfd}{PIN\+\_\+\+MISO}} = 50
+\begin{DoxyCompactList}\small\item\em Pin MISO (Master In Slave Out). ~\newline
+ Línea de datos desde el esclavo hacia el maestro. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{config_spi_8h_a590dd7c2bde4409edd86324f3d0b1616}{PIN\+\_\+\+SCK}} = 52
+\begin{DoxyCompactList}\small\item\em Pin SCK (Serial Clock). ~\newline
+ Reloj generado por el maestro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{config_spi_8h_doc-define-members}
+\doxysubsection{Documentación de «define»}
+\Hypertarget{config_spi_8h_a3fa2d3bf1901157f734a584d47b25d8b}\index{configSpi.h@{configSpi.h}!MASTER@{MASTER}}
+\index{MASTER@{MASTER}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{MASTER}{MASTER}}
+{\footnotesize\ttfamily \label{config_spi_8h_a3fa2d3bf1901157f734a584d47b25d8b} 
+\+\#define MASTER~0}
+
+
+
+Activa el modo maestro SPI. 
+
+Colocar en 1 para compilar en modo maestro. 
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00041}{41}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_ae342da5a4630c191c1c983958808edd8}\index{configSpi.h@{configSpi.h}!SLAVE@{SLAVE}}
+\index{SLAVE@{SLAVE}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{SLAVE}{SLAVE}}
+{\footnotesize\ttfamily \label{config_spi_8h_ae342da5a4630c191c1c983958808edd8} 
+\+\#define SLAVE~1}
+
+
+
+Activa el modo esclavo SPI. 
+
+Colocar en 1 para compilar en modo esclavo. 
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00048}{48}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_a1136776b8503ea922d2bd82afbdf48a0}\index{configSpi.h@{configSpi.h}!SLAVE\_PRUEBA@{SLAVE\_PRUEBA}}
+\index{SLAVE\_PRUEBA@{SLAVE\_PRUEBA}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{SLAVE\_PRUEBA}{SLAVE\_PRUEBA}}
+{\footnotesize\ttfamily \label{config_spi_8h_a1136776b8503ea922d2bd82afbdf48a0} 
+\+\#define SLAVE\+\_\+\+PRUEBA~0}
+
+
+
+Activa un modo esclavo especial para pruebas. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00054}{54}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_aaa4db819f7fa370739bd86a623a5b821}\index{configSpi.h@{configSpi.h}!SPI\_ERROR\_NO\_INIT\_SPE@{SPI\_ERROR\_NO\_INIT\_SPE}}
+\index{SPI\_ERROR\_NO\_INIT\_SPE@{SPI\_ERROR\_NO\_INIT\_SPE}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{SPI\_ERROR\_NO\_INIT\_SPE}{SPI\_ERROR\_NO\_INIT\_SPE}}
+{\footnotesize\ttfamily \label{config_spi_8h_aaa4db819f7fa370739bd86a623a5b821} 
+\+\#define SPI\+\_\+\+ERROR\+\_\+\+NO\+\_\+\+INIT\+\_\+\+SPE~0x\+FE}
+
+
+
+Error:\+ el módulo SPI no está habilitado (bit SPE = 0). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00099}{99}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_af3e6172f96905ab14eb7f84d302d27e6}\index{configSpi.h@{configSpi.h}!SPI\_ERROR\_NO\_INIT\_SS@{SPI\_ERROR\_NO\_INIT\_SS}}
+\index{SPI\_ERROR\_NO\_INIT\_SS@{SPI\_ERROR\_NO\_INIT\_SS}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{SPI\_ERROR\_NO\_INIT\_SS}{SPI\_ERROR\_NO\_INIT\_SS}}
+{\footnotesize\ttfamily \label{config_spi_8h_af3e6172f96905ab14eb7f84d302d27e6} 
+\+\#define SPI\+\_\+\+ERROR\+\_\+\+NO\+\_\+\+INIT\+\_\+\+SS~0x\+FD}
+
+
+
+Error:\+ el pin SS no estaba en LOW cuando se esperaba. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00105}{105}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_aaa697b4ed80507e7f75458ff2c1a4ce3}\index{configSpi.h@{configSpi.h}!SPI\_ERROR\_NO\_REQUEST\_SLAVE@{SPI\_ERROR\_NO\_REQUEST\_SLAVE}}
+\index{SPI\_ERROR\_NO\_REQUEST\_SLAVE@{SPI\_ERROR\_NO\_REQUEST\_SLAVE}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{SPI\_ERROR\_NO\_REQUEST\_SLAVE}{SPI\_ERROR\_NO\_REQUEST\_SLAVE}}
+{\footnotesize\ttfamily \label{config_spi_8h_aaa697b4ed80507e7f75458ff2c1a4ce3} 
+\+\#define SPI\+\_\+\+ERROR\+\_\+\+NO\+\_\+\+REQUEST\+\_\+\+SLAVE~0x\+FB}
+
+
+
+Error:\+ el esclavo no responde (recibido 0x00 o 0x\+FF). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00117}{117}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_af1b9cb9955d7fceecd7d9b3f94bede98}\index{configSpi.h@{configSpi.h}!SPI\_ERROR\_PIN\_SS\_HIGH@{SPI\_ERROR\_PIN\_SS\_HIGH}}
+\index{SPI\_ERROR\_PIN\_SS\_HIGH@{SPI\_ERROR\_PIN\_SS\_HIGH}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{SPI\_ERROR\_PIN\_SS\_HIGH}{SPI\_ERROR\_PIN\_SS\_HIGH}}
+{\footnotesize\ttfamily \label{config_spi_8h_af1b9cb9955d7fceecd7d9b3f94bede98} 
+\+\#define SPI\+\_\+\+ERROR\+\_\+\+PIN\+\_\+\+SS\+\_\+\+HIGH~0x\+FA}
+
+
+
+Error:\+ el pin SS se encuentra en HIGH durante la transferencia. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00123}{123}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_a45032087ada7489c059a091d723f6758}\index{configSpi.h@{configSpi.h}!SPI\_ERROR\_TIMEOUT@{SPI\_ERROR\_TIMEOUT}}
+\index{SPI\_ERROR\_TIMEOUT@{SPI\_ERROR\_TIMEOUT}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{SPI\_ERROR\_TIMEOUT}{SPI\_ERROR\_TIMEOUT}}
+{\footnotesize\ttfamily \label{config_spi_8h_a45032087ada7489c059a091d723f6758} 
+\+\#define SPI\+\_\+\+ERROR\+\_\+\+TIMEOUT~0x\+FF}
+
+
+
+Error:\+ la transferencia SPI excedió el tiempo máximo permitido. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00093}{93}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_a2ae72234c68fac9d445d218951f66c13}\index{configSpi.h@{configSpi.h}!SPI\_ERROR\_WCOL@{SPI\_ERROR\_WCOL}}
+\index{SPI\_ERROR\_WCOL@{SPI\_ERROR\_WCOL}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{SPI\_ERROR\_WCOL}{SPI\_ERROR\_WCOL}}
+{\footnotesize\ttfamily \label{config_spi_8h_a2ae72234c68fac9d445d218951f66c13} 
+\+\#define SPI\+\_\+\+ERROR\+\_\+\+WCOL~0x\+FC}
+
+
+
+Error:\+ colisión de escritura (bit WCOL = 1). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00111}{111}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+
+
+\label{doc-var-members}
+\Hypertarget{config_spi_8h_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{config_spi_8h_a7bb9f3a473e25d5daf49abdb8aaf7dfd}\index{configSpi.h@{configSpi.h}!PIN\_MISO@{PIN\_MISO}}
+\index{PIN\_MISO@{PIN\_MISO}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_MISO}{PIN\_MISO}}
+{\footnotesize\ttfamily \label{config_spi_8h_a7bb9f3a473e25d5daf49abdb8aaf7dfd} 
+const uint8\+\_\+t PIN\+\_\+\+MISO = 50}
+
+
+
+Pin MISO (Master In Slave Out). ~\newline
+ Línea de datos desde el esclavo hacia el maestro. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00076}{76}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_a88b6a485feaa606be9ddc27c26a5491d}\index{configSpi.h@{configSpi.h}!PIN\_MOSI@{PIN\_MOSI}}
+\index{PIN\_MOSI@{PIN\_MOSI}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_MOSI}{PIN\_MOSI}}
+{\footnotesize\ttfamily \label{config_spi_8h_a88b6a485feaa606be9ddc27c26a5491d} 
+const uint8\+\_\+t PIN\+\_\+\+MOSI = 51}
+
+
+
+Pin MOSI (Master Out Slave In). ~\newline
+ Línea de datos desde el maestro hacia el esclavo. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00070}{70}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_a590dd7c2bde4409edd86324f3d0b1616}\index{configSpi.h@{configSpi.h}!PIN\_SCK@{PIN\_SCK}}
+\index{PIN\_SCK@{PIN\_SCK}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_SCK}{PIN\_SCK}}
+{\footnotesize\ttfamily \label{config_spi_8h_a590dd7c2bde4409edd86324f3d0b1616} 
+const uint8\+\_\+t PIN\+\_\+\+SCK = 52}
+
+
+
+Pin SCK (Serial Clock). ~\newline
+ Reloj generado por el maestro. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00082}{82}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+
+\Hypertarget{config_spi_8h_aa08e789ac12c166d1db6b7b095309073}\index{configSpi.h@{configSpi.h}!PIN\_SS@{PIN\_SS}}
+\index{PIN\_SS@{PIN\_SS}!configSpi.h@{configSpi.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_SS}{PIN\_SS}}
+{\footnotesize\ttfamily \label{config_spi_8h_aa08e789ac12c166d1db6b7b095309073} 
+const uint8\+\_\+t PIN\+\_\+\+SS = 53}
+
+
+
+Pin SS (Slave Select) usado por el maestro para seleccionar al esclavo. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{config_spi_8h_source_l00064}{64}} del archivo \doxymbox{\hyperlink{config_spi_8h_source}{config\+Spi.\+h}}.
+

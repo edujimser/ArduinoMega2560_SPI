@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ArduinoMega2560_SPI: ArduinoMega2560</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ArduinoMega2560_SPI<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('index.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">ArduinoMega2560 </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<p>This repository contains code templates, configurations, and documentation designed for projects based on the Arduino Mega 2560 microcontroller (ATmega2560). <br  />
+ It serves as a starting point or foundation for developers who want to build modular, optimized, and well‑structured applications on the Mega2560 platform.</p>
+<p>The goal of this repository is to provide a ready‑to‑use base project that simplifies the setup of new developments. <br  />
+ Instead of starting from scratch, you can clone this repository and immediately have:</p><ul>
+<li>A clean project structure compatible with PlatformIO and Arduino IDE.</li>
+<li>Preconfigured build flags for memory optimization and performance.</li>
+<li>Example modules for diagnostics, GPIO, PWM, UART, and EEPROM.</li>
+<li>Documentation templates (README, diagrams, configuration notes) to keep your project organized.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Table of Contents</h1>
+<ul>
+<li>Introduction</li>
+<li>Getting Started<ul>
+<li>Prerequisites</li>
+<li>Installation</li>
+</ul>
+</li>
+<li>Project Structure</li>
+<li>Usage</li>
+<li>Debug</li>
+<li>Functions</li>
+<li>Arduino Mega 2560 Pinout</li>
+<li>PlatformIO Configuration</li>
+<li>License</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Introduction</h1>
+<p>This project serves as a foundation for various Arduino Mega 2560-based applications. It leverages the PlatformIO IDE for streamlined development, building, and deployment.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Getting Started</h1>
+<p>These instructions will guide you through setting up the project on your local machine for development and deployment.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Prerequisites</h2>
+<p>Before you begin, ensure you have the following installed:</p>
+<ul>
+<li><a href="https://platformio.org/platformio-ide">PlatformIO IDE</a> (Installation guide available on the PlatformIO website)</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Installation</h2>
+<ol type="1">
+<li><p class="startli"><b>Clone the repository:</b></p>
+<p class="startli"><span class="tt">bash
+    git clone <a href="https://github.com/edujimser/ArduinoMega2560.git">https://github.com/edujimser/ArduinoMega2560.git</a>
+    cd ArduinoMega2560
+    </span></p>
+</li>
+<li><b>Open the project in PlatformIO IDE:</b><ul>
+<li>Launch PlatformIO IDE.</li>
+<li>Click "Open Project" and select the cloned <span class="tt">ArduinoMega2560</span> directory.</li>
+</ul>
+</li>
+<li><b>Build the project:</b><ul>
+<li>In the PlatformIO IDE, click the "PlatformIO" icon in the bottom toolbar.</li>
+<li>Select "Build" to compile the code.</li>
+</ul>
+</li>
+<li><b>Upload the code to your Arduino Mega 2560:</b><ul>
+<li>Connect your Arduino Mega 2560 to your computer via USB.</li>
+<li>In the PlatformIO IDE, select "Upload" to flash the compiled code to your board.</li>
+</ul>
+</li>
+</ol>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Project Structure</h1>
+<p>The project structure is organized as follows:</p>
+<div class="fragment"><div class="line">ArduinoMega2560/</div>
+<div class="line">├── .gitignore              # Specifies intentionally untracked files that Git should ignore</div>
+<div class="line">├── .vscode/                # Contains VS Code specific settings</div>
+<div class="line">├── include/                # Header files for the project</div>
+<div class="line">├── lib/                    # Libraries used in the project</div>
+<div class="line">│   └── avr-debugger/       # Example library (if applicable)</div>
+<div class="line">├── platformio.ini          # PlatformIO configuration file</div>
+<div class="line">├── src/                    # Source code files</div>
+<div class="line">│   ├── main.cpp            # Main application file</div>
+<div class="line">│   └── system/             # System-related source files (if applicable)</div>
+<div class="line">└── README.md             # Project documentation</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Usage</h1>
+<p>The <span class="tt"><a class="el" href="main_8cpp.html" title="Lógica principal del sistema SPI para el Arduino Mega 2560.">src/main.cpp</a></span> file contains the main application logic. You can modify this file to implement your desired functionality. Refer to the comments within <span class="tt"><a class="el" href="main_8cpp.html" title="Lógica principal del sistema SPI para el Arduino Mega 2560.">main.cpp</a></span> for guidance on how to use the code.</p>
+<p>Example (from <span class="tt"><a class="el" href="main_8cpp.html" title="Lógica principal del sistema SPI para el Arduino Mega 2560.">src/main.cpp</a></span>):</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a>() {</div>
+<div class="line">  <span class="comment">// put your setup code here, to run once:</span></div>
+<div class="line">  Serial.begin(9600);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a>() {</div>
+<div class="line">  <span class="comment">// put your main code here, to run repeatedly:</span></div>
+<div class="line">  Serial.println(<span class="stringliteral">&quot;Hello, Arduino!&quot;</span>);</div>
+<div class="line">  delay(1000);</div>
+<div class="line">}</div>
+<div class="ttc" id="amain_8cpp_html_a4fc01d736fe50cf5b977f755b675f11d"><div class="ttname"><a href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a></div><div class="ttdeci">void setup()</div><div class="ttdoc">Inicializa el sistema según el modo SPI seleccionado.</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00039">main.cpp:39</a></div></div>
+<div class="ttc" id="amain_8cpp_html_afe461d27b9c48d5921c00d521181f12f"><div class="ttname"><a href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a></div><div class="ttdeci">void loop()</div><div class="ttdoc">Bucle principal del sistema.</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00085">main.cpp:85</a></div></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+Debug</h1>
+<p>This project includes a full debugging system for the Arduino Mega 2560 using <b>avr-stub</b>, <b>GDB</b>, and an <b>FT232BL</b> USB–Serial adapter. <br  />
+ This enables professional-level firmware debugging on a microcontroller that does not support hardware debugging natively.</p>
+<hr  />
+<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Requirements</h2>
+<p>To use the debug mode, you will need:</p>
+<ul>
+<li>Arduino <b>Mega 2560</b></li>
+<li><b>FT232BL</b> USB–Serial adapter</li>
+<li><b>PlatformIO</b> (VSCode)</li>
+<li>The <span class="tt">avr-stub</span> library (already included in the project)</li>
+<li>Basic wiring between the FT232BL and the Mega</li>
+</ul>
+<hr  />
+<h2 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+FT232BL Wiring</h2>
+<p>Connect the FT232BL to the Mega 2560 as follows:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">FT232BL  </th><th class="markdownTableHeadNone">Mega 2560  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">TXD  </td><td class="markdownTableBodyNone">RX0 (0)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">RXD  </td><td class="markdownTableBodyNone">TX0 (1)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GND  </td><td class="markdownTableBodyNone">GND  </td></tr>
+</table>
+<blockquote class="doxtable">
+<p>The FT232BL is used by GDB to communicate with the microcontroller. </p>
+</blockquote>
+<hr  />
+<h2 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+PlatformIO Configuration</h2>
+<p>The debug environment is already defined in <span class="tt">platformio.ini</span>:</p>
+<div class="fragment"><div class="line">[env:debug]</div>
+<div class="line">build_type = debug</div>
+<div class="line">debug_tool = custom</div>
+<div class="line">debug_port = /dev/ttyUSB0</div>
+<div class="line"> </div>
+<div class="line">build_flags =</div>
+<div class="line">    -DDEBUG_MODE</div>
+<div class="line">    -Og</div>
+<div class="line">    -g</div>
+<div class="line"> </div>
+<div class="line">lib_deps =</div>
+<div class="line">    jdolinay/avr-debugger</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+Functions</h1>
+<p>Here's a description of the key functions used in the <span class="tt"><a class="el" href="main_8cpp.html" title="Lógica principal del sistema SPI para el Arduino Mega 2560.">src/main.cpp</a></span> file:</p>
+<ul>
+<li><b><span class="tt">void <a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Inicializa el sistema según el modo SPI seleccionado.">setup()</a></span></b>: This function is called once at the beginning of the program. It is typically used to initialize variables, set pin modes, start serial communication, and perform other setup tasks.<ul>
+<li><span class="tt">Serial.begin(9600)</span>: Initializes serial communication at a baud rate of 9600. This allows the Arduino to send data to the serial monitor for debugging and monitoring.</li>
+</ul>
+</li>
+<li><b><span class="tt">void <a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema.">loop()</a></span></b>: This function is called repeatedly in an infinite loop. It contains the main logic of the program, such as reading sensor data, controlling actuators, and responding to user input.<ul>
+<li><span class="tt">Serial.println("Hello, Arduino!")</span>: Prints the text "Hello, Arduino!" to the serial monitor.</li>
+<li><span class="tt">delay(1000)</span>: Pauses the program for 1000 milliseconds (1 second).</li>
+</ul>
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+Arduino Mega 2560 Pinout</h1>
+<p>The Arduino Mega 2560 has a variety of pins that can be used for different purposes:</p>
+<ul>
+<li><b>Digital Pins (0-53):</b> These pins can be configured as either inputs or outputs. Some digital pins have special functions, such as PWM (Pulse Width Modulation) for controlling the brightness of LEDs or the speed of motors.</li>
+<li><b>Analog Input Pins (A0-A15):</b> These pins can read analog signals from sensors, such as potentiometers or temperature sensors.</li>
+<li><b>PWM Pins:</b> Marked with a "~" symbol, these pins can be used for PWM output.</li>
+<li><b>Serial Communication Pins (TX, RX):</b> Used for serial communication with other devices.</li>
+<li><b>SPI Pins:</b> Used for SPI (Serial Peripheral Interface) communication.</li>
+<li><b>I2C Pins (SDA, SCL):</b> Used for I2C (Inter-Integrated Circuit) communication.</li>
+<li><b>AREF:</b> Analog Reference pin for analog inputs.</li>
+<li><b>GND:</b> Ground pins.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+PlatformIO Configuration</h1>
+<p>The <span class="tt">platformio.ini</span> file configures the PlatformIO build environment for this project. Here's a breakdown of the key settings:</p>
+<div class="fragment"><div class="line">; PlatformIO Project Configuration File</div>
+<div class="line">;</div>
+<div class="line">;   Build options: build flags, source filter</div>
+<div class="line">;   Upload options: custom upload port, speed, and extra flags</div>
+<div class="line">;   Library options: dependencies, extra library storages</div>
+<div class="line">;   Advanced options: extra scripting</div>
+<div class="line">;</div>
+<div class="line">; Please visit the documentation for other options and examples:</div>
+<div class="line">; https://docs.platformio.org/page/projectconf.html</div>
+<div class="line"> </div>
+<div class="line">;----------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+<div class="line">;------ Project Configuration ------</div>
+<div class="line">[env:megaatmega2560]</div>
+<div class="line">platform = atmelavr           ; Specifies the development platform (Atmel AVR)</div>
+<div class="line">board = megaatmega2560       ; Specifies the board (Arduino Mega 2560)</div>
+<div class="line">framework = arduino            ; Specifies the framework (Arduino)</div>
+<div class="line">upload_port = COM3             ; Port where your board is connected (e.g., COM3 on Windows, /dev/ttyUSB0 on Linux/Mac)</div>
+<div class="line">monitor_port = COM3          ; Must match the physical port of your board (same as debug_port normally)</div>
+<div class="line">                             ; To check the port in CMD: connect and disconnect the board, then run `mode` in CMD</div>
+<div class="line">;----------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+<div class="line">;------ Standard dependencies and extra configurations ------</div>
+<div class="line">; Adapting the C++ version for the project: removing GNU++11 standard to insert GNU++17</div>
+<div class="line">; https://docs.platformio.org/en/latest/projectconf/advanced_scripting.html#build-unflags-and-build-flags</div>
+<div class="line">build_unflags = </div>
+<div class="line">    -std=gnu++11              ; Remove the C++11 standard to avoid conflicts with the C++17 standard</div>
+<div class="line">build_flags = </div>
+<div class="line">    -std=gnu++17              ; Use the C++17 standard with GNU extensions (more flexible than the pure standard)</div>
+<div class="line">    -DAVR8_UART_NUMBER=3      ; Define a macro to indicate that UART number 3 will be used on AVR microcontrollers</div>
+<div class="line">    -DEBUG_MODE=0             ; Activate debug mode to include debugging code</div>
+<div class="line">    -Os                       ; Change the optimization level here:</div>
+<div class="line">                                ; -O0  → no optimization (debugging)</div>
+<div class="line">                                ; -O1  → light optimization</div>
+<div class="line">                                ; -O2  → balanced optimization</div>
+<div class="line">                                ; -O3  → maximum speed</div>
+<div class="line">                                ; -Os  → optimize for size</div>
+<div class="line">    -flto                     ; Enable Link Time Optimization (LTO) for better optimization across files</div>
+<div class="line">    -fno-exceptions           ; Disable exceptions to reduce code size and improve performance</div>
+<div class="line"> </div>
+<div class="line">;----------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+<div class="line">;------ Artificial Debugging Dependencies ------</div>
+<div class="line">; Notes:</div>
+<div class="line">;   - Configure build_flags (DAVR8_UART_NUMBER, DEBUG_MODE) to activate debug mode</div>
+<div class="line">; Activate simulated debugging system with avr-stub</div>
+<div class="line">debug_tool = avr-stub         ; Uses the &#39;avr-debugger&#39; library to simulate debugging on AVR chips</div>
+<div class="line">; Virtual serial port for debugging</div>
+<div class="line">debug_port = COM6             ; Port where your board is connected (e.g., COM3 on Windows, /dev/ttyUSB0 on Linux/Mac)</div>
+<div class="line">                             ; To check the port in CMD: connect and disconnect the board, then run `mode` in CMD</div>
+<div class="line">; Serial monitor communication speed</div>
+<div class="line">monitor_speed = 57600         ; Baud rate. Must match the one used in Serial.begin() in your code</div>
+<div class="line"> </div>
+<div class="line">;----------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+<div class="line">;------ RFID-RC522 Dependencies ------</div>
+<div class="line">; The following line tells PlatformIO to automatically download and include </div>
+<div class="line">; the MFRC522 library by Miguel Balboa from PlatformIO&#39;s official registry.</div>
+<div class="line">; This library allows controlling the RFID RC522 reader module for reading/writing tags and cards.</div>
+<div class="line">; lib_deps = /lib/Ard - opcional descomentar si se quiere usar la librería de Arduino por descarga</div>
+<div class="line"> </div>
+<div class="line">[platformio]</div>
+<div class="line">description = Sensors</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+Explanation of Settings:</h2>
+<ul>
+<li><b><span class="tt">[env:megaatmega2560]</span></b>: This section defines the environment for the Arduino Mega 2560 board. <span class="tt">env</span> stands for environment. You can have multiple environments for different boards or configurations.<ul>
+<li><span class="tt">platform = atmelavr</span>: Specifies that the Atmel AVR platform will be used.</li>
+<li><span class="tt">board = megaatmega2560</span>: Specifies that the target board is the Arduino Mega 2560.</li>
+<li><span class="tt">framework = arduino</span>: Specifies that the Arduino framework will be used.</li>
+<li><span class="tt">upload_port = COM3</span>: Defines the serial port used for uploading the compiled code to the board. <b>Important:</b> You need to change this to the correct port for your system (e.g., <span class="tt">/dev/ttyUSB0</span> on Linux, <span class="tt">COM3</span> or similar on Windows).</li>
+<li><span class="tt">monitor_port = COM3</span>: Defines the serial port used for the serial monitor. This should typically match the <span class="tt">upload_port</span>.</li>
+</ul>
+</li>
+<li><b><span class="tt">build_unflags</span></b>: These settings remove default compiler flags.<ul>
+<li><span class="tt">-std=gnu++11</span>: Removes the default C++11 standard flag. This is done to allow the use of C++17.</li>
+</ul>
+</li>
+<li><b><span class="tt">build_flags</span></b>: These settings add custom compiler flags.<ul>
+<li><span class="tt">-std=gnu++17</span>: Specifies that the C++17 standard should be used for compilation. C++17 provides more modern language features.</li>
+<li><span class="tt">-DAVR8_UART_NUMBER=3</span>: Defines a macro that might be used in the code to specify</li>
+</ul>
+</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+License</h2>
+<p>This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.</p>
+<p>``` MIT License</p>
+<p>Copyright (c) [Año] [Nombre del titular del copyright]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. ``` </p>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

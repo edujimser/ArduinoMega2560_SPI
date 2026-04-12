@@ -1,0 +1,5 @@
+<map id="spi_master_send_block" name="spi_master_send_block">
+<area shape="rect" id="Node000001" title="Envía un bloque completo de bytes mediante SPI maestro." alt="" coords="100,5,259,31"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>

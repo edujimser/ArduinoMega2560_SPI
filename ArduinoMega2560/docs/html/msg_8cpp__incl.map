@@ -1,0 +1,19 @@
+<map id="msg.cpp" name="msg.cpp">
+<area shape="rect" id="Node000001" title="Funciones de diagnóstico para verificar la configuración SPI del Arduino Mega 2560." alt="" coords="121,5,193,31"/>
+<area shape="rect" id="Node000002" href="$msg_8h.html" title="Funciones de diagnóstico y verificación de la configuración SPI en el Arduino Mega 2560." alt="" coords="128,79,187,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,31,160,65,155,65,155,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,299,83,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="146,106,99,155,74,189,54,226,47,256,45,285,40,285,42,255,50,224,70,186,95,152,142,102"/>
+<area shape="rect" id="Node000004" href="$spi_8h.html" title="API del módulo SPI para el ATmega2560 (maestro y esclavo)." alt="" coords="132,152,183,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="153,104,151,139,146,138,148,104"/>
+<area shape="rect" id="Node000006" href="$packet_8h.html" title="Definición del protocolo SPI, estructura Packet y funciones asociadas." alt="" coords="280,225,352,251"/>
+<area shape="poly" id="edge10_Node000002_Node000006" title=" " alt="" coords="172,102,295,214,291,218,169,106"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="162,152,163,118,169,118,167,152"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="133,180,101,199,71,227,57,256,49,286,44,284,52,254,67,224,98,195,130,175"/>
+<area shape="rect" id="Node000005" href="$config_spi_8h.html" title=" " alt="" coords="82,225,169,251"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="154,179,138,214,134,212,150,177"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="184,175,279,217,277,222,182,180"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="193,225,255,251"/>
+<area shape="poly" id="edge9_Node000004_Node000007" title=" " alt="" coords="170,176,206,213,202,217,166,179"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="281,251,97,299,95,294,279,246"/>
+</map>

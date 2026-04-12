@@ -1,0 +1,1195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ArduinoMega2560_SPI: Referencia del archivo packet.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">ArduinoMega2560_SPI<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('packet_8cpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo packet.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="packet_8h_source.html">packet.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependencias incluidas en packet.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp__incl.png" border="0" usemap="#apacket_8cpp" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp" id="apacket_8cpp">
+<area shape="rect" title=" " alt="" coords="5,5,92,31"/>
+<area shape="rect" href="packet_8h.html" title="Definición del protocolo SPI, estructura Packet y funciones asociadas." alt="" coords="13,79,85,104"/>
+<area shape="poly" title=" " alt="" coords="51,31,51,65,46,65,46,31"/>
+<area shape="rect" title=" " alt="" coords="10,152,87,177"/>
+<area shape="poly" title=" " alt="" coords="51,104,51,138,46,138,46,104"/>
+</map>
+</div>
+</div>
+<p><a href="packet_8cpp_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:afb9f26e5ed47e64c9afbd9711a2c5fb6" id="r_afb9f26e5ed47e64c9afbd9711a2c5fb6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afb9f26e5ed47e64c9afbd9711a2c5fb6">build_packet</a> (<a class="el" href="struct_packet.html">Packet</a> *pkt, bool msg, uint32_t delay_ms)</td></tr>
+<tr class="memdesc:afb9f26e5ed47e64c9afbd9711a2c5fb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye un paquete SPI válido y calcula su CRC.  <br /></td></tr>
+<tr class="memitem:a520b2a685995c323d0bac7d1f79b7459" id="r_a520b2a685995c323d0bac7d1f79b7459"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a520b2a685995c323d0bac7d1f79b7459">crc8</a> (const uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:a520b2a685995c323d0bac7d1f79b7459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el CRC-8 (polinomio 0x07) de un bloque de datos.  <br /></td></tr>
+<tr class="memitem:ada6bc2cff356ad505d96e2888b32a40a" id="r_ada6bc2cff356ad505d96e2888b32a40a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ada6bc2cff356ad505d96e2888b32a40a">crc8_valido</a> (<a class="el" href="struct_packet.html">Packet</a> *pkt)</td></tr>
+<tr class="memdesc:ada6bc2cff356ad505d96e2888b32a40a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica la coherencia de un paquete mediante CRC8.  <br /></td></tr>
+<tr class="memitem:ac216a312b1db78dfde3a43cd2733d2de" id="r_ac216a312b1db78dfde3a43cd2733d2de"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac216a312b1db78dfde3a43cd2733d2de">checksum8_calculo</a> (<a class="el" href="struct_packet.html">Packet</a> *pkt)</td></tr>
+<tr class="memdesc:ac216a312b1db78dfde3a43cd2733d2de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el checksum de 16 bits correspondiente al payload del paquete.  <br /></td></tr>
+<tr class="memitem:ab8fd857fb6319b1b97f299ad59fac634" id="r_ab8fd857fb6319b1b97f299ad59fac634"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab8fd857fb6319b1b97f299ad59fac634">checksum8_calculo_slave</a> (<a class="el" href="struct_packet.html">Packet</a> *pkt)</td></tr>
+<tr class="memdesc:ab8fd857fb6319b1b97f299ad59fac634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el checksum de 16 bits del payload y valida el recibido.  <br /></td></tr>
+<tr class="memitem:a9fc3c27519b5ba7891fc640a3eed6259" id="r_a9fc3c27519b5ba7891fc640a3eed6259"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9fc3c27519b5ba7891fc640a3eed6259">mostrar_packet_tabla</a> (<a class="el" href="struct_packet.html">Packet</a> *pkt)</td></tr>
+<tr class="memdesc:a9fc3c27519b5ba7891fc640a3eed6259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime en el monitor serie una tabla detallada con el contenido del paquete.  <br /></td></tr>
+<tr class="memitem:a3ca3bca1ec695199fd56913813acddf3" id="r_a3ca3bca1ec695199fd56913813acddf3"><td class="memItemLeft"><a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46">PacketStatus</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3ca3bca1ec695199fd56913813acddf3">validate_payload</a> (<a class="el" href="struct_packet.html">Packet</a> *pkt)</td></tr>
+<tr class="memdesc:a3ca3bca1ec695199fd56913813acddf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valida todos los campos de payload dentro de un paquete SPI.  <br /></td></tr>
+<tr class="memitem:abb58e666a4ac9bd96a52c43369150cee" id="r_abb58e666a4ac9bd96a52c43369150cee"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abb58e666a4ac9bd96a52c43369150cee">mostrar_estado_completo</a> (<a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46">PacketStatus</a> st, int8_t payload_index, uint16_t value)</td></tr>
+<tr class="memdesc:abb58e666a4ac9bd96a52c43369150cee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muestra en el monitor serie el estado del paquete SPI.  <br /></td></tr>
+<tr class="memitem:a7e76fba52377be95233416aba19130b7" id="r_a7e76fba52377be95233416aba19130b7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7e76fba52377be95233416aba19130b7">mostrar_packet_recibido</a> (const <a class="el" href="struct_packet.html">Packet</a> *pkt)</td></tr>
+<tr class="memdesc:a7e76fba52377be95233416aba19130b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muestra por Serial el contenido de un paquete SPI recibido, indicando la posición de cada byte del payload.  <br /></td></tr>
+<tr class="memitem:aa53dcb7ed5d9f0c950f286f79e7fc246" id="r_aa53dcb7ed5d9f0c950f286f79e7fc246"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa53dcb7ed5d9f0c950f286f79e7fc246">mostrar_validacion_crc</a> (uint8_t crc_recibido, uint8_t crc_calculado)</td></tr>
+<tr class="memdesc:aa53dcb7ed5d9f0c950f286f79e7fc246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muestra el resultado de la validación CRC8 entre el CRC recibido y el calculado.  <br /></td></tr>
+<tr class="memitem:a1480ba1be7fce0bb70e458004ca971e9" id="r_a1480ba1be7fce0bb70e458004ca971e9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1480ba1be7fce0bb70e458004ca971e9">mostrar_datos_checksum_slave</a> (const <a class="el" href="struct_packet.html">Packet</a> *pkt, uint8_t sum_Byte_0, uint8_t sum_Byte_1, bool valido)</td></tr>
+<tr class="memdesc:a1480ba1be7fce0bb70e458004ca971e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muestra el resultado de la validación del checksum de 16 bits.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a4ba9f8230113c11110c5b0bad34608c0" id="r_a4ba9f8230113c11110c5b0bad34608c0"><td class="memItemLeft"><a class="el" href="struct_packet.html">Packet</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4ba9f8230113c11110c5b0bad34608c0">pkt0</a></td></tr>
+<tr class="memdesc:a4ba9f8230113c11110c5b0bad34608c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verificación en tiempo de compilación del tamaño del paquete.  <br /></td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="afb9f26e5ed47e64c9afbd9711a2c5fb6" name="afb9f26e5ed47e64c9afbd9711a2c5fb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb9f26e5ed47e64c9afbd9711a2c5fb6">&#9670;&#160;</a></span>build_packet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void build_packet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_packet.html">Packet</a> *</td>          <td class="paramname"><span class="paramname"><em>pkt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>msg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>delay_ms</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construye un paquete SPI válido y calcula su CRC. </p>
+<p>Esta función valida el contenido del paquete antes de construirlo mediante <a class="el" href="#a3ca3bca1ec695199fd56913813acddf3" title="Valida todos los campos de payload dentro de un paquete SPI.">validate_payload()</a>. Si la validación falla (por ejemplo, por un payload fuera de rango o un puntero inválido), el paquete se limpia completamente con memset() y no se calcula ningún CRC.</p>
+<p>En caso de que el paquete sea válido, se genera el CRC8 a partir de los campos ID, LEN y los 8 payloads, y se almacena en el campo CRC del paquete. Opcionalmente, puede mostrarse una tabla con el contenido final del paquete.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkt</td><td>Puntero al paquete a construir y actualizar. </td></tr>
+    <tr><td class="paramname">msg</td><td>Si es true, se mostrará una tabla con el contenido del paquete. </td></tr>
+    <tr><td class="paramname">delay_ms</td><td>Parámetro reservado para uso futuro (por ejemplo, temporización asociada al envío del paquete).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Si la validación falla, el contenido del paquete se resetea a cero mediante memset() y la función retorna sin modificar el CRC. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00054">54</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>                                                            {</div>
+<div class="line"><span class="lineno">   55</span>  </div>
+<div class="line"><span class="lineno">   56</span>    <span class="comment">// Validar el contenido del paquete antes de construirlo</span></div>
+<div class="line"><span class="lineno">   57</span>    <span class="comment">// Si la validación falla, se muestra el paquete (si msg == true),</span></div>
+<div class="line"><span class="lineno">   58</span>    <span class="comment">// se limpia completamente la estructura y se aborta la construcción.</span></div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>    <a class="code hl_enumeration" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46">PacketStatus</a> st = <a class="code hl_function" href="#a3ca3bca1ec695199fd56913813acddf3">validate_payload</a>(pkt);</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>    <span class="comment">// Calcular el checksum de 16 bits a partir del payload y almacenarlo en el paquete</span></div>
+<div class="line"><span class="lineno">   63</span>    <a class="code hl_function" href="#ac216a312b1db78dfde3a43cd2733d2de">checksum8_calculo</a>(pkt); </div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">if</span> (st != <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c">PKT_OK</a>) {</div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">if</span> (msg) <a class="code hl_function" href="#a9fc3c27519b5ba7891fc640a3eed6259">mostrar_packet_tabla</a>(pkt);</div>
+<div class="line"><span class="lineno">   67</span>        memset(pkt, 0x00, <span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_packet.html">Packet</a>));   <span class="comment">// Reset completo del paquete</span></div>
+<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   69</span>    }</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    <span class="comment">// Construir un buffer temporal con los campos que se usarán para el CRC</span></div>
+<div class="line"><span class="lineno">   72</span>    uint8_t buffer[<a class="code hl_define" href="packet_8h.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a>];</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>    buffer[0] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a36bb0281513399db8cda8bd0fb067472">payload_0</a>;</div>
+<div class="line"><span class="lineno">   75</span>    buffer[1] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa9237d95f1b40dd41d2230bf90dee2e2">payload_1</a>;</div>
+<div class="line"><span class="lineno">   76</span>    buffer[2] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a12e1baa4bc74526b7d67b2c90e21154f">payload_2</a>;</div>
+<div class="line"><span class="lineno">   77</span>    buffer[3] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#afed0be2706ac18e39fe488aa49f80e31">payload_3</a>;</div>
+<div class="line"><span class="lineno">   78</span>    buffer[4] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#af06ac00187fc0e9b1a50b54abd28feb4">payload_4</a>;</div>
+<div class="line"><span class="lineno">   79</span>    buffer[5] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa7413ba3c8c17783d822f9925873cbf3">payload_5</a>;</div>
+<div class="line"><span class="lineno">   80</span>    buffer[6] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a87d7f4e000aee7bce96eb66e11862e01">payload_6</a>;</div>
+<div class="line"><span class="lineno">   81</span>    buffer[7] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a34dad95a56828f8fbd7f464c1ebe1cb6">payload_7</a>;</div>
+<div class="line"><span class="lineno">   82</span> </div>
+<div class="line"><span class="lineno">   83</span>  </div>
+<div class="line"><span class="lineno">   84</span>    <span class="comment">// Cálculo del CRC8 sobre el buffer construido</span></div>
+<div class="line"><span class="lineno">   85</span>    pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1e37d7403c8ee5dc4dc299bd2feaeb74">CRC</a> = <a class="code hl_function" href="#a520b2a685995c323d0bac7d1f79b7459">crc8</a>(buffer, <span class="keyword">sizeof</span>(buffer));</div>
+<div class="line"><span class="lineno">   86</span>   </div>
+<div class="line"><span class="lineno">   87</span>    <span class="comment">// Mostrar el paquete final si se solicita</span></div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span> (msg) <a class="code hl_function" href="#a9fc3c27519b5ba7891fc640a3eed6259">mostrar_packet_tabla</a>(pkt);</div>
+<div class="line"><span class="lineno">   89</span>}</div>
+<div class="ttc" id="apacket_8cpp_html_a3ca3bca1ec695199fd56913813acddf3"><div class="ttname"><a href="#a3ca3bca1ec695199fd56913813acddf3">validate_payload</a></div><div class="ttdeci">PacketStatus validate_payload(Packet *pkt)</div><div class="ttdoc">Valida todos los campos de payload dentro de un paquete SPI.</div><div class="ttdef"><b>Definition</b> <a href="packet_8cpp_source.html#l00402">packet.cpp:402</a></div></div>
+<div class="ttc" id="apacket_8cpp_html_a520b2a685995c323d0bac7d1f79b7459"><div class="ttname"><a href="#a520b2a685995c323d0bac7d1f79b7459">crc8</a></div><div class="ttdeci">uint8_t crc8(const uint8_t *data, size_t len)</div><div class="ttdoc">Calcula el CRC-8 (polinomio 0x07) de un bloque de datos.</div><div class="ttdef"><b>Definition</b> <a href="packet_8cpp_source.html#l00113">packet.cpp:113</a></div></div>
+<div class="ttc" id="apacket_8cpp_html_a9fc3c27519b5ba7891fc640a3eed6259"><div class="ttname"><a href="#a9fc3c27519b5ba7891fc640a3eed6259">mostrar_packet_tabla</a></div><div class="ttdeci">void mostrar_packet_tabla(Packet *pkt)</div><div class="ttdoc">Imprime en el monitor serie una tabla detallada con el contenido del paquete.</div><div class="ttdef"><b>Definition</b> <a href="packet_8cpp_source.html#l00323">packet.cpp:323</a></div></div>
+<div class="ttc" id="apacket_8cpp_html_ac216a312b1db78dfde3a43cd2733d2de"><div class="ttname"><a href="#ac216a312b1db78dfde3a43cd2733d2de">checksum8_calculo</a></div><div class="ttdeci">void checksum8_calculo(Packet *pkt)</div><div class="ttdoc">Calcula el checksum de 16 bits correspondiente al payload del paquete.</div><div class="ttdef"><b>Definition</b> <a href="packet_8cpp_source.html#l00240">packet.cpp:240</a></div></div>
+<div class="ttc" id="apacket_8h_html_a3fb2dea7d964f6ed95dfac2897c4001d"><div class="ttname"><a href="packet_8h.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a></div><div class="ttdeci">#define PAYLOAD_SIZE</div><div class="ttdoc">Número de bytes disponibles en el payload del paquete SPI.</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00019">packet.h:19</a></div></div>
+<div class="ttc" id="apacket_8h_html_a4bfd4d15be352a21c38bec38fc710d46"><div class="ttname"><a href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46">PacketStatus</a></div><div class="ttdeci">PacketStatus</div><div class="ttdoc">Códigos de estado para validación y diagnóstico de paquetes SPI.</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00040">packet.h:40</a></div></div>
+<div class="ttc" id="apacket_8h_html_a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c"><div class="ttname"><a href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c">PKT_OK</a></div><div class="ttdeci">@ PKT_OK</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00043">packet.h:43</a></div></div>
+<div class="ttc" id="astruct_packet_html"><div class="ttname"><a href="struct_packet.html">Packet</a></div><div class="ttdoc">Representa un paquete SPI completo.</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00056">packet.h:56</a></div></div>
+<div class="ttc" id="astruct_packet_html_a12e1baa4bc74526b7d67b2c90e21154f"><div class="ttname"><a href="struct_packet.html#a12e1baa4bc74526b7d67b2c90e21154f">Packet::payload_2</a></div><div class="ttdeci">uint8_t payload_2</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00063">packet.h:63</a></div></div>
+<div class="ttc" id="astruct_packet_html_a1e37d7403c8ee5dc4dc299bd2feaeb74"><div class="ttname"><a href="struct_packet.html#a1e37d7403c8ee5dc4dc299bd2feaeb74">Packet::CRC</a></div><div class="ttdeci">uint8_t CRC</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00069">packet.h:69</a></div></div>
+<div class="ttc" id="astruct_packet_html_a34dad95a56828f8fbd7f464c1ebe1cb6"><div class="ttname"><a href="struct_packet.html#a34dad95a56828f8fbd7f464c1ebe1cb6">Packet::payload_7</a></div><div class="ttdeci">uint8_t payload_7</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00068">packet.h:68</a></div></div>
+<div class="ttc" id="astruct_packet_html_a36bb0281513399db8cda8bd0fb067472"><div class="ttname"><a href="struct_packet.html#a36bb0281513399db8cda8bd0fb067472">Packet::payload_0</a></div><div class="ttdeci">uint8_t payload_0</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00061">packet.h:61</a></div></div>
+<div class="ttc" id="astruct_packet_html_a87d7f4e000aee7bce96eb66e11862e01"><div class="ttname"><a href="struct_packet.html#a87d7f4e000aee7bce96eb66e11862e01">Packet::payload_6</a></div><div class="ttdeci">uint8_t payload_6</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00067">packet.h:67</a></div></div>
+<div class="ttc" id="astruct_packet_html_aa7413ba3c8c17783d822f9925873cbf3"><div class="ttname"><a href="struct_packet.html#aa7413ba3c8c17783d822f9925873cbf3">Packet::payload_5</a></div><div class="ttdeci">uint8_t payload_5</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00066">packet.h:66</a></div></div>
+<div class="ttc" id="astruct_packet_html_aa9237d95f1b40dd41d2230bf90dee2e2"><div class="ttname"><a href="struct_packet.html#aa9237d95f1b40dd41d2230bf90dee2e2">Packet::payload_1</a></div><div class="ttdeci">uint8_t payload_1</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00062">packet.h:62</a></div></div>
+<div class="ttc" id="astruct_packet_html_af06ac00187fc0e9b1a50b54abd28feb4"><div class="ttname"><a href="struct_packet.html#af06ac00187fc0e9b1a50b54abd28feb4">Packet::payload_4</a></div><div class="ttdeci">uint8_t payload_4</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00065">packet.h:65</a></div></div>
+<div class="ttc" id="astruct_packet_html_afed0be2706ac18e39fe488aa49f80e31"><div class="ttname"><a href="struct_packet.html#afed0be2706ac18e39fe488aa49f80e31">Packet::payload_3</a></div><div class="ttdeci">uint8_t payload_3</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00064">packet.h:64</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_afb9f26e5ed47e64c9afbd9711a2c5fb6_cgraph.png" border="0" usemap="#apacket_8cpp_afb9f26e5ed47e64c9afbd9711a2c5fb6_cgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_afb9f26e5ed47e64c9afbd9711a2c5fb6_cgraph" id="apacket_8cpp_afb9f26e5ed47e64c9afbd9711a2c5fb6_cgraph">
+<area shape="rect" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="5,80,100,105"/>
+<area shape="rect" href="packet_8cpp.html#ac216a312b1db78dfde3a43cd2733d2de" title="Calcula el checksum de 16 bits correspondiente al payload del paquete." alt="" coords="153,5,290,31"/>
+<area shape="poly" title=" " alt="" coords="74,78,147,40,164,33,166,38,149,44,76,82"/>
+<area shape="rect" href="packet_8cpp.html#a520b2a685995c323d0bac7d1f79b7459" title="Calcula el CRC&#45;8 (polinomio 0x07) de un bloque de datos." alt="" coords="198,55,245,80"/>
+<area shape="poly" title=" " alt="" coords="100,83,184,70,185,75,101,88"/>
+<area shape="rect" href="packet_8cpp.html#a9fc3c27519b5ba7891fc640a3eed6259" title="Imprime en el monitor serie una tabla detallada con el contenido del paquete." alt="" coords="148,104,295,129"/>
+<area shape="poly" title=" " alt="" coords="101,97,135,102,134,107,100,102"/>
+<area shape="rect" href="packet_8cpp.html#a3ca3bca1ec695199fd56913813acddf3" title="Valida todos los campos de payload dentro de un paquete SPI." alt="" coords="163,153,280,179"/>
+<area shape="poly" title=" " alt="" coords="78,103,149,138,169,146,167,151,147,143,76,108"/>
+<area shape="rect" href="packet_8cpp.html#abb58e666a4ac9bd96a52c43369150cee" title="Muestra en el monitor serie el estado del paquete SPI." alt="" coords="343,153,515,179"/>
+<area shape="poly" title=" " alt="" coords="280,163,329,163,329,169,280,169"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_afb9f26e5ed47e64c9afbd9711a2c5fb6_icgraph.png" border="0" usemap="#apacket_8cpp_afb9f26e5ed47e64c9afbd9711a2c5fb6_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_afb9f26e5ed47e64c9afbd9711a2c5fb6_icgraph" id="apacket_8cpp_afb9f26e5ed47e64c9afbd9711a2c5fb6_icgraph">
+<area shape="rect" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="100,5,195,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac216a312b1db78dfde3a43cd2733d2de" name="ac216a312b1db78dfde3a43cd2733d2de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac216a312b1db78dfde3a43cd2733d2de">&#9670;&#160;</a></span>checksum8_calculo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void checksum8_calculo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_packet.html">Packet</a> *</td>          <td class="paramname"><span class="paramname"><em>pkt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcula el checksum de 16 bits correspondiente al payload del paquete. </p>
+<p>Calcula el checksum de 16 bits del payload del paquete.</p>
+<p>Esta función recorre secuencialmente los bytes del payload del paquete, comenzando en POSITION_PAYLOAD_BYTE y procesando exactamente PAYLOAD_SIZE bytes consecutivos. Cada byte se acumula en la variable interna <span class="tt">sum</span>, cuyo tamaño de 16 bits permite almacenar el resultado completo de la suma.</p>
+<p>Una vez finalizado el cálculo, el valor de 16 bits se divide en dos partes:</p><ul>
+<li>chechSumByte_0 : Byte menos significativo (LSB).</li>
+<li>chechSumByte_1 : Byte más significativo (MSB).</li>
+</ul>
+<p>Ambos bytes se almacenan en la estructura <a class="el" href="struct_packet.html" title="Representa un paquete SPI completo.">Packet</a> siguiendo el formato little-endian, habitual en microcontroladores AVR/ARM, lo que garantiza compatibilidad con protocolos binarios que transmiten valores de 16 bits descompuestos en dos octetos.</p>
+<dl class="section note"><dt>Nota</dt><dd>La función no valida el contenido del payload ni comprueba límites. Se asume que POSITION_PAYLOAD_BYTE y PAYLOAD_SIZE describen un rango de memoria válido dentro de la estructura <a class="el" href="struct_packet.html" title="Representa un paquete SPI completo.">Packet</a>.</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkt</td><td>Puntero al paquete sobre el que se calcula y almacena el checksum.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondición</dt><dd><span class="tt">pkt</span> debe apuntar a una estructura <a class="el" href="struct_packet.html" title="Representa un paquete SPI completo.">Packet</a> correctamente inicializada. </dd></dl>
+<dl class="section post"><dt>Postcondición</dt><dd>Los campos <span class="tt">chechSumByte_0</span> y <span class="tt">chechSumByte_1</span> contendrán el checksum de 16 bits generado a partir del payload. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00240">240</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  240</span>                                    {</div>
+<div class="line"><span class="lineno">  241</span>    int16_t sum = 0;</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>    <span class="keyword">const</span> uint8_t *raw = (<span class="keyword">const</span> uint8_t *)pkt;</div>
+<div class="line"><span class="lineno">  244</span> </div>
+<div class="line"><span class="lineno">  245</span>   <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = <a class="code hl_define" href="packet_8h.html#aa9014c0323292997ecf2e930bb21ea8d">POSITION_PAYLOAD_BYTE</a>; i &lt; <a class="code hl_define" href="packet_8h.html#aa9014c0323292997ecf2e930bb21ea8d">POSITION_PAYLOAD_BYTE</a> + <a class="code hl_define" href="packet_8h.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a>; i++) {</div>
+<div class="line"><span class="lineno">  246</span>    sum += raw[i];</div>
+<div class="line"><span class="lineno">  247</span>    }</div>
+<div class="line"><span class="lineno">  248</span> </div>
+<div class="line"><span class="lineno">  249</span>    <span class="comment">// Guardar el checksum en dos bytes dentro del paquete</span></div>
+<div class="line"><span class="lineno">  250</span>    pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a4dd5ed431075a3ddaf9f39be26209824">chechSumByte_0</a>  = (uint8_t)(sum &amp; 0xFF);        <span class="comment">// LSB</span></div>
+<div class="line"><span class="lineno">  251</span>    pkt-&gt;<a class="code hl_variable" href="struct_packet.html#ad0aaa92155c121843da0c8aabd84a847">chechSumByte_1</a> = (uint8_t)((sum &gt;&gt; 8) &amp; 0xFF);  <span class="comment">// MSB</span></div>
+<div class="line"><span class="lineno">  252</span>}</div>
+<div class="ttc" id="apacket_8h_html_aa9014c0323292997ecf2e930bb21ea8d"><div class="ttname"><a href="packet_8h.html#aa9014c0323292997ecf2e930bb21ea8d">POSITION_PAYLOAD_BYTE</a></div><div class="ttdeci">#define POSITION_PAYLOAD_BYTE</div><div class="ttdoc">Posición del primer byte del payload en el paquete SPI.</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00034">packet.h:34</a></div></div>
+<div class="ttc" id="astruct_packet_html_a4dd5ed431075a3ddaf9f39be26209824"><div class="ttname"><a href="struct_packet.html#a4dd5ed431075a3ddaf9f39be26209824">Packet::chechSumByte_0</a></div><div class="ttdeci">uint8_t chechSumByte_0</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00059">packet.h:59</a></div></div>
+<div class="ttc" id="astruct_packet_html_ad0aaa92155c121843da0c8aabd84a847"><div class="ttname"><a href="struct_packet.html#ad0aaa92155c121843da0c8aabd84a847">Packet::chechSumByte_1</a></div><div class="ttdeci">uint8_t chechSumByte_1</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00060">packet.h:60</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_ac216a312b1db78dfde3a43cd2733d2de_icgraph.png" border="0" usemap="#apacket_8cpp_ac216a312b1db78dfde3a43cd2733d2de_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_ac216a312b1db78dfde3a43cd2733d2de_icgraph" id="apacket_8cpp_ac216a312b1db78dfde3a43cd2733d2de_icgraph">
+<area shape="rect" title="Calcula el checksum de 16 bits correspondiente al payload del paquete." alt="" coords="243,5,380,31"/>
+<area shape="rect" href="packet_8cpp.html#afb9f26e5ed47e64c9afbd9711a2c5fb6" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="100,5,195,31"/>
+<area shape="poly" title=" " alt="" coords="229,21,195,21,195,15,229,15"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab8fd857fb6319b1b97f299ad59fac634" name="ab8fd857fb6319b1b97f299ad59fac634"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8fd857fb6319b1b97f299ad59fac634">&#9670;&#160;</a></span>checksum8_calculo_slave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void checksum8_calculo_slave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_packet.html">Packet</a> *</td>          <td class="paramname"><span class="paramname"><em>pkt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcula el checksum de 16 bits del payload y valida el recibido. </p>
+<p>Calcula y verifica el checksum de 16 bits del payload recibido.</p>
+<p>Recorre los bytes del payload del paquete recibido y acumula su suma en un entero de 16 bits. Luego extrae el LSB y MSB de dicha suma y los compara con los valores almacenados en el paquete (<span class="tt">chechSumByte_0</span> y <span class="tt">chechSumByte_1</span>). Finalmente, muestra el resultado de la validación.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkt</td><td>Puntero al paquete recibido que contiene el payload y los bytes de checksum enviados por el maestro.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Esta función no modifica el contenido del paquete; únicamente calcula y verifica el checksum. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00271">271</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  271</span>                                          {</div>
+<div class="line"><span class="lineno">  272</span>    int16_t sum = 0;</div>
+<div class="line"><span class="lineno">  273</span>    int8_t  sum_Byte_0 = 0;</div>
+<div class="line"><span class="lineno">  274</span>    int8_t  sum_Byte_1 = 0;</div>
+<div class="line"><span class="lineno">  275</span>    <span class="keywordtype">bool</span> checksum_valido = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  276</span>    </div>
+<div class="line"><span class="lineno">  277</span>    <span class="keyword">const</span> uint8_t *raw = (<span class="keyword">const</span> uint8_t *)pkt;</div>
+<div class="line"><span class="lineno">  278</span> </div>
+<div class="line"><span class="lineno">  279</span>   <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = <a class="code hl_define" href="packet_8h.html#aa9014c0323292997ecf2e930bb21ea8d">POSITION_PAYLOAD_BYTE</a>; i &lt; <a class="code hl_define" href="packet_8h.html#aa9014c0323292997ecf2e930bb21ea8d">POSITION_PAYLOAD_BYTE</a> + <a class="code hl_define" href="packet_8h.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a>; i++) {</div>
+<div class="line"><span class="lineno">  280</span>    sum += raw[i];</div>
+<div class="line"><span class="lineno">  281</span>    }</div>
+<div class="line"><span class="lineno">  282</span> </div>
+<div class="line"><span class="lineno">  283</span>    <span class="comment">// Datos del checksum de 16 bits almacenados en el paquete</span></div>
+<div class="line"><span class="lineno">  284</span>    sum_Byte_0  = (uint8_t)(sum &amp; 0xFF);        <span class="comment">// LSB</span></div>
+<div class="line"><span class="lineno">  285</span>    sum_Byte_1 = (uint8_t)((sum &gt;&gt; 8) &amp; 0xFF);  <span class="comment">// MSB</span></div>
+<div class="line"><span class="lineno">  286</span> </div>
+<div class="line"><span class="lineno">  287</span>    <span class="keywordflow">if</span> (pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a4dd5ed431075a3ddaf9f39be26209824">chechSumByte_0</a> == sum_Byte_0 &amp;&amp; pkt-&gt;<a class="code hl_variable" href="struct_packet.html#ad0aaa92155c121843da0c8aabd84a847">chechSumByte_1</a> == sum_Byte_1)</div>
+<div class="line"><span class="lineno">  288</span>    {</div>
+<div class="line"><span class="lineno">  289</span>        checksum_valido = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  290</span>    }</div>
+<div class="line"><span class="lineno">  291</span>    </div>
+<div class="line"><span class="lineno">  292</span>    <a class="code hl_function" href="#a1480ba1be7fce0bb70e458004ca971e9">mostrar_datos_checksum_slave</a>(pkt, sum_Byte_0, sum_Byte_1, checksum_valido);</div>
+<div class="line"><span class="lineno">  293</span>}</div>
+<div class="ttc" id="apacket_8cpp_html_a1480ba1be7fce0bb70e458004ca971e9"><div class="ttname"><a href="#a1480ba1be7fce0bb70e458004ca971e9">mostrar_datos_checksum_slave</a></div><div class="ttdeci">void mostrar_datos_checksum_slave(const Packet *pkt, uint8_t sum_Byte_0, uint8_t sum_Byte_1, bool valido)</div><div class="ttdoc">Muestra el resultado de la validación del checksum de 16 bits.</div><div class="ttdef"><b>Definition</b> <a href="packet_8cpp_source.html#l00626">packet.cpp:626</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_ab8fd857fb6319b1b97f299ad59fac634_cgraph.png" border="0" usemap="#apacket_8cpp_ab8fd857fb6319b1b97f299ad59fac634_cgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_ab8fd857fb6319b1b97f299ad59fac634_cgraph" id="apacket_8cpp_ab8fd857fb6319b1b97f299ad59fac634_cgraph">
+<area shape="rect" title="Calcula el checksum de 16 bits del payload y valida el recibido." alt="" coords="5,13,179,38"/>
+<area shape="rect" href="packet_8cpp.html#a1480ba1be7fce0bb70e458004ca971e9" title="Muestra el resultado de la validación del checksum de 16 bits." alt="" coords="227,5,399,45"/>
+<area shape="poly" title=" " alt="" coords="179,23,213,23,213,28,179,28"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_ab8fd857fb6319b1b97f299ad59fac634_icgraph.png" border="0" usemap="#apacket_8cpp_ab8fd857fb6319b1b97f299ad59fac634_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_ab8fd857fb6319b1b97f299ad59fac634_icgraph" id="apacket_8cpp_ab8fd857fb6319b1b97f299ad59fac634_icgraph">
+<area shape="rect" title="Calcula el checksum de 16 bits del payload y valida el recibido." alt="" coords="100,5,273,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a520b2a685995c323d0bac7d1f79b7459" name="a520b2a685995c323d0bac7d1f79b7459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a520b2a685995c323d0bac7d1f79b7459">&#9670;&#160;</a></span>crc8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t crc8 </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcula el CRC-8 (polinomio 0x07) de un bloque de datos. </p>
+<p>Calcula el CRC-8 de un buffer.</p>
+<p>Esta función implementa el algoritmo CRC-8 estándar basado en el polinomio 0x07 (CRC-8/SMBUS). El cálculo se realiza byte a byte y bit a bit, aplicando desplazamientos y XOR según corresponda. No utiliza XOR final ni valor inicial distinto de cero.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Puntero al bloque de datos de entrada. </td></tr>
+    <tr><td class="paramname">len</td><td>Número de bytes a procesar.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores devueltos</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">uint8_t</td><td>Valor CRC-8 resultante del cálculo.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Este CRC corresponde a la variante CRC-8/SMBUS:<ul>
+<li>Polinomio: 0x07</li>
+<li>Valor inicial: 0x00</li>
+<li>Sin XOR final</li>
+<li>Procesamiento MSB-first </li>
+</ul>
+</dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00113">113</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  113</span>                                              {</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>    uint8_t crc = 0x00;  <span class="comment">// Valor inicial del CRC</span></div>
+<div class="line"><span class="lineno">  116</span> </div>
+<div class="line"><span class="lineno">  117</span>    <span class="comment">// Procesar cada byte del buffer</span></div>
+<div class="line"><span class="lineno">  118</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; len; ++i) {</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>        crc ^= data[i];  <span class="comment">// XOR inicial con el byte actual</span></div>
+<div class="line"><span class="lineno">  121</span> </div>
+<div class="line"><span class="lineno">  122</span>        <span class="comment">// Procesar cada uno de los 8 bits del byte</span></div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">for</span> (uint8_t b = 0; b &lt; 8; ++b) {</div>
+<div class="line"><span class="lineno">  124</span> </div>
+<div class="line"><span class="lineno">  125</span>            <span class="comment">// Si el bit más significativo está a 1, aplicar polinomio</span></div>
+<div class="line"><span class="lineno">  126</span>            <span class="keywordflow">if</span> (crc &amp; 0x80)</div>
+<div class="line"><span class="lineno">  127</span>                crc = (uint8_t)((crc &lt;&lt; 1) ^ 0x07);</div>
+<div class="line"><span class="lineno">  128</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  129</span>                crc = (uint8_t)(crc &lt;&lt; 1);</div>
+<div class="line"><span class="lineno">  130</span>        }</div>
+<div class="line"><span class="lineno">  131</span>    }</div>
+<div class="line"><span class="lineno">  132</span> </div>
+<div class="line"><span class="lineno">  133</span>    <span class="keywordflow">return</span> crc;  <span class="comment">// Resultado final del CRC-8</span></div>
+<div class="line"><span class="lineno">  134</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_a520b2a685995c323d0bac7d1f79b7459_icgraph.png" border="0" usemap="#apacket_8cpp_a520b2a685995c323d0bac7d1f79b7459_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_a520b2a685995c323d0bac7d1f79b7459_icgraph" id="apacket_8cpp_a520b2a685995c323d0bac7d1f79b7459_icgraph">
+<area shape="rect" title="Calcula el CRC&#45;8 (polinomio 0x07) de un bloque de datos." alt="" coords="243,5,289,31"/>
+<area shape="rect" href="packet_8cpp.html#afb9f26e5ed47e64c9afbd9711a2c5fb6" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="100,5,195,31"/>
+<area shape="poly" title=" " alt="" coords="229,21,195,21,195,15,229,15"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ada6bc2cff356ad505d96e2888b32a40a" name="ada6bc2cff356ad505d96e2888b32a40a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada6bc2cff356ad505d96e2888b32a40a">&#9670;&#160;</a></span>crc8_valido()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void crc8_valido </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_packet.html">Packet</a> *</td>          <td class="paramname"><span class="paramname"><em>pkt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica la coherencia de un paquete mediante CRC8. </p>
+<p>Esta función toma un paquete recibido, extrae su CRC original y calcula nuevamente el CRC8 sobre todos los campos excepto el propio CRC. El cálculo utiliza el polinomio estándar 0x07, sin reflexión y con valor inicial 0x00.</p>
+<p>El objetivo es determinar si el paquete ha sido recibido correctamente o si presenta corrupción en alguno de sus bytes.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkt</td><td>Puntero al paquete recibido que contiene ID, longitud, payload y CRC.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>El cálculo del CRC se realiza sobre (PACKET_SIZE - 1) bytes, es decir, todos los campos excepto el byte final que contiene el CRC original.</dd></dl>
+<p>Algoritmo CRC8 utilizado:</p><ul>
+<li>Polinomio: 0x07</li>
+<li>Valor inicial: 0x00</li>
+<li>Sin reflexión de entrada</li>
+<li>Sin reflexión de salida</li>
+<li>Sin XOR final</li>
+</ul>
+<p>El proceso consiste en:</p><ol type="1">
+<li>Copiar el paquete y poner su CRC a 0.</li>
+<li>Convertir la estructura a un arreglo de bytes.</li>
+<li>Construir un buffer con todos los bytes excepto el CRC.</li>
+<li>Aplicar el algoritmo CRC8 bit a bit.</li>
+<li>Comparar el CRC calculado con el CRC recibido. </li>
+</ol>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00169">169</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  169</span>                              {</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>    <span class="comment">// 1. Guardar el CRC original del paquete</span></div>
+<div class="line"><span class="lineno">  172</span>    uint8_t crc_paquete = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1e37d7403c8ee5dc4dc299bd2feaeb74">CRC</a>;</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>    <span class="comment">// 2. Crear copia temporal del paquete y poner CRC = 0</span></div>
+<div class="line"><span class="lineno">  175</span>    <a class="code hl_struct" href="struct_packet.html">Packet</a> temp_pkt = *pkt;</div>
+<div class="line"><span class="lineno">  176</span>    temp_pkt.<a class="code hl_variable" href="struct_packet.html#a1e37d7403c8ee5dc4dc299bd2feaeb74">CRC</a> = 0x00;</div>
+<div class="line"><span class="lineno">  177</span> </div>
+<div class="line"><span class="lineno">  178</span>    <span class="comment">// 3. Convertir la estructura a un arreglo de bytes</span></div>
+<div class="line"><span class="lineno">  179</span>   uint8_t buffer[8];</div>
+<div class="line"><span class="lineno">  180</span> </div>
+<div class="line"><span class="lineno">  181</span>    buffer[0] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a36bb0281513399db8cda8bd0fb067472">payload_0</a>;</div>
+<div class="line"><span class="lineno">  182</span>    buffer[1] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa9237d95f1b40dd41d2230bf90dee2e2">payload_1</a>;</div>
+<div class="line"><span class="lineno">  183</span>    buffer[2] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a12e1baa4bc74526b7d67b2c90e21154f">payload_2</a>;</div>
+<div class="line"><span class="lineno">  184</span>    buffer[3] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#afed0be2706ac18e39fe488aa49f80e31">payload_3</a>;</div>
+<div class="line"><span class="lineno">  185</span>    buffer[4] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#af06ac00187fc0e9b1a50b54abd28feb4">payload_4</a>;</div>
+<div class="line"><span class="lineno">  186</span>    buffer[5] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa7413ba3c8c17783d822f9925873cbf3">payload_5</a>;</div>
+<div class="line"><span class="lineno">  187</span>    buffer[6] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a87d7f4e000aee7bce96eb66e11862e01">payload_6</a>;</div>
+<div class="line"><span class="lineno">  188</span>    buffer[7] = pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a34dad95a56828f8fbd7f464c1ebe1cb6">payload_7</a>;</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>    <span class="comment">// 4. Calcular CRC8 usando polinomio 0x07</span></div>
+<div class="line"><span class="lineno">  191</span>    uint8_t crc = 0x00;</div>
+<div class="line"><span class="lineno">  192</span> </div>
+<div class="line"><span class="lineno">  193</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <span class="keyword">sizeof</span>(buffer); ++i) {</div>
+<div class="line"><span class="lineno">  194</span> </div>
+<div class="line"><span class="lineno">  195</span>        crc ^= buffer[i];  <span class="comment">// Mezclar el byte actual</span></div>
+<div class="line"><span class="lineno">  196</span> </div>
+<div class="line"><span class="lineno">  197</span>        <span class="comment">// Procesar cada uno de los 8 bits</span></div>
+<div class="line"><span class="lineno">  198</span>        <span class="keywordflow">for</span> (uint8_t b = 0; b &lt; 8; ++b) {</div>
+<div class="line"><span class="lineno">  199</span> </div>
+<div class="line"><span class="lineno">  200</span>            <span class="comment">// Si el bit más significativo está a 1, aplicar polinomio</span></div>
+<div class="line"><span class="lineno">  201</span>            <span class="keywordflow">if</span> (crc &amp; 0x80)</div>
+<div class="line"><span class="lineno">  202</span>                crc = (uint8_t)((crc &lt;&lt; 1) ^ 0x07);</div>
+<div class="line"><span class="lineno">  203</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  204</span>                crc = (uint8_t)(crc &lt;&lt; 1);</div>
+<div class="line"><span class="lineno">  205</span>        }</div>
+<div class="line"><span class="lineno">  206</span>    }</div>
+<div class="line"><span class="lineno">  207</span> </div>
+<div class="line"><span class="lineno">  208</span>    <a class="code hl_function" href="#aa53dcb7ed5d9f0c950f286f79e7fc246">mostrar_validacion_crc</a>(crc_paquete, crc);</div>
+<div class="line"><span class="lineno">  209</span>}</div>
+<div class="ttc" id="apacket_8cpp_html_aa53dcb7ed5d9f0c950f286f79e7fc246"><div class="ttname"><a href="#aa53dcb7ed5d9f0c950f286f79e7fc246">mostrar_validacion_crc</a></div><div class="ttdeci">void mostrar_validacion_crc(uint8_t crc_recibido, uint8_t crc_calculado)</div><div class="ttdoc">Muestra el resultado de la validación CRC8 entre el CRC recibido y el calculado.</div><div class="ttdef"><b>Definition</b> <a href="packet_8cpp_source.html#l00586">packet.cpp:586</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_ada6bc2cff356ad505d96e2888b32a40a_cgraph.png" border="0" usemap="#apacket_8cpp_ada6bc2cff356ad505d96e2888b32a40a_cgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_ada6bc2cff356ad505d96e2888b32a40a_cgraph" id="apacket_8cpp_ada6bc2cff356ad505d96e2888b32a40a_cgraph">
+<area shape="rect" title="Verifica la coherencia de un paquete mediante CRC8." alt="" coords="5,5,92,31"/>
+<area shape="rect" href="packet_8cpp.html#aa53dcb7ed5d9f0c950f286f79e7fc246" title="Muestra el resultado de la validación CRC8 entre el CRC recibido y el calculado." alt="" coords="140,5,295,31"/>
+<area shape="poly" title=" " alt="" coords="92,15,126,15,126,21,92,21"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_ada6bc2cff356ad505d96e2888b32a40a_icgraph.png" border="0" usemap="#apacket_8cpp_ada6bc2cff356ad505d96e2888b32a40a_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_ada6bc2cff356ad505d96e2888b32a40a_icgraph" id="apacket_8cpp_ada6bc2cff356ad505d96e2888b32a40a_icgraph">
+<area shape="rect" title="Verifica la coherencia de un paquete mediante CRC8." alt="" coords="100,5,187,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1480ba1be7fce0bb70e458004ca971e9" name="a1480ba1be7fce0bb70e458004ca971e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1480ba1be7fce0bb70e458004ca971e9">&#9670;&#160;</a></span>mostrar_datos_checksum_slave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostrar_datos_checksum_slave </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_packet.html">Packet</a> *</td>          <td class="paramname"><span class="paramname"><em>pkt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>sum_Byte_0</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>sum_Byte_1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>valido</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Muestra el resultado de la validación del checksum de 16 bits. </p>
+<p>Esta función imprime:</p><ul>
+<li>Los bytes de checksum recibidos en el paquete (LSB y MSB).</li>
+<li>Los bytes de checksum calculados por el esclavo.</li>
+<li>El resultado de la comparación.</li>
+</ul>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkt</td><td>Puntero al paquete recibido. </td></tr>
+    <tr><td class="paramname">sum_Byte_0</td><td>Byte LSB del checksum calculado. </td></tr>
+    <tr><td class="paramname">sum_Byte_1</td><td>Byte MSB del checksum calculado. </td></tr>
+    <tr><td class="paramname">valido</td><td>true si el checksum coincide, false en caso contrario. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00626">626</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  630</span>{</div>
+<div class="line"><span class="lineno">  631</span>    Serial.println(F(<span class="stringliteral">&quot;\n=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  632</span>    Serial.println(F(<span class="stringliteral">&quot;        VALIDACIÓN DE CHECKSUM 16b&quot;</span>));</div>
+<div class="line"><span class="lineno">  633</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  634</span> </div>
+<div class="line"><span class="lineno">  635</span>    Serial.print(F(<span class="stringliteral">&quot;Checksum recibido (LSB): 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  636</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a4dd5ed431075a3ddaf9f39be26209824">chechSumByte_0</a>, HEX);</div>
+<div class="line"><span class="lineno">  637</span> </div>
+<div class="line"><span class="lineno">  638</span>    Serial.print(F(<span class="stringliteral">&quot;Checksum recibido (MSB): 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  639</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#ad0aaa92155c121843da0c8aabd84a847">chechSumByte_1</a>, HEX);</div>
+<div class="line"><span class="lineno">  640</span> </div>
+<div class="line"><span class="lineno">  641</span>    Serial.print(F(<span class="stringliteral">&quot;Checksum calculado (LSB): 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  642</span>    Serial.println(sum_Byte_0, HEX);</div>
+<div class="line"><span class="lineno">  643</span> </div>
+<div class="line"><span class="lineno">  644</span>    Serial.print(F(<span class="stringliteral">&quot;Checksum calculado (MSB): 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  645</span>    Serial.println(sum_Byte_1, HEX);</div>
+<div class="line"><span class="lineno">  646</span> </div>
+<div class="line"><span class="lineno">  647</span>    Serial.println();</div>
+<div class="line"><span class="lineno">  648</span> </div>
+<div class="line"><span class="lineno">  649</span>    <span class="keywordflow">if</span> (valido) {</div>
+<div class="line"><span class="lineno">  650</span>        Serial.println(F(<span class="stringliteral">&quot;✔ Checksum válido. El paquete es coherente.&quot;</span>));</div>
+<div class="line"><span class="lineno">  651</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  652</span>        Serial.println(F(<span class="stringliteral">&quot;✘ Checksum inválido. El paquete puede estar corrupto.&quot;</span>));</div>
+<div class="line"><span class="lineno">  653</span>    }</div>
+<div class="line"><span class="lineno">  654</span> </div>
+<div class="line"><span class="lineno">  655</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================\n&quot;</span>));</div>
+<div class="line"><span class="lineno">  656</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_a1480ba1be7fce0bb70e458004ca971e9_icgraph.png" border="0" usemap="#apacket_8cpp_a1480ba1be7fce0bb70e458004ca971e9_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_a1480ba1be7fce0bb70e458004ca971e9_icgraph" id="apacket_8cpp_a1480ba1be7fce0bb70e458004ca971e9_icgraph">
+<area shape="rect" title="Muestra el resultado de la validación del checksum de 16 bits." alt="" coords="321,5,493,45"/>
+<area shape="rect" href="packet_8cpp.html#ab8fd857fb6319b1b97f299ad59fac634" title="Calcula y verifica el checksum de 16 bits del payload recibido." alt="" coords="100,13,273,38"/>
+<area shape="poly" title=" " alt="" coords="308,28,273,28,273,23,308,23"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,13,52,38"/>
+<area shape="poly" title=" " alt="" coords="86,28,52,28,52,23,86,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abb58e666a4ac9bd96a52c43369150cee" name="abb58e666a4ac9bd96a52c43369150cee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb58e666a4ac9bd96a52c43369150cee">&#9670;&#160;</a></span>mostrar_estado_completo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostrar_estado_completo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46">PacketStatus</a></td>          <td class="paramname"><span class="paramname"><em>st</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t</td>          <td class="paramname"><span class="paramname"><em>payload_index</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Muestra en el monitor serie el estado del paquete SPI. </p>
+<p>Muestra información detallada del estado del paquete.</p>
+<p>Esta función imprime un informe detallado del estado del paquete, indicando si es válido (PKT_OK) o si se ha producido algún error, como un puntero nulo (PKT_ERR_NULL_PTR) o un payload fuera de rango (PKT_ERR_PAYLOAD_OUT_OF_RANGE).</p>
+<p>Cuando el error está relacionado con un payload, también se muestran el índice del payload afectado y el valor recibido, siempre que dichos parámetros no sean PKT_PAYLOAD_NONE o PKT_VALUE_NONE.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">st</td><td>Código de estado del paquete. </td></tr>
+    <tr><td class="paramname">payload_index</td><td>Índice del payload asociado al error, o PKT_PAYLOAD_NONE si no aplica. </td></tr>
+    <tr><td class="paramname">value</td><td>Valor del payload asociado al error, o PKT_VALUE_NONE si no aplica. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00458">458</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  458</span>                                                                                    {</div>
+<div class="line"><span class="lineno">  459</span>    Serial.println(F(<span class="stringliteral">&quot;\n=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  460</span>    Serial.println(F(<span class="stringliteral">&quot;            PACKET STATUS&quot;</span>));</div>
+<div class="line"><span class="lineno">  461</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  462</span> </div>
+<div class="line"><span class="lineno">  463</span>    <span class="keywordflow">switch</span> (st) {</div>
+<div class="line"><span class="lineno">  464</span> </div>
+<div class="line"><span class="lineno">  465</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c">PKT_OK</a>:</div>
+<div class="line"><span class="lineno">  466</span>            Serial.println(F(<span class="stringliteral">&quot;✔️ Estado: PKT_OK&quot;</span>));</div>
+<div class="line"><span class="lineno">  467</span>            Serial.println(F(<span class="stringliteral">&quot;El paquete es válido y no se detectaron errores.&quot;</span>));</div>
+<div class="line"><span class="lineno">  468</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  469</span> </div>
+<div class="line"><span class="lineno">  470</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670">PKT_ERR_NULL_PTR</a>:</div>
+<div class="line"><span class="lineno">  471</span>            Serial.println(F(<span class="stringliteral">&quot;❌ Estado: PKT_ERR_NULL_PTR&quot;</span>));</div>
+<div class="line"><span class="lineno">  472</span>            Serial.println(F(<span class="stringliteral">&quot;Se recibió un puntero NULL. No es posible procesar el paquete.&quot;</span>));</div>
+<div class="line"><span class="lineno">  473</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  474</span> </div>
+<div class="line"><span class="lineno">  475</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516">PKT_ERR_PAYLOAD_OUT_OF_RANGE</a>:</div>
+<div class="line"><span class="lineno">  476</span>            Serial.println(F(<span class="stringliteral">&quot;❌ Estado: PKT_ERR_PAYLOAD_OUT_OF_RANGE&quot;</span>));</div>
+<div class="line"><span class="lineno">  477</span>            Serial.println(F(<span class="stringliteral">&quot;Uno de los valores del payload está fuera del rango permitido.\n&quot;</span>));</div>
+<div class="line"><span class="lineno">  478</span> </div>
+<div class="line"><span class="lineno">  479</span>            <span class="comment">// Solo mostramos detalles si payload_index es válido</span></div>
+<div class="line"><span class="lineno">  480</span>            <span class="keywordflow">if</span> (payload_index != <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1">PKT_PAYLOAD_NONE</a>) {</div>
+<div class="line"><span class="lineno">  481</span>                Serial.print(F(<span class="stringliteral">&quot;Payload afectado: P&quot;</span>));</div>
+<div class="line"><span class="lineno">  482</span>                Serial.println(payload_index);</div>
+<div class="line"><span class="lineno">  483</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  484</span>                Serial.println(F(<span class="stringliteral">&quot;Payload afectado: (no especificado)&quot;</span>));</div>
+<div class="line"><span class="lineno">  485</span>            }</div>
+<div class="line"><span class="lineno">  486</span> </div>
+<div class="line"><span class="lineno">  487</span>            <span class="keywordflow">if</span> (value != <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c">PKT_VALUE_NONE</a>) {</div>
+<div class="line"><span class="lineno">  488</span>                Serial.print(F(<span class="stringliteral">&quot;Valor recibido: &quot;</span>));</div>
+<div class="line"><span class="lineno">  489</span>                Serial.print(value);</div>
+<div class="line"><span class="lineno">  490</span>                Serial.print(F(<span class="stringliteral">&quot; (0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  491</span>                Serial.print(value, HEX);</div>
+<div class="line"><span class="lineno">  492</span>                Serial.println(F(<span class="stringliteral">&quot;)&quot;</span>));</div>
+<div class="line"><span class="lineno">  493</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  494</span>                Serial.println(F(<span class="stringliteral">&quot;Valor recibido: (no especificado)&quot;</span>));</div>
+<div class="line"><span class="lineno">  495</span>            }</div>
+<div class="line"><span class="lineno">  496</span> </div>
+<div class="line"><span class="lineno">  497</span>            Serial.println(F(<span class="stringliteral">&quot;\nRango permitido: 0 - 255 (0x00 - 0xFF)&quot;</span>));</div>
+<div class="line"><span class="lineno">  498</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  499</span>        </div>
+<div class="line"><span class="lineno">  500</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c">PKT_ERR_PAYLOAD_SIZE_EXCEEDED</a>:</div>
+<div class="line"><span class="lineno">  501</span>            Serial.println(F(<span class="stringliteral">&quot;❌ Estado: PKT_ERR_PAYLOAD_SIZE_EXCEEDED&quot;</span>));</div>
+<div class="line"><span class="lineno">  502</span>            Serial.println(F(<span class="stringliteral">&quot;El tamaño del paquete no coincide con PACKET_SIZE. Revisa la definición del struct Packet.&quot;</span>));</div>
+<div class="line"><span class="lineno">  503</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  504</span> </div>
+<div class="line"><span class="lineno">  505</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  506</span>            Serial.println(F(<span class="stringliteral">&quot;⚠️ Estado desconocido.&quot;</span>));</div>
+<div class="line"><span class="lineno">  507</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  508</span>    }</div>
+<div class="line"><span class="lineno">  509</span> </div>
+<div class="line"><span class="lineno">  510</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================\n&quot;</span>));</div>
+<div class="line"><span class="lineno">  511</span>}</div>
+<div class="ttc" id="apacket_8h_html_a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1"><div class="ttname"><a href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1">PKT_PAYLOAD_NONE</a></div><div class="ttdeci">@ PKT_PAYLOAD_NONE</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00042">packet.h:42</a></div></div>
+<div class="ttc" id="apacket_8h_html_a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516"><div class="ttname"><a href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516">PKT_ERR_PAYLOAD_OUT_OF_RANGE</a></div><div class="ttdeci">@ PKT_ERR_PAYLOAD_OUT_OF_RANGE</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00044">packet.h:44</a></div></div>
+<div class="ttc" id="apacket_8h_html_a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670"><div class="ttname"><a href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670">PKT_ERR_NULL_PTR</a></div><div class="ttdeci">@ PKT_ERR_NULL_PTR</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00045">packet.h:45</a></div></div>
+<div class="ttc" id="apacket_8h_html_a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c"><div class="ttname"><a href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c">PKT_ERR_PAYLOAD_SIZE_EXCEEDED</a></div><div class="ttdeci">@ PKT_ERR_PAYLOAD_SIZE_EXCEEDED</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00046">packet.h:46</a></div></div>
+<div class="ttc" id="apacket_8h_html_a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c"><div class="ttname"><a href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c">PKT_VALUE_NONE</a></div><div class="ttdeci">@ PKT_VALUE_NONE</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00041">packet.h:41</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_abb58e666a4ac9bd96a52c43369150cee_icgraph.png" border="0" usemap="#apacket_8cpp_abb58e666a4ac9bd96a52c43369150cee_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_abb58e666a4ac9bd96a52c43369150cee_icgraph" id="apacket_8cpp_abb58e666a4ac9bd96a52c43369150cee_icgraph">
+<area shape="rect" title="Muestra en el monitor serie el estado del paquete SPI." alt="" coords="408,5,580,31"/>
+<area shape="rect" href="packet_8cpp.html#a3ca3bca1ec695199fd56913813acddf3" title="Valida los campos del payload y la coherencia del paquete." alt="" coords="243,5,360,31"/>
+<area shape="poly" title=" " alt="" coords="394,21,360,21,360,15,394,15"/>
+<area shape="rect" href="packet_8cpp.html#afb9f26e5ed47e64c9afbd9711a2c5fb6" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="100,5,195,31"/>
+<area shape="poly" title=" " alt="" coords="229,21,195,21,195,15,229,15"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7e76fba52377be95233416aba19130b7" name="a7e76fba52377be95233416aba19130b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e76fba52377be95233416aba19130b7">&#9670;&#160;</a></span>mostrar_packet_recibido()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostrar_packet_recibido </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_packet.html">Packet</a> *</td>          <td class="paramname"><span class="paramname"><em>pkt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Muestra por Serial el contenido de un paquete SPI recibido, indicando la posición de cada byte del payload. </p>
+<p>Muestra por Serial el contenido de un paquete SPI recibido.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkt</td><td>Puntero al paquete recibido. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00519">519</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  519</span>                                                {</div>
+<div class="line"><span class="lineno">  520</span>    <span class="keywordflow">if</span> (!pkt) {</div>
+<div class="line"><span class="lineno">  521</span>        Serial.println(F(<span class="stringliteral">&quot;Error: puntero NULL en mostrar_packet_recibido()&quot;</span>));</div>
+<div class="line"><span class="lineno">  522</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  523</span>    }</div>
+<div class="line"><span class="lineno">  524</span> </div>
+<div class="line"><span class="lineno">  525</span>    Serial.println(F(<span class="stringliteral">&quot;\n=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  526</span>    Serial.println(F(<span class="stringliteral">&quot;        PAQUETE RECIBIDO (Contenido Detallado)&quot;</span>));</div>
+<div class="line"><span class="lineno">  527</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  528</span> </div>
+<div class="line"><span class="lineno">  529</span>    <span class="comment">// --- ID ---</span></div>
+<div class="line"><span class="lineno">  530</span>    Serial.print(F(<span class="stringliteral">&quot;ID:   0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  531</span>    <span class="keywordflow">if</span> (pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1797cf7455306345da96901bf823b973">ID</a> &lt; 0x10) Serial.print(<span class="charliteral">&#39;0&#39;</span>);</div>
+<div class="line"><span class="lineno">  532</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1797cf7455306345da96901bf823b973">ID</a>, HEX);</div>
+<div class="line"><span class="lineno">  533</span> </div>
+<div class="line"><span class="lineno">  534</span>    <span class="comment">// --- LEN ---</span></div>
+<div class="line"><span class="lineno">  535</span>    Serial.print(F(<span class="stringliteral">&quot;LEN:  &quot;</span>));</div>
+<div class="line"><span class="lineno">  536</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aedb268d2c2f44bb48457277fb57421d7">LEN</a>);</div>
+<div class="line"><span class="lineno">  537</span> </div>
+<div class="line"><span class="lineno">  538</span>    <span class="comment">// --- CHECKSUM 16 bits ---</span></div>
+<div class="line"><span class="lineno">  539</span>    Serial.println(F(<span class="stringliteral">&quot;CHECKSUM 16 bits:&quot;</span>));</div>
+<div class="line"><span class="lineno">  540</span> </div>
+<div class="line"><span class="lineno">  541</span>    Serial.print(F(<span class="stringliteral">&quot;  LSB (chechSumByte_0): 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  542</span>    <span class="keywordflow">if</span> (pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a4dd5ed431075a3ddaf9f39be26209824">chechSumByte_0</a> &lt; 0x10) Serial.print(<span class="charliteral">&#39;0&#39;</span>);</div>
+<div class="line"><span class="lineno">  543</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a4dd5ed431075a3ddaf9f39be26209824">chechSumByte_0</a>, HEX);</div>
+<div class="line"><span class="lineno">  544</span> </div>
+<div class="line"><span class="lineno">  545</span>    Serial.print(F(<span class="stringliteral">&quot;  MSB (chechSumByte_1): 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  546</span>    <span class="keywordflow">if</span> (pkt-&gt;<a class="code hl_variable" href="struct_packet.html#ad0aaa92155c121843da0c8aabd84a847">chechSumByte_1</a> &lt; 0x10) Serial.print(<span class="charliteral">&#39;0&#39;</span>);</div>
+<div class="line"><span class="lineno">  547</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#ad0aaa92155c121843da0c8aabd84a847">chechSumByte_1</a>, HEX);</div>
+<div class="line"><span class="lineno">  548</span> </div>
+<div class="line"><span class="lineno">  549</span>    <span class="comment">// --- PAYLOAD ---</span></div>
+<div class="line"><span class="lineno">  550</span>    Serial.println(F(<span class="stringliteral">&quot;\nPAYLOAD (posición : valor):&quot;</span>));</div>
+<div class="line"><span class="lineno">  551</span> </div>
+<div class="line"><span class="lineno">  552</span>    <span class="keyword">const</span> uint8_t *payload = &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a36bb0281513399db8cda8bd0fb067472">payload_0</a>;</div>
+<div class="line"><span class="lineno">  553</span> </div>
+<div class="line"><span class="lineno">  554</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code hl_define" href="packet_8h.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a>; i++) {</div>
+<div class="line"><span class="lineno">  555</span>        Serial.print(F(<span class="stringliteral">&quot;  [&quot;</span>));</div>
+<div class="line"><span class="lineno">  556</span>        Serial.print(i);</div>
+<div class="line"><span class="lineno">  557</span>        Serial.print(F(<span class="stringliteral">&quot;] = 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  558</span>        <span class="keywordflow">if</span> (payload[i] &lt; 0x10) Serial.print(<span class="charliteral">&#39;0&#39;</span>);</div>
+<div class="line"><span class="lineno">  559</span>        Serial.println(payload[i], HEX);</div>
+<div class="line"><span class="lineno">  560</span>    }</div>
+<div class="line"><span class="lineno">  561</span> </div>
+<div class="line"><span class="lineno">  562</span>    <span class="comment">// --- CRC ---</span></div>
+<div class="line"><span class="lineno">  563</span>    Serial.print(F(<span class="stringliteral">&quot;\nCRC:  0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  564</span>    <span class="keywordflow">if</span> (pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1e37d7403c8ee5dc4dc299bd2feaeb74">CRC</a> &lt; 0x10) Serial.print(<span class="charliteral">&#39;0&#39;</span>);</div>
+<div class="line"><span class="lineno">  565</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1e37d7403c8ee5dc4dc299bd2feaeb74">CRC</a>, HEX);</div>
+<div class="line"><span class="lineno">  566</span> </div>
+<div class="line"><span class="lineno">  567</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================\n&quot;</span>));</div>
+<div class="line"><span class="lineno">  568</span>}</div>
+<div class="ttc" id="astruct_packet_html_a1797cf7455306345da96901bf823b973"><div class="ttname"><a href="struct_packet.html#a1797cf7455306345da96901bf823b973">Packet::ID</a></div><div class="ttdeci">uint8_t ID</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00057">packet.h:57</a></div></div>
+<div class="ttc" id="astruct_packet_html_aedb268d2c2f44bb48457277fb57421d7"><div class="ttname"><a href="struct_packet.html#aedb268d2c2f44bb48457277fb57421d7">Packet::LEN</a></div><div class="ttdeci">uint8_t LEN</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00058">packet.h:58</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_a7e76fba52377be95233416aba19130b7_icgraph.png" border="0" usemap="#apacket_8cpp_a7e76fba52377be95233416aba19130b7_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_a7e76fba52377be95233416aba19130b7_icgraph" id="apacket_8cpp_a7e76fba52377be95233416aba19130b7_icgraph">
+<area shape="rect" title="Muestra por Serial el contenido de un paquete SPI recibido, indicando la posición de cada byte del pa..." alt="" coords="100,5,264,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9fc3c27519b5ba7891fc640a3eed6259" name="a9fc3c27519b5ba7891fc640a3eed6259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fc3c27519b5ba7891fc640a3eed6259">&#9670;&#160;</a></span>mostrar_packet_tabla()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostrar_packet_tabla </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_packet.html">Packet</a> *</td>          <td class="paramname"><span class="paramname"><em>pkt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Imprime en el monitor serie una tabla detallada con el contenido del paquete. </p>
+<p>Muestra el contenido del paquete en formato tabla.</p>
+<p>Esta implementación recorre la estructura <a class="el" href="struct_packet.html" title="Representa un paquete SPI completo.">Packet</a> siguiendo estrictamente el orden real de sus campos en memoria. La salida se organiza en una tabla legible que incluye:</p>
+<ul>
+<li>ID y LEN (cabecera del paquete)</li>
+<li>chechSumByte_0 y chechSumByte_1 (checksum de 16 bits, LSB → MSB)</li>
+<li>payload_0 ... payload_7 (contenido del mensaje)</li>
+<li>CRC final del paquete</li>
+</ul>
+<p>Cada campo se muestra en formato decimal y hexadecimal para facilitar la inspección del protocolo durante la depuración. La tabla mantiene separadores consistentes y alineación fija para mejorar la legibilidad.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkt</td><td>Puntero a la estructura <a class="el" href="struct_packet.html" title="Representa un paquete SPI completo.">Packet</a> que se desea visualizar.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondición</dt><dd><span class="tt">pkt</span> debe apuntar a una estructura <a class="el" href="struct_packet.html" title="Representa un paquete SPI completo.">Packet</a> válida. </dd></dl>
+<dl class="section post"><dt>Postcondición</dt><dd>Se envía al monitor serie una tabla completa con todos los campos del paquete.</dd></dl>
+<dl class="section warning"><dt>Atención</dt><dd>Esta función utiliza Serial.println() y no debe ejecutarse dentro de interrupciones (ISR) ni en contextos donde la salida por UART pueda bloquear la ejecución. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00323">323</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  323</span>                                       {</div>
+<div class="line"><span class="lineno">  324</span> </div>
+<div class="line"><span class="lineno">  325</span>    Serial.println(F(<span class="stringliteral">&quot;\n=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  326</span>    Serial.println(F(<span class="stringliteral">&quot;              PACKET TABLE&quot;</span>));</div>
+<div class="line"><span class="lineno">  327</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  328</span>    Serial.println(F(<span class="stringliteral">&quot;| FIELD          |   DEC   |   HEX       |&quot;</span>));</div>
+<div class="line"><span class="lineno">  329</span>    Serial.println(F(<span class="stringliteral">&quot;-----------------------------------------&quot;</span>));</div>
+<div class="line"><span class="lineno">  330</span> </div>
+<div class="line"><span class="lineno">  331</span>    <span class="comment">// ---- CAMPOS PRINCIPALES ----</span></div>
+<div class="line"><span class="lineno">  332</span>    Serial.print(F(<span class="stringliteral">&quot;| ID             | &quot;</span>));</div>
+<div class="line"><span class="lineno">  333</span>    Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1797cf7455306345da96901bf823b973">ID</a>);</div>
+<div class="line"><span class="lineno">  334</span>    Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  335</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1797cf7455306345da96901bf823b973">ID</a>, HEX);</div>
+<div class="line"><span class="lineno">  336</span> </div>
+<div class="line"><span class="lineno">  337</span>    Serial.print(F(<span class="stringliteral">&quot;| LEN            | &quot;</span>));</div>
+<div class="line"><span class="lineno">  338</span>    Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aedb268d2c2f44bb48457277fb57421d7">LEN</a>);</div>
+<div class="line"><span class="lineno">  339</span>    Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  340</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aedb268d2c2f44bb48457277fb57421d7">LEN</a>, HEX);</div>
+<div class="line"><span class="lineno">  341</span> </div>
+<div class="line"><span class="lineno">  342</span>    Serial.println(F(<span class="stringliteral">&quot;-----------------------------------------&quot;</span>));</div>
+<div class="line"><span class="lineno">  343</span>    Serial.println(F(<span class="stringliteral">&quot;| CHECKSUM 16b   |   DEC   |   HEX       |&quot;</span>));</div>
+<div class="line"><span class="lineno">  344</span>    Serial.println(F(<span class="stringliteral">&quot;-----------------------------------------&quot;</span>));</div>
+<div class="line"><span class="lineno">  345</span> </div>
+<div class="line"><span class="lineno">  346</span>    Serial.print(F(<span class="stringliteral">&quot;| CHK LSB (0)    | &quot;</span>));</div>
+<div class="line"><span class="lineno">  347</span>    Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a4dd5ed431075a3ddaf9f39be26209824">chechSumByte_0</a>);</div>
+<div class="line"><span class="lineno">  348</span>    Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  349</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a4dd5ed431075a3ddaf9f39be26209824">chechSumByte_0</a>, HEX);</div>
+<div class="line"><span class="lineno">  350</span> </div>
+<div class="line"><span class="lineno">  351</span>    Serial.print(F(<span class="stringliteral">&quot;| CHK MSB (1)    | &quot;</span>));</div>
+<div class="line"><span class="lineno">  352</span>    Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#ad0aaa92155c121843da0c8aabd84a847">chechSumByte_1</a>);</div>
+<div class="line"><span class="lineno">  353</span>    Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  354</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#ad0aaa92155c121843da0c8aabd84a847">chechSumByte_1</a>, HEX);</div>
+<div class="line"><span class="lineno">  355</span> </div>
+<div class="line"><span class="lineno">  356</span>    Serial.println(F(<span class="stringliteral">&quot;-----------------------------------------&quot;</span>));</div>
+<div class="line"><span class="lineno">  357</span>    Serial.println(F(<span class="stringliteral">&quot;| PAYLOAD        |   DEC   |   HEX       |&quot;</span>));</div>
+<div class="line"><span class="lineno">  358</span>    Serial.println(F(<span class="stringliteral">&quot;-----------------------------------------&quot;</span>));</div>
+<div class="line"><span class="lineno">  359</span> </div>
+<div class="line"><span class="lineno">  360</span>    Serial.print(F(<span class="stringliteral">&quot;| P0             | &quot;</span>)); Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a36bb0281513399db8cda8bd0fb067472">payload_0</a>); Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>)); Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a36bb0281513399db8cda8bd0fb067472">payload_0</a>, HEX);</div>
+<div class="line"><span class="lineno">  361</span>    Serial.print(F(<span class="stringliteral">&quot;| P1             | &quot;</span>)); Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa9237d95f1b40dd41d2230bf90dee2e2">payload_1</a>); Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>)); Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa9237d95f1b40dd41d2230bf90dee2e2">payload_1</a>, HEX);</div>
+<div class="line"><span class="lineno">  362</span>    Serial.print(F(<span class="stringliteral">&quot;| P2             | &quot;</span>)); Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a12e1baa4bc74526b7d67b2c90e21154f">payload_2</a>); Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>)); Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a12e1baa4bc74526b7d67b2c90e21154f">payload_2</a>, HEX);</div>
+<div class="line"><span class="lineno">  363</span>    Serial.print(F(<span class="stringliteral">&quot;| P3             | &quot;</span>)); Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#afed0be2706ac18e39fe488aa49f80e31">payload_3</a>); Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>)); Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#afed0be2706ac18e39fe488aa49f80e31">payload_3</a>, HEX);</div>
+<div class="line"><span class="lineno">  364</span>    Serial.print(F(<span class="stringliteral">&quot;| P4             | &quot;</span>)); Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#af06ac00187fc0e9b1a50b54abd28feb4">payload_4</a>); Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>)); Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#af06ac00187fc0e9b1a50b54abd28feb4">payload_4</a>, HEX);</div>
+<div class="line"><span class="lineno">  365</span>    Serial.print(F(<span class="stringliteral">&quot;| P5             | &quot;</span>)); Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa7413ba3c8c17783d822f9925873cbf3">payload_5</a>); Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>)); Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa7413ba3c8c17783d822f9925873cbf3">payload_5</a>, HEX);</div>
+<div class="line"><span class="lineno">  366</span>    Serial.print(F(<span class="stringliteral">&quot;| P6             | &quot;</span>)); Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a87d7f4e000aee7bce96eb66e11862e01">payload_6</a>); Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>)); Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a87d7f4e000aee7bce96eb66e11862e01">payload_6</a>, HEX);</div>
+<div class="line"><span class="lineno">  367</span>    Serial.print(F(<span class="stringliteral">&quot;| P7             | &quot;</span>)); Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a34dad95a56828f8fbd7f464c1ebe1cb6">payload_7</a>); Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>)); Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a34dad95a56828f8fbd7f464c1ebe1cb6">payload_7</a>, HEX);</div>
+<div class="line"><span class="lineno">  368</span> </div>
+<div class="line"><span class="lineno">  369</span>    Serial.println(F(<span class="stringliteral">&quot;-----------------------------------------&quot;</span>));</div>
+<div class="line"><span class="lineno">  370</span> </div>
+<div class="line"><span class="lineno">  371</span>    <span class="comment">// ---- CRC ----</span></div>
+<div class="line"><span class="lineno">  372</span>    Serial.print(F(<span class="stringliteral">&quot;| CRC            | &quot;</span>));</div>
+<div class="line"><span class="lineno">  373</span>    Serial.print(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1e37d7403c8ee5dc4dc299bd2feaeb74">CRC</a>);</div>
+<div class="line"><span class="lineno">  374</span>    Serial.print(F(<span class="stringliteral">&quot;      | 0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  375</span>    Serial.println(pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a1e37d7403c8ee5dc4dc299bd2feaeb74">CRC</a>, HEX);</div>
+<div class="line"><span class="lineno">  376</span> </div>
+<div class="line"><span class="lineno">  377</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================\n&quot;</span>));</div>
+<div class="line"><span class="lineno">  378</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_a9fc3c27519b5ba7891fc640a3eed6259_icgraph.png" border="0" usemap="#apacket_8cpp_a9fc3c27519b5ba7891fc640a3eed6259_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_a9fc3c27519b5ba7891fc640a3eed6259_icgraph" id="apacket_8cpp_a9fc3c27519b5ba7891fc640a3eed6259_icgraph">
+<area shape="rect" title="Imprime en el monitor serie una tabla detallada con el contenido del paquete." alt="" coords="243,5,389,31"/>
+<area shape="rect" href="packet_8cpp.html#afb9f26e5ed47e64c9afbd9711a2c5fb6" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="100,5,195,31"/>
+<area shape="poly" title=" " alt="" coords="229,21,195,21,195,15,229,15"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa53dcb7ed5d9f0c950f286f79e7fc246" name="aa53dcb7ed5d9f0c950f286f79e7fc246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa53dcb7ed5d9f0c950f286f79e7fc246">&#9670;&#160;</a></span>mostrar_validacion_crc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostrar_validacion_crc </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>crc_recibido</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>crc_calculado</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Muestra el resultado de la validación CRC8 entre el CRC recibido y el calculado. </p>
+<p>Muestra en el monitor serie el resultado de la validación CRC8.</p>
+<p>Esta función imprime:</p><ul>
+<li>El CRC recibido en el paquete.</li>
+<li>El CRC calculado internamente.</li>
+<li>El resultado de la comparación.</li>
+</ul>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">crc_recibido</td><td>CRC original incluido en el paquete. </td></tr>
+    <tr><td class="paramname">crc_calculado</td><td>CRC obtenido tras procesar los datos del paquete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00586">586</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  587</span>{</div>
+<div class="line"><span class="lineno">  588</span>    Serial.println(F(<span class="stringliteral">&quot;\n=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  589</span>    Serial.println(F(<span class="stringliteral">&quot;        VALIDACIÓN DE CRC DEL PAQUETE&quot;</span>));</div>
+<div class="line"><span class="lineno">  590</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================&quot;</span>));</div>
+<div class="line"><span class="lineno">  591</span> </div>
+<div class="line"><span class="lineno">  592</span>    Serial.print(F(<span class="stringliteral">&quot;CRC recibido Maestro:   0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  593</span>    Serial.println(crc_recibido, HEX);</div>
+<div class="line"><span class="lineno">  594</span> </div>
+<div class="line"><span class="lineno">  595</span>    Serial.print(F(<span class="stringliteral">&quot;CRC calculado Esclavo:  0x&quot;</span>));</div>
+<div class="line"><span class="lineno">  596</span>    Serial.println(crc_calculado, HEX);</div>
+<div class="line"><span class="lineno">  597</span> </div>
+<div class="line"><span class="lineno">  598</span>    Serial.println();</div>
+<div class="line"><span class="lineno">  599</span> </div>
+<div class="line"><span class="lineno">  600</span>    <span class="keywordflow">if</span> (crc_recibido == crc_calculado) {</div>
+<div class="line"><span class="lineno">  601</span>        Serial.println(F(<span class="stringliteral">&quot;✔ CRC válido. El paquete es coherente.&quot;</span>));</div>
+<div class="line"><span class="lineno">  602</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  603</span>        Serial.println(F(<span class="stringliteral">&quot;✘ CRC inválido. El paquete puede estar corrupto.&quot;</span>));</div>
+<div class="line"><span class="lineno">  604</span>    }</div>
+<div class="line"><span class="lineno">  605</span> </div>
+<div class="line"><span class="lineno">  606</span>    Serial.println(F(<span class="stringliteral">&quot;=========================================\n&quot;</span>));</div>
+<div class="line"><span class="lineno">  607</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_aa53dcb7ed5d9f0c950f286f79e7fc246_icgraph.png" border="0" usemap="#apacket_8cpp_aa53dcb7ed5d9f0c950f286f79e7fc246_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_aa53dcb7ed5d9f0c950f286f79e7fc246_icgraph" id="apacket_8cpp_aa53dcb7ed5d9f0c950f286f79e7fc246_icgraph">
+<area shape="rect" title="Muestra el resultado de la validación CRC8 entre el CRC recibido y el calculado." alt="" coords="235,5,389,31"/>
+<area shape="rect" href="packet_8cpp.html#ada6bc2cff356ad505d96e2888b32a40a" title="Verifica la coherencia de un paquete mediante CRC8." alt="" coords="100,5,187,31"/>
+<area shape="poly" title=" " alt="" coords="221,21,187,21,187,15,221,15"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3ca3bca1ec695199fd56913813acddf3" name="a3ca3bca1ec695199fd56913813acddf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ca3bca1ec695199fd56913813acddf3">&#9670;&#160;</a></span>validate_payload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46">PacketStatus</a> validate_payload </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_packet.html">Packet</a> *</td>          <td class="paramname"><span class="paramname"><em>pkt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valida todos los campos de payload dentro de un paquete SPI. </p>
+<p>Valida los campos del payload y la coherencia del paquete.</p>
+<p>Esta función verifica que el puntero al paquete sea válido y que cada uno de los 8 payloads se encuentre dentro del rango permitido (0–255). <br  />
+ Si se detecta un error, se informa mediante <a class="el" href="packet_8h.html#abb58e666a4ac9bd96a52c43369150cee" title="Muestra información detallada del estado del paquete.">mostrar_estado_completo()</a> y se devuelve el código de error correspondiente.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pkt</td><td>Puntero al paquete que se desea validar.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores devueltos</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"><a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c">PKT_VALUE_NONE</a></td><td>No se especifica un valor de payload afectado (usado cuando el error no está relacionado con un payload específico). </td></tr>
+    <tr><td class="paramname"><a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1">PKT_PAYLOAD_NONE</a></td><td>El paquete no contiene payloads válidos (no se especifica un payload afectado). </td></tr>
+    <tr><td class="paramname"><a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c">PKT_OK</a></td><td>Todos los payloads son válidos. </td></tr>
+    <tr><td class="paramname"><a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670">PKT_ERR_NULL_PTR</a></td><td>El puntero al paquete es NULL. </td></tr>
+    <tr><td class="paramname"><a class="el" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516">PKT_ERR_PAYLOAD_OUT_OF_RANGE</a></td><td>Algún payload excede el rango permitido.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Esta función no modifica el contenido del paquete; solo valida. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00402">402</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  402</span>                                           {</div>
+<div class="line"><span class="lineno">  403</span>    <span class="comment">// Verificar que el tamaño del paquete coincida con PACKET_SIZE</span></div>
+<div class="line"><span class="lineno">  404</span>    <span class="keywordflow">if</span> (<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_packet.html">Packet</a>) != <a class="code hl_define" href="packet_8h.html#aebdc7d8ca8e25ed8efc90bb88ef7ef5b">PACKET_SIZE</a>) {</div>
+<div class="line"><span class="lineno">  405</span>        <a class="code hl_function" href="#abb58e666a4ac9bd96a52c43369150cee">mostrar_estado_completo</a>(<a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c">PKT_ERR_PAYLOAD_SIZE_EXCEEDED</a>, <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1">PKT_PAYLOAD_NONE</a>, <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c">PKT_VALUE_NONE</a>);</div>
+<div class="line"><span class="lineno">  406</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a62b6d60f3cd383308208a93cfa88905c">PKT_ERR_PAYLOAD_SIZE_EXCEEDED</a>;</div>
+<div class="line"><span class="lineno">  407</span>    }</div>
+<div class="line"><span class="lineno">  408</span>    </div>
+<div class="line"><span class="lineno">  409</span>    <span class="comment">// Verificar que el puntero al paquete sea válido</span></div>
+<div class="line"><span class="lineno">  410</span>    <span class="keywordflow">if</span> (!pkt) {</div>
+<div class="line"><span class="lineno">  411</span>        <a class="code hl_function" href="#abb58e666a4ac9bd96a52c43369150cee">mostrar_estado_completo</a>(<a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670">PKT_ERR_NULL_PTR</a>, <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1">PKT_PAYLOAD_NONE</a>, <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c">PKT_VALUE_NONE</a>);</div>
+<div class="line"><span class="lineno">  412</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a4000def5462459427eeb822b4b784670">PKT_ERR_NULL_PTR</a>;</div>
+<div class="line"><span class="lineno">  413</span>    }</div>
+<div class="line"><span class="lineno">  414</span> </div>
+<div class="line"><span class="lineno">  415</span>    <span class="comment">// Crear un arreglo de punteros a los 8 payloads para recorrerlos de forma compacta</span></div>
+<div class="line"><span class="lineno">  416</span>    uint8_t *payloads[8] = {</div>
+<div class="line"><span class="lineno">  417</span>        &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a36bb0281513399db8cda8bd0fb067472">payload_0</a>, &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa9237d95f1b40dd41d2230bf90dee2e2">payload_1</a>, &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a12e1baa4bc74526b7d67b2c90e21154f">payload_2</a>, &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#afed0be2706ac18e39fe488aa49f80e31">payload_3</a>,</div>
+<div class="line"><span class="lineno">  418</span>        &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#af06ac00187fc0e9b1a50b54abd28feb4">payload_4</a>, &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#aa7413ba3c8c17783d822f9925873cbf3">payload_5</a>, &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a87d7f4e000aee7bce96eb66e11862e01">payload_6</a>, &amp;pkt-&gt;<a class="code hl_variable" href="struct_packet.html#a34dad95a56828f8fbd7f464c1ebe1cb6">payload_7</a></div>
+<div class="line"><span class="lineno">  419</span>    };</div>
+<div class="line"><span class="lineno">  420</span> </div>
+<div class="line"><span class="lineno">  421</span>    <span class="comment">// Validar cada payload individualmente</span></div>
+<div class="line"><span class="lineno">  422</span>    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code hl_define" href="packet_8h.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a>; i++) {</div>
+<div class="line"><span class="lineno">  423</span> </div>
+<div class="line"><span class="lineno">  424</span>        <span class="comment">// Si el valor excede el rango permitido (0–255), reportar el error</span></div>
+<div class="line"><span class="lineno">  425</span>        <span class="keywordflow">if</span> (*payloads[i] &gt; 0xFF) {</div>
+<div class="line"><span class="lineno">  426</span>            <a class="code hl_function" href="#abb58e666a4ac9bd96a52c43369150cee">mostrar_estado_completo</a>(<a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516">PKT_ERR_PAYLOAD_OUT_OF_RANGE</a>, i, *payloads[i]);</div>
+<div class="line"><span class="lineno">  427</span>            <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a3fe5f167c086148be59739f007b2b516">PKT_ERR_PAYLOAD_OUT_OF_RANGE</a>;</div>
+<div class="line"><span class="lineno">  428</span>        }</div>
+<div class="line"><span class="lineno">  429</span>    }</div>
+<div class="line"><span class="lineno">  430</span> </div>
+<div class="line"><span class="lineno">  431</span>    <span class="comment">// Si todos los payloads son válidos, reportar estado OK</span></div>
+<div class="line"><span class="lineno">  432</span>    <a class="code hl_function" href="#abb58e666a4ac9bd96a52c43369150cee">mostrar_estado_completo</a>(<a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c">PKT_OK</a>, <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a196f532d399c9929fc60bfa0af5222f1">PKT_PAYLOAD_NONE</a>, <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a6de2e1aca5a9747155d837b3b35b380c">PKT_VALUE_NONE</a>);</div>
+<div class="line"><span class="lineno">  433</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="packet_8h.html#a4bfd4d15be352a21c38bec38fc710d46a02ba504de703810e74f2cdf8b73a9f6c">PKT_OK</a>;</div>
+<div class="line"><span class="lineno">  434</span>}</div>
+<div class="ttc" id="apacket_8cpp_html_abb58e666a4ac9bd96a52c43369150cee"><div class="ttname"><a href="#abb58e666a4ac9bd96a52c43369150cee">mostrar_estado_completo</a></div><div class="ttdeci">void mostrar_estado_completo(PacketStatus st, int8_t payload_index, uint16_t value)</div><div class="ttdoc">Muestra en el monitor serie el estado del paquete SPI.</div><div class="ttdef"><b>Definition</b> <a href="packet_8cpp_source.html#l00458">packet.cpp:458</a></div></div>
+<div class="ttc" id="apacket_8h_html_aebdc7d8ca8e25ed8efc90bb88ef7ef5b"><div class="ttname"><a href="packet_8h.html#aebdc7d8ca8e25ed8efc90bb88ef7ef5b">PACKET_SIZE</a></div><div class="ttdeci">#define PACKET_SIZE</div><div class="ttdoc">Tamaño total del paquete SPI (ID + LEN + CHECKSUM + PAYLOAD + CRC) = 11.</div><div class="ttdef"><b>Definition</b> <a href="packet_8h_source.html#l00025">packet.h:25</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_a3ca3bca1ec695199fd56913813acddf3_cgraph.png" border="0" usemap="#apacket_8cpp_a3ca3bca1ec695199fd56913813acddf3_cgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_a3ca3bca1ec695199fd56913813acddf3_cgraph" id="apacket_8cpp_a3ca3bca1ec695199fd56913813acddf3_cgraph">
+<area shape="rect" title="Valida todos los campos de payload dentro de un paquete SPI." alt="" coords="5,5,123,31"/>
+<area shape="rect" href="packet_8cpp.html#abb58e666a4ac9bd96a52c43369150cee" title="Muestra en el monitor serie el estado del paquete SPI." alt="" coords="171,5,343,31"/>
+<area shape="poly" title=" " alt="" coords="123,15,157,15,157,21,123,21"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="packet_8cpp_a3ca3bca1ec695199fd56913813acddf3_icgraph.png" border="0" usemap="#apacket_8cpp_a3ca3bca1ec695199fd56913813acddf3_icgraph" loading="lazy" alt=""/></div>
+<map name="apacket_8cpp_a3ca3bca1ec695199fd56913813acddf3_icgraph" id="apacket_8cpp_a3ca3bca1ec695199fd56913813acddf3_icgraph">
+<area shape="rect" title="Valida todos los campos de payload dentro de un paquete SPI." alt="" coords="243,5,360,31"/>
+<area shape="rect" href="packet_8cpp.html#afb9f26e5ed47e64c9afbd9711a2c5fb6" title="Construye un paquete SPI válido y calcula su CRC." alt="" coords="100,5,195,31"/>
+<area shape="poly" title=" " alt="" coords="229,21,195,21,195,15,229,15"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="a4ba9f8230113c11110c5b0bad34608c0" name="a4ba9f8230113c11110c5b0bad34608c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba9f8230113c11110c5b0bad34608c0">&#9670;&#160;</a></span>pkt0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_packet.html">Packet</a> pkt0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verificación en tiempo de compilación del tamaño del paquete. </p>
+<p>Instancia global del paquete (opcional). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="packet_8cpp_source.html#l00032">32</a> del archivo <a class="el" href="packet_8cpp_source.html">packet.cpp</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="packet_8cpp.html">packet.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

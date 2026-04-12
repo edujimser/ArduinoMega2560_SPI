@@ -1,0 +1,7 @@
+<map id="spi_master_print_tx_rx" name="spi_master_print_tx_rx">
+<area shape="rect" id="Node000001" title="Muestra el byte enviado y recibido durante una transferencia SPI." alt="" coords="307,5,461,31"/>
+<area shape="rect" id="Node000002" href="$spi_8cpp.html#ab954ffe1bc471b86e3b8b21cc6478f8f" title="Envía un bloque completo de bytes mediante SPI maestro." alt="" coords="100,5,259,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,21,259,21,259,15,293,15"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del sistema." alt="" coords="5,5,52,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,21,52,21,52,15,86,15"/>
+</map>

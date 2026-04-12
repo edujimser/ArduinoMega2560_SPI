@@ -1,0 +1,217 @@
+\doxysection{main.\+cpp}
+\hypertarget{main_8cpp_source}{}\label{main_8cpp_source}\index{main.cpp@{main.cpp}}
+\doxymbox{\hyperlink{main_8cpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ main.cpp}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Lógica\ principal\ del\ sistema\ SPI\ para\ el\ Arduino\ Mega\ 2560.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ Este\ archivo\ implementa\ la\ inicialización\ del\ sistema\ según\ el\ modo\ seleccionado}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00006}00006\ \textcolor{comment}{\ *\ (MAESTRO,\ ESCLAVO\ o\ ESCLAVO\_PRUEBA),\ el\ bucle\ principal\ de\ ejecución\ y\ las\ rutinas}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00007}00007\ \textcolor{comment}{\ *\ de\ interrupción\ asociadas\ al\ SPI\ y\ al\ pin\ SS.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00009}00009\ \textcolor{comment}{\ *\ Maneja:}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00010}00010\ \textcolor{comment}{\ *\ -\/\ Recepción\ de\ paquetes\ SPI}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00011}00011\ \textcolor{comment}{\ *\ -\/\ Procesamiento\ de\ comandos}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00012}00012\ \textcolor{comment}{\ *\ -\/\ Validación\ CRC8\ y\ checksum}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}00013\ \textcolor{comment}{\ *\ -\/\ Respuesta\ automática\ en\ modo\ SLAVE\_PRUEBA}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}00014\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00017}00017\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}00018\ \textcolor{comment}{/**\ @brief\ Estado\ de\ recepción\ del\ esclavo.\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}\doxymbox{\hyperlink{main_8h_a3264ca17406556a54abe56667f2c8611}{00019}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{main_8h_a3264ca17406556a54abe56667f2c8611}{receiving}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021\ \textcolor{comment}{/**\ @brief\ Indica\ que\ el\ paquete\ recibido\ está\ listo\ para\ procesarse.\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}\doxymbox{\hyperlink{main_8h_ac7410dfa63307501a368035aaffc3fc3}{00022}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{main_8h_ac7410dfa63307501a368035aaffc3fc3}{packet\_ready}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}00023\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}00024\ \textcolor{comment}{/**\ @brief\ Índice\ de\ escritura\ en\ el\ buffer\ de\ recepción\ del\ esclavo.\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00025}\doxymbox{\hyperlink{main_8h_ac4b08f79fc99cb2c9c396b1d2be494bb}{00025}}\ uint8\_t\ \doxymbox{\hyperlink{main_8h_ac4b08f79fc99cb2c9c396b1d2be494bb}{rx\_index}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00026}00026\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00027}00027\ \textcolor{comment}{/**\ @brief\ Buffer\ para\ almacenar\ un\ paquete\ SPI\ completo.\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00028}\doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{00028}}\ uint8\_t\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[\doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\_SIZE}}];}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00029}00029\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00030}00030\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00031}00031\ \textcolor{comment}{\ *\ @brief\ Inicializa\ el\ sistema\ según\ el\ modo\ SPI\ seleccionado.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00032}00032\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00033}00033\ \textcolor{comment}{\ *\ Configura:}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00034}00034\ \textcolor{comment}{\ *\ -\/\ Comunicación\ Serial}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00035}00035\ \textcolor{comment}{\ *\ -\/\ Validación\ de\ modo\ (MASTER\ /\ SLAVE\ /\ SLAVE\_PRUEBA)}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00036}00036\ \textcolor{comment}{\ *\ -\/\ Inicialización\ del\ módulo\ SPI}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00037}00037\ \textcolor{comment}{\ *\ -\/\ Interrupciones\ (solo\ en\ modo\ esclavo)}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00038}00038\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00039}\doxymbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{00039}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00040}00040\ \ \ \ \ Serial.begin(115200);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00041}00041\ \ \ \ \ delay(200);\ \textcolor{comment}{/**<\ Espera\ a\ que\ Serial\ esté\ listo.\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{comment}{/*\ Validación\ de\ modo\ único\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044\ \textcolor{preprocessor}{\ \ \ \ \#if\ (MASTER\ +\ SLAVE\ +\ SLAVE\_PRUEBA)\ !=\ 1}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Debes\ seleccionar\ exactamente\ un\ modo:\ MASTER,\ SLAVE\ o\ SLAVE\_PRUEBA"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{comment}{/*\ Modo\ maestro\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049\ \textcolor{preprocessor}{\ \ \ \ \#if\ MASTER}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8h_ada79a2ef129d5488e1f15c53f41cbc68}{spi\_init\_master}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{comment}{/*\ Modo\ esclavo\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00054}00054\ \textcolor{preprocessor}{\ \ \ \ \#if\ SLAVE}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8h_a7d026fae245411026c3b69a989728fca}{spi\_init\_slave}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ PCICR\ \ |=\ (1\ <<\ PCIE0);\ \ \textcolor{comment}{/**<\ Habilita\ PCINT0..7\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ PCMSK0\ |=\ (1\ <<\ PCINT0);\ \textcolor{comment}{/**<\ Interrupción\ en\ PB0\ (SS)\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00058}00058\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{comment}{/*\ Modo\ esclavo\ de\ prueba\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00061}00061\ \textcolor{preprocessor}{\ \ \ \ \#if\ SLAVE\_PRUEBA}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8h_a7d026fae245411026c3b69a989728fca}{spi\_init\_slave}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00063}00063\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00065}00065\ \ \ \ \ sei();\ \textcolor{comment}{/**<\ Activa\ interrupciones\ globales.\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{comment}{/*\ Mensaje\ de\ diagnóstico\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00068}00068\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Sistema\ SPI\ iniciado.\ Modo:\ "{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \#\textcolor{keywordflow}{if}\ \doxymbox{\hyperlink{config_spi_8h_a3fa2d3bf1901157f734a584d47b25d8b}{MASTER}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}MAESTRO"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \#elif\ \doxymbox{\hyperlink{config_spi_8h_ae342da5a4630c191c1c983958808edd8}{SLAVE}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ESCLAVO"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \#elif\ \doxymbox{\hyperlink{config_spi_8h_a1136776b8503ea922d2bd82afbdf48a0}{SLAVE\_PRUEBA}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ESCLAVO\_PRUEBA"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \#endif}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00076}00076\ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00077}00077\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00078}00078\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00079}00079\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00080}00080\ \textcolor{comment}{\ *\ @brief\ Bucle\ principal\ del\ sistema.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00081}00081\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00082}00082\ \textcolor{comment}{\ *\ -\/\ En\ modo\ MAESTRO:\ construye\ y\ envía\ un\ paquete\ SPI.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00083}00083\ \textcolor{comment}{\ *\ -\/\ En\ modo\ ESCLAVO:\ procesa\ el\ paquete\ recibido\ cuando\ está\ completo.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00084}00084\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00085}\doxymbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{00085}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00087}00087\ \textcolor{preprocessor}{\ \ \ \ \#if\ MASTER}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.ID\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.payload\_0\ =\ 0xAA;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.payload\_1\ =\ 0xBB;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.payload\_2\ =\ 0xCC;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.payload\_3\ =\ 0xDD;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.payload\_4\ =\ 0xEE;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.payload\_5\ =\ 0xFF;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.payload\_6\ =\ 0x11;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}}.payload\_7\ =\ 0x22;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_afb9f26e5ed47e64c9afbd9711a2c5fb6}{build\_packet}}(\&\doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}},\ \textcolor{keyword}{true},\ 4000);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{spi_8h_ab954ffe1bc471b86e3b8b21cc6478f8f}{spi\_master\_send\_block}}((uint8\_t*)\&\doxymbox{\hyperlink{packet_8h_a4ba9f8230113c11110c5b0bad34608c0}{pkt0}},\ \doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\_SIZE}},\ 1000);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00100}00100\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00103}00103\ \textcolor{preprocessor}{\ \ \ \ \#if\ SLAVE}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{main_8h_ac7410dfa63307501a368035aaffc3fc3}{packet\_ready}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_packet}{Packet}}\ received\_pkt\ =\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ID\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[0],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .LEN\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[1],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .chechSumByte\_0\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[2],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .chechSumByte\_1\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[3],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .payload\_0\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[4],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .payload\_1\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[5],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .payload\_2\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[6],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .payload\_3\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[7],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .payload\_4\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[8],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .payload\_5\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[9],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .payload\_6\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[10],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .payload\_7\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[11],}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .CRC\ =\ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[12]}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_ada6bc2cff356ad505d96e2888b32a40a}{crc8\_valido}}(\&received\_pkt);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_ab8fd857fb6319b1b97f299ad59fac634}{checksum8\_calculo\_slave}}(\&received\_pkt);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{packet_8h_a7e76fba52377be95233416aba19130b7}{mostrar\_packet\_recibido}}(\&received\_pkt);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (received\_pkt.\doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}})\{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x01:}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Comando\ 0x01\ recibido:"{}}));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}Payload:\ "{}}));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ \doxymbox{\hyperlink{packet_8h_a3fb2dea7d964f6ed95dfac2897c4001d}{PAYLOAD\_SIZE}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}0x"{}}));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ val\ =\ ((uint8\_t*)\&received\_pkt.\doxymbox{\hyperlink{struct_packet_a36bb0281513399db8cda8bd0fb067472}{payload\_0}})[i];}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (val\ <\ 0x10)\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(val,\ HEX);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(\textcolor{charliteral}{'\ '});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x02:}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Comando\ 0x02\ recibido\ (pendiente\ de\ implementar)."{}}));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x03:}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Comando\ 0x03\ recibido\ (pendiente\ de\ implementar)."{}}));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}ID\ desconocido:\ 0x"{}}));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (received\_pkt.\doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}}\ <\ 0x10)\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(received\_pkt.\doxymbox{\hyperlink{struct_packet_a1797cf7455306345da96901bf823b973}{ID}},\ HEX);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main_8h_ac7410dfa63307501a368035aaffc3fc3}{packet\_ready}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00158}00158\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00159}00159\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00161}00161\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00162}00162\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RUTINAS\ ISR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00163}00163\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00164}00164\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00165}00165\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00166}00166\ \textcolor{comment}{\ *\ @brief\ ISR\ para\ cambios\ en\ el\ pin\ SS\ (PCINT0).}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00167}00167\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00168}00168\ \textcolor{comment}{\ *\ -\/\ SS\ BAJO\ \ →\ inicio\ de\ paquete}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00169}00169\ \textcolor{comment}{\ *\ -\/\ SS\ ALTO\ \ →\ fin\ de\ paquete}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00170}00170\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00171}\doxymbox{\hyperlink{main_8cpp_aa64c6dce15e9de9105b4ae9533c9a267}{00171}}\ \doxymbox{\hyperlink{main_8cpp_aa64c6dce15e9de9105b4ae9533c9a267}{ISR}}(PCINT0\_vect)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00172}00172\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00173}00173\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{config_spi_8h_ae342da5a4630c191c1c983958808edd8}{SLAVE}}\ ==\ \textcolor{keyword}{true}\ \&\&\ \doxymbox{\hyperlink{config_spi_8h_a1136776b8503ea922d2bd82afbdf48a0}{SLAVE\_PRUEBA}}\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00174}00174\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ ss\_state\ =\ PINB\ \&\ (1\ <<\ PB0);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ss\_state)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}SS\ BAJO\ →\ INICIO\ PAQUETE"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main_8h_ac4b08f79fc99cb2c9c396b1d2be494bb}{rx\_index}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main_8h_a3264ca17406556a54abe56667f2c8611}{receiving}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main_8h_ac7410dfa63307501a368035aaffc3fc3}{packet\_ready}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}SS\ ALTO\ →\ FIN\ PAQUETE.\ Bytes\ recibidos:\ "{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\doxymbox{\hyperlink{main_8h_ac4b08f79fc99cb2c9c396b1d2be494bb}{rx\_index}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main_8h_a3264ca17406556a54abe56667f2c8611}{receiving}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main_8h_ac7410dfa63307501a368035aaffc3fc3}{packet\_ready}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00188}00188\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00189}00189\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00190}00190\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00191}00191\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00192}00192\ \textcolor{comment}{\ *\ @brief\ ISR\ de\ transferencia\ SPI\ (SPI\_STC\_vect).}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00193}00193\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00194}00194\ \textcolor{comment}{\ *\ -\/\ En\ modo\ SLAVE\_PRUEBA:\ responde\ automáticamente\ incrementando\ el\ byte\ recibido.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00195}00195\ \textcolor{comment}{\ *\ -\/\ En\ modo\ SLAVE\ normal:\ almacena\ los\ bytes\ recibidos\ en\ el\ buffer.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00196}00196\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00197}\doxymbox{\hyperlink{main_8cpp_af9cad97352f5ba9bbd800446131125a6}{00197}}\ \doxymbox{\hyperlink{main_8cpp_aa64c6dce15e9de9105b4ae9533c9a267}{ISR}}(SPI\_STC\_vect)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00198}00198\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00199}00199\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{config_spi_8h_ae342da5a4630c191c1c983958808edd8}{SLAVE}}\ ==\ \textcolor{keyword}{true}\ \&\&\ \doxymbox{\hyperlink{config_spi_8h_a1136776b8503ea922d2bd82afbdf48a0}{SLAVE\_PRUEBA}}\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00200}00200\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ uint8\_t\ recibido\ =\ SPDR;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ SPDR\ =\ recibido\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00203}00203\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00205}00205\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{config_spi_8h_ae342da5a4630c191c1c983958808edd8}{SLAVE}}\ ==\ \textcolor{keyword}{true}\ \&\&\ \doxymbox{\hyperlink{config_spi_8h_a1136776b8503ea922d2bd82afbdf48a0}{SLAVE\_PRUEBA}}\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00206}00206\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{main_8h_a3264ca17406556a54abe56667f2c8611}{receiving}}\ \&\&\ \doxymbox{\hyperlink{main_8h_ac4b08f79fc99cb2c9c396b1d2be494bb}{rx\_index}}\ <\ \doxymbox{\hyperlink{packet_8h_aebdc7d8ca8e25ed8efc90bb88ef7ef5b}{PACKET\_SIZE}})\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{main_8h_a626c9c9d9aaefa8d528ae46e64e3e4b0}{rx\_buffer}}[\doxymbox{\hyperlink{main_8h_ac4b08f79fc99cb2c9c396b1d2be494bb}{rx\_index}}++]\ =\ SPDR;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00210}00210\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00211}00211\ \}}
+
+\end{DoxyCode}

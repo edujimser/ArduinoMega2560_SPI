@@ -1,0 +1,71 @@
+#---------------------------------------------
+# DOXYFILE COMPLETO PARA ARDUINO SPI PROJECT
+# Compatible con Doxygen 1.16.1
+#---------------------------------------------
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "ArduinoMega2560_SPI"
+PROJECT_NUMBER         = 1.0
+OUTPUT_LANGUAGE        = Spanish
+
+# === DIRECTORIOS DE SALIDA ===
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRS         = NO
+
+# === ARCHIVOS DE ENTRADA ===
+INPUT                  = .
+RECURSIVE              = YES
+FILE_PATTERNS          = *.cpp *.h *.hpp *.ino *.md
+
+# === EXTRAER TODO ===
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+# === MOSTRAR CÓDIGO ===
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+STRIP_CODE_COMMENTS    = NO
+
+# === GENERAR HTML ===
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_TIMESTAMP         = NO
+
+# === GENERAR LATEX ===
+GENERATE_LATEX         = YES
+LATEX_OUTPUT           = latex
+
+# === GRAPHVIZ / DIAGRAMAS ===
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 4
+DOT_IMAGE_FORMAT       = png
+INTERACTIVE_SVG        = YES
+
+# IMPORTANTE:
+# Doxygen 1.16.1 NO soporta:
+# CLASS_GRAPH
+# COLLABORATION_GRAPH
+# GROUP_GRAPHS
+# UML_LOOK
+# DOT_TRANSPARENT
+# Por eso NO deben incluirse.
+
+# === CALL GRAPHS ===
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+
+# === MARKDOWN ===
+MARKDOWN_SUPPORT       = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+
+# === VARIOS ===
+FULL_PATH_NAMES        = NO
+TAB_SIZE               = 4
+OPTIMIZE_OUTPUT_FOR_C  = NO
+WARNINGS               = YES
+QUIET                  = NO
+
+DOT_PATH = "C:/Program Files (x86)/Graphviz2.38/bin"
+DOT_EXECUTABLE = "C:/Program Files (x86)/Graphviz2.38/bin/dot.exe"
